@@ -3275,6 +3275,10 @@
             spaceBetween: 10,
             speed: 800,
             loop: true,
+            autoplay: {
+                delay: 3e3,
+                disableOnInteraction: false
+            },
             navigation: {
                 prevEl: ".categories-button-prev",
                 nextEl: ".categories-button-next"
@@ -3299,6 +3303,10 @@
             spaceBetween: 10,
             speed: 800,
             loop: true,
+            autoplay: {
+                delay: 3e3,
+                disableOnInteraction: false
+            },
             navigation: {
                 prevEl: ".base-button-prev",
                 nextEl: ".base-button-next"
