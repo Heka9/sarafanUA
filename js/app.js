@@ -3340,7 +3340,6 @@
             }));
         }
     }), 0);
-    console.log("asd");
     const searchForm = document.querySelector(".search-panel__form");
     searchForm.addEventListener("submit", onFormSubmit);
     function onFormSubmit(e) {
