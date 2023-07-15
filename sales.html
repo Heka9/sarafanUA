@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+	<title>Распродажа</title>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20230715193833" />
+	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+			</div>
+		</header>
+		<main class="sales-page">
+			<div class="sales-page__search-block search-block">
+				<div class="search-block__container">
+					<div class="search-block__header">
+						<button type="button" class="search-block__back">
+							<svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M3.08566 3.44353L1.16389 6.02159L3.018 8.5095C4.49316 10.4746 4.8721 11.0876 4.8721 11.4842C4.8721 11.9529 4.76383 12.0611 4.33076 11.9709C4.22249 11.9529 3.19393 10.709 2.07064 9.21261C0.48721 7.12132 0 6.36413 0 6.02159C0 5.67905 0.48721 4.92186 2.07064 2.84859C3.19393 1.35224 4.23602 0.0722256 4.35782 0.0181408C4.60143 -0.0900297 5.00744 0.306595 5.00744 0.649134C5.00744 0.757303 4.14128 2.01929 3.08566 3.44353Z" fill="black" />
+							</svg>
+						</button>
+						<form class="search-block__form form-search-block">
+							<div class="form-search-block__icon-search">
+								<img src="img/icons/search.svg" alt="Иконка поиска" />
+							</div>
+							<div class="form-search-block__input">
+								<input type="text" class="form-search-block__input" placeholder="Введите наименование" />
+								<button type="reset" class="form-search-block__icon-cancel">
+									<img src="img/icons/cancel.svg" alt="Иконка очистки поля ввода" />
+								</button>
+							</div>
+							<button type="reset" class="form-search-block__cancel">Отмена</button>
+						</form>
+					</div>
+					<div class="search-block__items">
+						<div class="search-block__item">
+							<!-- <label class="search-block__label search-block__label_all"> -->
+							<!-- <input class="search-block__input" type="radio" name="category" value="all" /> -->
+							<div class="search-block__icon search-block__icon_all">
+								<img src="img/icons/categories/all.svg" alt="Все товары" />
+							</div>
+							<!-- </label> -->
+							<h2 class="search-block__title">Все товары</h2>
+						</div>
+						<div class="search-block__item">
+							<!-- <label class="search-block__label search-block__label_technic"> -->
+							<!-- <input class="search-block__input" type="radio" name="category" value="technic" /> -->
+							<div class="search-block__icon search-block__icon_technic">
+								<img src="img/icons/categories/technic.svg" alt="Техника" />
+							</div>
+							<!-- </label> -->
+							<h2 class="search-block__title">Техника</h2>
+						</div>
+						<div class="search-block__item">
+							<!-- <label class="search-block__label search-block__label_house"> -->
+							<!-- <input class="search-block__input" type="radio" name="category" value="house" /> -->
+							<div class="search-block__icon search-block__icon_house">
+								<img src="img/icons/categories/house.svg" alt="Для дома" />
+							</div>
+							<!-- </label> -->
+							<h2 class="search-block__title">Для дома</h2>
+						</div>
+						<div class="search-block__item">
+							<!-- <label class="search-block__label search-block__label_transport"> -->
+							<!-- <input class="search-block__input" type="radio" name="category" value="transport" /> -->
+							<div class="search-block__icon search-block__icon_transport">
+								<img src="img/icons/categories/velo.svg" alt="Транспорт" />
+							</div>
+							<!-- </label> -->
+							<h2 class="search-block__title">Транспорт</h2>
+						</div>
+						<div class="search-block__item">
+							<!-- <label class="search-block__label search-block__label_food"> -->
+							<!-- <input class="search-block__input" type="radio" name="category" value="food" /> -->
+							<div class="search-block__icon search-block__icon_food">
+								<img src="img/icons/categories/food.svg" alt="Продукты" />
+							</div>
+							<!-- </label> -->
+							<h2 class="search-block__title">Продукты</h2>
+						</div>
+						<div class="search-block__item">
+							<!-- <label class="search-block__label search-block__label_shoes"> -->
+							<!-- <input class="search-block__input" type="radio" name="category" value="shoes" /> -->
+							<div class="search-block__icon search-block__icon_shoes">
+								<img src="img/icons/categories/shoes.svg" alt="Обувь" />
+							</div>
+							<!-- </label> -->
+							<h2 class="search-block__title">Обувь</h2>
+						</div>
+						<div class="search-block__item">
+							<!-- <label class="search-block__label search-block__label_clothes"> -->
+							<!-- <input class="search-block__input" type="radio" name="category" value="clothes" /> -->
+							<div class="search-block__icon search-block__icon_clothes">
+								<img src="img/icons/categories/clothes.svg" alt="Одежда" />
+							</div>
+							<!-- </label> -->
+							<h2 class="search-block__title">Одежда</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sales-page__decor">
+				<div class="sales-page__info info-sales">
+					<div class="info-sales__container">
+						<div class="info-sales__banners">
+							<div class="info-sales__main-banner">
+								<img src="img/sales/main-banner-img.svg" alt="Баннер распродажа" />
+								<div class="info-sales__icon-persent">
+									<img src="img/icons/persent.svg" alt="Иконка процента" />
+								</div>
+							</div>
+							<div class="info-sales__sub-banner-top-ibg">
+								<img src="img/sales/nike-shoes.jpg" alt="Кросовки Найк" />
+							</div>
+							<div class="info-sales__sub-banner-bottom-ibg">
+								<img src="img/sales/persent-bg.svg" alt="Баннер с размерами скидок" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sales-page__info-block info-block-sales">
+					<div class="info-block-sales__container">
+						<div class="info-block-sales__product-line product-line">
+							<div class="product-line__item">Термобелье для всей семьи</div>
+							<div class="product-line__item">Чешский бисер</div>
+							<div class="product-line__item">Конструкторы</div>
+						</div>
+					</div>
+				</div>
+				<div class="sales-page__goods goods">
+					<div class="goods__container">
+						<div class="goods__items goods__items_row-gap-20">
+							<a href="#" class="goods__item item-goods">
+								<div class="item-goods__image-ibg">
+									<img src="img/main/sales/item-01.jpg" alt="Рубашка" />
+									<div class="item-goods__promo">
+										<div class="item-goods__item-promo">
+											<img src="img/icons/discont-bg.svg" alt="Красная лента" />
+											<div class="item-goods__value">-70%</div>
+										</div>
+									</div>
+									<div class="item-goods__favorite">
+										<img src="img/icons/favorite.svg" alt="Иконка рекомендуемого" />
+									</div>
+								</div>
+								<div class="item-goods__info">
+									<div class="item-goods__title">Мужская рубашка синяя</div>
+									<div class="item-goods__current-price">500 грн</div>
+									<div class="item-goods__old-price">500 грн</div>
+								</div>
+							</a>
+							<a href="#" class="goods__item item-goods">
+								<div class="item-goods__image-ibg">
+									<img src="img/main/sales/item-01.jpg" alt="Рубашка" />
+									<div class="item-goods__promo">
+										<div class="item-goods__item-promo">
+											<img src="img/icons/discont-bg.svg" alt="Красная лента" />
+											<div class="item-goods__value">-70%</div>
+										</div>
+									</div>
+									<div class="item-goods__favorite">
+										<img src="img/icons/favorite.svg" alt="Иконка рекомендуемого" />
+									</div>
+								</div>
+								<div class="item-goods__info">
+									<div class="item-goods__title">Мужские кроссовки Nike</div>
+									<div class="item-goods__current-price">2600 грн</div>
+								</div>
+							</a>
+							<a href="#" class="goods__item item-goods">
+								<div class="item-goods__image-ibg">
+									<img src="img/main/sales/item-01.jpg" alt="Рубашка" />
+									<div class="item-goods__favorite">
+										<img src="img/icons/favorite.svg" alt="Иконка рекомендуемого" />
+									</div>
+								</div>
+								<div class="item-goods__info">
+									<div class="item-goods__title">Летняя бейсболка</div>
+									<div class="item-goods__current-price">2600 грн</div>
+								</div>
+							</a>
+							<a href="#" class="goods__item item-goods">
+								<div class="item-goods__image-ibg">
+									<img src="img/main/sales/item-01.jpg" alt="Рубашка" />
+									<div class="item-goods__promo">
+										<div class="item-goods__item-promo">
+											<img src="img/icons/discont-bg.svg" alt="Красная лента" />
+											<div class="item-goods__value">-50%</div>
+										</div>
+									</div>
+									<div class="item-goods__favorite">
+										<img src="img/icons/favorite.svg" alt="Иконка рекомендуемого" />
+									</div>
+								</div>
+								<div class="item-goods__info">
+									<div class="item-goods__title">Электросамокат Like.Bike Twist Yellow</div>
+									<div class="item-goods__current-price">10 999 грн</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<aside class="sales-page__sidebar-menu sidebar">
+				<div class="sidebar__container">
+					<button type="button" class="sidebar__close-icon">
+						<img src="img/icons/close.svg" alt="Закрыть меню" />
+					</button>
+					<div class="sidebar__image-ibg">
+						<img src="img/main/sidebar/sidebar-image.svg" alt="Логотип" />
+					</div>
+					<div class="sidebar__menu menu-sidebar">
+						<nav data-spollers data-one-spoller class="menu-sidebar__body spollers">
+							<ul class="menu-sidebar__list">
+								<li class="menu-sidebar__item">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/apps.svg" alt="Иконка товаров" />
+										<span>Каталог товаров</span>
+									</a>
+								</li>
+								<li class="menu-sidebar__item">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/window.svg" alt="Иконка контейнеров" />
+										<span>База контейнеров</span>
+									</a>
+								</li>
+								<li class="menu-sidebar__item menu-sidebar__item_border">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/sales.svg" alt="Иконка распродажи" />
+										<div class="menu-sidebar__decor">
+											<img src="img/main/sidebar/item-decor.svg" alt="Декор" />
+											<span>Распродажа</span>
+										</div>
+									</a>
+								</li>
+								<li class="menu-sidebar__item">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/favorite-black.svg" alt="Иконка избранное" />
+										<span>Избранное</span>
+									</a>
+								</li>
+								<li class="menu-sidebar__item">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/cart.svg" alt="Иконка корзины" />
+										<span>Корзина</span>
+									</a>
+								</li>
+								<li class="menu-sidebar__item menu-sidebar__item_border">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/hamburger.svg" alt="Иконка новости" />
+										<span>Новости</span>
+									</a>
+								</li>
+								<li class="menu-sidebar__item">
+									<div class="menu-sidebar__link spollers__item">
+										<img src="img/icons/services.svg" alt="Иконка сервисы" />
+										<button type="button" data-spoller class="spollers__title">Сервисы</button>
+										<div class="spollers__body">
+											<div class="spollers__inner">
+												<a href="#">Видео обзоры и съемки</a>
+												<a href="#">Независимый переучет</a>
+												<a href="#">Онлайн распродажа</a>
+												<a href="#">Отправка товаров</a>
+												<a href="#">Продвижение и реклама</a>
+												<a href="#">Товар под ключ КАРГО</a>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="menu-sidebar__item">
+									<div class="menu-sidebar__link spollers__item">
+										<img src="img/icons/avatar.svg" alt="Иконка о нас" />
+										<button type="button" data-spoller class="spollers__title">Кто мы</button>
+										<div class="spollers__body">
+											<div class="spollers__inner">
+												<a href="#">О нас</a>
+												<a href="#">Еще о нас</a>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="menu-sidebar__item">
+									<div class="menu-sidebar__link spollers__item">
+										<img src="img/icons/partner.svg" alt="Иконка партнеры" />
+										<button type="button" data-spoller class="spollers__title">Партнеры</button>
+										<div class="spollers__body">
+											<div class="spollers__inner">
+												<a href="#">О партнерах</a>
+												<a href="#">Еще о партнерах</a>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="menu-sidebar__item menu-sidebar__item_border">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/telegram.svg" alt="Иконка телеграм" />
+										<span>Чат с Сарафан</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<a href="#" class="sidebar__login">Войти в свой контейнер</a>
+					<div class="sidebar__socials socials-sidebar">
+						<h3 class="socials-sidebar__title">Смотрите распродажи в прямых эфирах</h3>
+						<div class="socials-sidebar__image">
+							<img src="img/main/sidebar/online-shop.svg" alt="Онлайн трансляции" />
+						</div>
+						<div class="socials-sidebar__items">
+							<a href="#" class="socials-sidebar__item item-socials-sidebar">
+								<div class="item-socials-sidebar__image">
+									<img src="img/main/sidebar/tiktok.svg" alt="tiktok" />
+								</div>
+								<div class="item-socials-sidebar__label">Sarafan</div>
+							</a>
+							<a href="#" class="socials-sidebar__item item-socials-sidebar">
+								<div class="item-socials-sidebar__image">
+									<img src="img/main/sidebar/instagram.svg" alt="instagram" />
+								</div>
+								<div class="item-socials-sidebar__label">Sarafan</div>
+							</a>
+							<a href="#" class="socials-sidebar__item item-socials-sidebar">
+								<div class="item-socials-sidebar__image">
+									<img src="img/main/sidebar/youtube.svg" alt="youtube" />
+								</div>
+								<div class="item-socials-sidebar__label">Sarafan</div>
+							</a>
+						</div>
+						<div class="socials-sidebar__info info-socials-sidebar">
+							<a href="#" class="info-socials-sidebar__lang info-socials-sidebar_block">???</a>
+							<a href="#" class="info-socials-sidebar__currency info-socials-sidebar_block">Курс USA</a>
+							<a href="#" class="info-socials-sidebar__date info-socials-sidebar_block">Дата</a>
+						</div>
+					</div>
+				</div>
+			</aside>
+		</main>
+		<footer data-lp class="footer">
+			<div class="footer__container">
+				<div class="footer__menu menu-footer">
+					<nav class="menu-footer__body">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item">
+								<a href="#" class="menu-footer__link"><img src="img/icons/circle-left.svg" alt="Иконка круга со стрелкой влево" /></a>
+							</li>
+							<li class="menu-footer__item icon-menu">
+								<button type="button" class="menu-footer__link">
+									<img src="img/icons/hamburger.svg" alt="Иконка бургер-меню" />
+								</button>
+							</li>
+							<li class="menu-footer__item">
+								<a href="#" class="menu-footer__link"><img src="img/icons/apps.svg" alt="Иконка товаров" /></a>
+							</li>
+							<li class="menu-footer__item">
+								<a href="#" class="menu-footer__link"><img src="img/icons/window.svg" alt="Иконка контейнеров" /></a>
+							</li>
+							<li class="menu-footer__item">
+								<a href="#" class="menu-footer__link"><img src="img/icons/home.svg" alt="Иконка главная страница" /></a>
+							</li>
+							<li class="menu-footer__item">
+								<a href="#" class="menu-footer__link"><img src="img/icons/cart.svg" alt="Иконка корзины" /></a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+	<script src="js/app.min.js?_v=20230715193833"></script>
+</body>
+
+</html>

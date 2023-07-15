@@ -3341,7 +3341,7 @@
         }
     }), 0);
     const searchForm = document.querySelector(".search-panel__form");
-    searchForm.addEventListener("submit", onFormSubmit);
+    if (searchForm) searchForm.addEventListener("submit", onFormSubmit);
     function onFormSubmit(e) {
         e.preventDefault();
         const select = document.querySelector(".search-panel__select-categoty").value;
