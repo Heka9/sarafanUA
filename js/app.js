@@ -3352,6 +3352,49 @@
         };
         console.log(obj);
     }
+    window.addEventListener("DOMContentLoaded", (() => windowLoad(".page__goods .goods__items")));
+    let pageLoadingCounter = 1;
+    let initialLoading = true;
+    let loadMore = true;
+    function windowLoad(parentNode) {
+        const parentElement = document.querySelector(parentNode);
+        if (parentElement) loadProducts(initialLoading, pageLoadingCounter);
+    }
+    async function loadProducts(initialLoad, offset, limit = 4) {
+        const apiUrl = `http://localhost:3000/products?_page=${offset}&_limit=${limit}`;
+        if (initialLoad && loadMore) {
+            initialLoading = false;
+            const apiUrl = "http://localhost:3000/products?_page=1&_limit=4";
+            const response = await fetch(apiUrl);
+            if (response.ok) {
+                const data = await response.json();
+                createCards(data, ".page__goods .goods__items");
+            }
+        } else if (loadMore) {
+            const response = await fetch(apiUrl);
+            if (response.ok) {
+                const data = await response.json();
+                createCards(data, ".page__goods .goods__items");
+            }
+        }
+    }
+    function createCards(data, parentNode) {
+        if (data.length < 4) loadMore = false;
+        let productTamplate;
+        const parentElement = document.querySelector(parentNode);
+        data.forEach((product => {
+            const salesCategory = product.promotion.isActive;
+            let salesValue;
+            if (salesCategory) salesValue = Math.round(product.price / product.promotion.oldPrice * 100);
+            const hitCategory = product.isHit;
+            productTamplate = `<a href="#" class="item-goods">\n\t\t\t\t\t\t\t\t\t<div class="item-goods__image-ibg">\n\t\t\t\t\t\t\t\t\t\t<img src="${product.details.photos[0].filePath}" alt="${product.details.description}" />\n\t\t\t\t\t\t\t\t\t\t<div class="item-goods__promo">\n\t\t\t\t\t\t\t\t\t\t${salesCategory ? `<div class="item-goods__item-promo">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../img/icons/discont-bg.svg" alt="Красная лента" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__value">-${salesValue}%</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>` : ``}\n\t\t\t\t\t\t\t\t\t\t${hitCategory ? `<div class="item-goods__item-promo">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../img/icons/hit-bg.svg" alt="Желтая лента" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__value">Хит</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>` : ``}\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t${product.details.isFavorite ? `<div class="item-goods__favorite">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../img/icons/favorite.svg" alt="Иконка рекомендуемого" /></div>` : ``}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div class="item-goods__info">\n\t\t\t\t\t\t\t\t\t\t<div class="item-goods__title">${product.name}</div>\n\t\t\t\t\t\t\t\t\t\t${product.promotion.isActive ? `<div class="item-goods__current-price">${product.price} грн</div>` : `<div class="item-goods__current-price">${product.price} грн</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__old-price">${product.promotion.oldPrice} грн</div>`}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</a>`;
+            if (parentElement) parentElement.insertAdjacentHTML("beforeend", productTamplate);
+        }));
+    }
+    window.addEventListener("scroll", checkScrollPosition);
+    function checkScrollPosition() {
+        if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight) loadProducts(initialLoading, ++pageLoadingCounter);
+    }
     window["FLS"] = false;
     menuInit();
     spollers();
