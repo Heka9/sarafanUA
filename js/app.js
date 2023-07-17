@@ -3360,11 +3360,12 @@
         const parentElement = document.querySelector(parentNode);
         if (parentElement) loadProducts(initialLoading, pageLoadingCounter);
     }
-    async function loadProducts(initialLoad, offset, limit = 4) {
-        const apiUrl = `http://localhost:3000/products?_page=${offset}&_limit=${limit}`;
-        if (initialLoad && loadMore) {
+    async function loadProducts(initialLoad, offset, limit = 5) {
+        const apiUrl = `/api/products?page=${offset}&amount=${limit}`;
+        if (!loadMore) return;
+        if (initialLoad) {
             initialLoading = false;
-            const apiUrl = "http://localhost:3000/products?_page=1&_limit=4";
+            const apiUrl = `/api/products?page=1&amount=${limit}`;
             const response = await fetch(apiUrl);
             if (response.ok) {
                 const data = await response.json();
@@ -3379,21 +3380,30 @@
         }
     }
     function createCards(data, parentNode) {
-        if (data.length < 4) loadMore = false;
+        if (data.length < 5) loadMore = false;
         let productTamplate;
         const parentElement = document.querySelector(parentNode);
-        data.forEach((product => {
-            const salesCategory = product.promotion.isActive;
+        data.products.forEach((product => {
+            const isSalesCategory = product.promotion.isActive;
             let salesValue;
-            if (salesCategory) salesValue = Math.round(product.price / product.promotion.oldPrice * 100);
-            const hitCategory = product.isHit;
-            productTamplate = `<a href="#" class="item-goods">\n\t\t\t\t\t\t\t\t\t<div class="item-goods__image-ibg">\n\t\t\t\t\t\t\t\t\t\t<img src="${product.details.photos[0].filePath}" alt="${product.details.description}" />\n\t\t\t\t\t\t\t\t\t\t<div class="item-goods__promo">\n\t\t\t\t\t\t\t\t\t\t${salesCategory ? `<div class="item-goods__item-promo">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../img/icons/discont-bg.svg" alt="Красная лента" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__value">-${salesValue}%</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>` : ``}\n\t\t\t\t\t\t\t\t\t\t${hitCategory ? `<div class="item-goods__item-promo">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../img/icons/hit-bg.svg" alt="Желтая лента" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__value">Хит</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>` : ``}\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t${product.details.isFavorite ? `<div class="item-goods__favorite">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../img/icons/favorite.svg" alt="Иконка рекомендуемого" /></div>` : ``}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div class="item-goods__info">\n\t\t\t\t\t\t\t\t\t\t<div class="item-goods__title">${product.name}</div>\n\t\t\t\t\t\t\t\t\t\t${product.promotion.isActive ? `<div class="item-goods__current-price">${product.price} грн</div>` : `<div class="item-goods__current-price">${product.price} грн</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__old-price">${product.promotion.oldPrice} грн</div>`}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</a>`;
+            if (isSalesCategory) salesValue = Math.round(product.price / product.promotion.oldPrice * 100);
+            const isHitCategory = product.isHit;
+            productTamplate = `<a href="#" class="item-goods">\n\t\t\t\t\t\t\t\t\t<div class="item-goods__image-ibg">\n\t\t\t\t\t\t\t\t\t\t<img src="${product.details.photos[0].filePath}" alt="${product.details.description}" />\n\t\t\t\t\t\t\t\t\t\t<div class="item-goods__promo">\n\t\t\t\t\t\t\t\t\t\t${isSalesCategory ? `<div class="item-goods__item-promo">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../../img/icons/discont-bg.svg" alt="Красная лента" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__value">-${salesValue}%</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>` : ``}\n\t\t\t\t\t\t\t\t\t\t${isHitCategory ? `<div class="item-goods__item-promo">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../../img/icons/hit-bg.svg" alt="Желтая лента" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__value">Хит</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>` : ``}\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t${product.details.isFavorite ? `<div class="item-goods__favorite">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../../img/icons/favorite.svg" alt="Иконка рекомендуемого" /></div>` : ``}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div class="item-goods__info">\n\t\t\t\t\t\t\t\t\t\t<div class="item-goods__title">${product.name}</div>\n\t\t\t\t\t\t\t\t\t\t${isSalesCategory ? `<div class="item-goods__current-price">${product.price} грн</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__old-price">${product.promotion.oldPrice} грн</div>` : `<div class="item-goods__current-price">${product.price} грн</div>`}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</a>`;
             if (parentElement) parentElement.insertAdjacentHTML("beforeend", productTamplate);
         }));
     }
-    window.addEventListener("scroll", checkScrollPosition);
+    function debounce(fn, delay) {
+        let timeoutId;
+        return function() {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout((() => {
+                fn.apply(this, arguments);
+            }), delay);
+        };
+    }
+    if (document.querySelector(".page__goods .goods__items")) window.addEventListener("scroll", debounce(checkScrollPosition, 250));
     function checkScrollPosition() {
-        if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight) loadProducts(initialLoading, ++pageLoadingCounter);
+        if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 200) loadProducts(initialLoading, ++pageLoadingCounter);
     }
     window["FLS"] = false;
     menuInit();

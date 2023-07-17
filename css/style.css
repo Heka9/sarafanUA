@@ -2,8 +2,6 @@
 
 @import url(https://fonts.googleapis.com/css?family=Lalezar:regular&display=swap);
 
-@import url(https://fonts.googleapis.com/css?family=Alumni+Sans:regular&display=swap);
-
 @import url(https://fonts.googleapis.com/css?family=Inter:regular&display=swap);
 
 @charset "UTF-8";
@@ -821,40 +819,6 @@ h6 {
   color: #a5a3a3;
   font-size: 7px;
   text-decoration: line-through;
-}
-
-.item-goods__scroll {
-  margin-top: 1.25rem;
-  -ms-grid-column-span: 2;
-  grid-column: span 2;
-  -ms-grid-column-align: center;
-      justify-self: center;
-  -webkit-animation: scroll 1.5s infinite linear;
-          animation: scroll 1.5s infinite linear;
-}
-
-@-webkit-keyframes scroll {
-  0% {
-    -webkit-transform: translate(0px, 0px);
-            transform: translate(0px, 0px);
-  }
-
-  100% {
-    -webkit-transform: translate(0px, 100%);
-            transform: translate(0px, 100%);
-  }
-}
-
-@keyframes scroll {
-  0% {
-    -webkit-transform: translate(0px, 0px);
-            transform: translate(0px, 0px);
-  }
-
-  100% {
-    -webkit-transform: translate(0px, 100%);
-            transform: translate(0px, 100%);
-  }
 }
 
 .goods {
