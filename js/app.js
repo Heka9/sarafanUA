@@ -3515,6 +3515,12 @@
             }));
         }
     }), 0);
+    const searchForm = document.querySelector(".search-panel__form");
+    if (searchForm) searchForm.addEventListener("submit", onFormSubmit);
+    function onFormSubmit(e) {
+        const input = document.querySelector(".search-panel__input input");
+        if (input.value === "") e.preventDefault();
+    }
     window.addEventListener("DOMContentLoaded", (() => windowLoad(".page__goods .goods__items")));
     let pageLoadingCounter = 1;
     let initialLoading = true;
