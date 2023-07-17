@@ -3503,7 +3503,7 @@
             on: {}
         });
     }
-    window.addEventListener("DOMContentLoaded", (function(e) {
+    window.addEventListener("load", (function(e) {
         initSliders();
     }));
     let addWindowScrollEvent = false;
