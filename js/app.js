@@ -522,6 +522,14 @@
         }
         return parents;
     }
+    function utils_elementTransitionEnd(el, callback) {
+        function fireCallBack(e) {
+            if (e.target !== el) return;
+            callback.call(el, e);
+            el.removeEventListener("transitionend", fireCallBack);
+        }
+        if (callback) el.addEventListener("transitionend", fireCallBack);
+    }
     function utils_elementOuterSize(el, size, includeMargins) {
         const window = ssr_window_esm_getWindow();
         if (includeMargins) return el[size === "width" ? "offsetWidth" : "offsetHeight"] + parseFloat(window.getComputedStyle(el, null).getPropertyValue(size === "width" ? "margin-right" : "margin-top")) + parseFloat(window.getComputedStyle(el, null).getPropertyValue(size === "width" ? "margin-left" : "margin-bottom"));
@@ -3028,6 +3036,141 @@
             destroy
         });
     }
+    function Controller({swiper, extendParams, on}) {
+        extendParams({
+            controller: {
+                control: void 0,
+                inverse: false,
+                by: "slide"
+            }
+        });
+        swiper.controller = {
+            control: void 0
+        };
+        function LinearSpline(x, y) {
+            const binarySearch = function search() {
+                let maxIndex;
+                let minIndex;
+                let guess;
+                return (array, val) => {
+                    minIndex = -1;
+                    maxIndex = array.length;
+                    while (maxIndex - minIndex > 1) {
+                        guess = maxIndex + minIndex >> 1;
+                        if (array[guess] <= val) minIndex = guess; else maxIndex = guess;
+                    }
+                    return maxIndex;
+                };
+            }();
+            this.x = x;
+            this.y = y;
+            this.lastIndex = x.length - 1;
+            let i1;
+            let i3;
+            this.interpolate = function interpolate(x2) {
+                if (!x2) return 0;
+                i3 = binarySearch(this.x, x2);
+                i1 = i3 - 1;
+                return (x2 - this.x[i1]) * (this.y[i3] - this.y[i1]) / (this.x[i3] - this.x[i1]) + this.y[i1];
+            };
+            return this;
+        }
+        function getInterpolateFunction(c) {
+            swiper.controller.spline = swiper.params.loop ? new LinearSpline(swiper.slidesGrid, c.slidesGrid) : new LinearSpline(swiper.snapGrid, c.snapGrid);
+        }
+        function setTranslate(_t, byController) {
+            const controlled = swiper.controller.control;
+            let multiplier;
+            let controlledTranslate;
+            const Swiper = swiper.constructor;
+            function setControlledTranslate(c) {
+                if (c.destroyed) return;
+                const translate = swiper.rtlTranslate ? -swiper.translate : swiper.translate;
+                if (swiper.params.controller.by === "slide") {
+                    getInterpolateFunction(c);
+                    controlledTranslate = -swiper.controller.spline.interpolate(-translate);
+                }
+                if (!controlledTranslate || swiper.params.controller.by === "container") {
+                    multiplier = (c.maxTranslate() - c.minTranslate()) / (swiper.maxTranslate() - swiper.minTranslate());
+                    if (Number.isNaN(multiplier) || !Number.isFinite(multiplier)) multiplier = 1;
+                    controlledTranslate = (translate - swiper.minTranslate()) * multiplier + c.minTranslate();
+                }
+                if (swiper.params.controller.inverse) controlledTranslate = c.maxTranslate() - controlledTranslate;
+                c.updateProgress(controlledTranslate);
+                c.setTranslate(controlledTranslate, swiper);
+                c.updateActiveIndex();
+                c.updateSlidesClasses();
+            }
+            if (Array.isArray(controlled)) {
+                for (let i = 0; i < controlled.length; i += 1) if (controlled[i] !== byController && controlled[i] instanceof Swiper) setControlledTranslate(controlled[i]);
+            } else if (controlled instanceof Swiper && byController !== controlled) setControlledTranslate(controlled);
+        }
+        function setTransition(duration, byController) {
+            const Swiper = swiper.constructor;
+            const controlled = swiper.controller.control;
+            let i;
+            function setControlledTransition(c) {
+                if (c.destroyed) return;
+                c.setTransition(duration, swiper);
+                if (duration !== 0) {
+                    c.transitionStart();
+                    if (c.params.autoHeight) utils_nextTick((() => {
+                        c.updateAutoHeight();
+                    }));
+                    utils_elementTransitionEnd(c.wrapperEl, (() => {
+                        if (!controlled) return;
+                        c.transitionEnd();
+                    }));
+                }
+            }
+            if (Array.isArray(controlled)) {
+                for (i = 0; i < controlled.length; i += 1) if (controlled[i] !== byController && controlled[i] instanceof Swiper) setControlledTransition(controlled[i]);
+            } else if (controlled instanceof Swiper && byController !== controlled) setControlledTransition(controlled);
+        }
+        function removeSpline() {
+            if (!swiper.controller.control) return;
+            if (swiper.controller.spline) {
+                swiper.controller.spline = void 0;
+                delete swiper.controller.spline;
+            }
+        }
+        on("beforeInit", (() => {
+            if (typeof window !== "undefined" && (typeof swiper.params.controller.control === "string" || swiper.params.controller.control instanceof HTMLElement)) {
+                const controlElement = document.querySelector(swiper.params.controller.control);
+                if (controlElement && controlElement.swiper) swiper.controller.control = controlElement.swiper; else if (controlElement) {
+                    const onControllerSwiper = e => {
+                        swiper.controller.control = e.detail[0];
+                        swiper.update();
+                        controlElement.removeEventListener("init", onControllerSwiper);
+                    };
+                    controlElement.addEventListener("init", onControllerSwiper);
+                }
+                return;
+            }
+            swiper.controller.control = swiper.params.controller.control;
+        }));
+        on("update", (() => {
+            removeSpline();
+        }));
+        on("resize", (() => {
+            removeSpline();
+        }));
+        on("observerUpdate", (() => {
+            removeSpline();
+        }));
+        on("setTranslate", ((_s, translate, byController) => {
+            if (!swiper.controller.control || swiper.controller.control.destroyed) return;
+            swiper.controller.setTranslate(translate, byController);
+        }));
+        on("setTransition", ((_s, duration, byController) => {
+            if (!swiper.controller.control || swiper.controller.control.destroyed) return;
+            swiper.controller.setTransition(duration, byController);
+        }));
+        Object.assign(swiper.controller, {
+            setTranslate,
+            setTransition
+        });
+    }
     function Autoplay({swiper, extendParams, on, emit, params}) {
         swiper.autoplay = {
             running: false,
@@ -3327,6 +3470,37 @@
             },
             on: {}
         });
+        if (document.querySelector(".main-image-seller-page__slider")) new core(".main-image-seller-page__slider", {
+            modules: [ Navigation ],
+            observer: true,
+            observeParents: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            speed: 800,
+            allowSlideNext: false,
+            allowSlidePrev: false,
+            navigation: {
+                prevEl: ".container-info__button-prev",
+                nextEl: ".container-info__button-next"
+            },
+            on: {}
+        });
+        if (document.querySelector(".container-info__slider")) new core(".container-info__slider", {
+            modules: [ Navigation, Controller ],
+            observer: true,
+            observeParents: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            speed: 800,
+            controller: {
+                control: ".main-image-seller-page__slider"
+            },
+            navigation: {
+                prevEl: ".container-info__button-prev",
+                nextEl: ".container-info__button-next"
+            },
+            on: {}
+        });
     }
     window.addEventListener("load", (function(e) {
         initSliders();
@@ -3351,59 +3525,6 @@
             input
         };
         console.log(obj);
-    }
-    window.addEventListener("DOMContentLoaded", (() => windowLoad(".page__goods .goods__items")));
-    let pageLoadingCounter = 1;
-    let initialLoading = true;
-    let loadMore = true;
-    function windowLoad(parentNode) {
-        const parentElement = document.querySelector(parentNode);
-        if (parentElement) loadProducts(initialLoading, pageLoadingCounter);
-    }
-    async function loadProducts(initialLoad, offset, limit = 5) {
-        const apiUrl = `/api/products?page=${offset}&amount=${limit}`;
-        if (!loadMore) return;
-        if (initialLoad) {
-            initialLoading = false;
-            const apiUrl = `/api/products?page=1&amount=${limit}`;
-            const response = await fetch(apiUrl);
-            if (response.ok) {
-                const data = await response.json();
-                createCards(data, ".page__goods .goods__items");
-            }
-        } else if (loadMore) {
-            const response = await fetch(apiUrl);
-            if (response.ok) {
-                const data = await response.json();
-                createCards(data, ".page__goods .goods__items");
-            }
-        }
-    }
-    function createCards(data, parentNode) {
-        if (data.length < 5) loadMore = false;
-        let productTamplate;
-        const parentElement = document.querySelector(parentNode);
-        data.products.forEach((product => {
-            const isSalesCategory = product.promotion.isActive;
-            let salesValue;
-            if (isSalesCategory) salesValue = Math.round(product.price / product.promotion.oldPrice * 100);
-            const isHitCategory = product.isHit;
-            productTamplate = `<a href="#" class="item-goods">\n\t\t\t\t\t\t\t\t\t<div class="item-goods__image-ibg">\n\t\t\t\t\t\t\t\t\t\t<img src="${product.details.photos[0].filePath}" alt="${product.details.description}" />\n\t\t\t\t\t\t\t\t\t\t<div class="item-goods__promo">\n\t\t\t\t\t\t\t\t\t\t${isSalesCategory ? `<div class="item-goods__item-promo">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../../img/icons/discont-bg.svg" alt="Красная лента" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__value">-${salesValue}%</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>` : ``}\n\t\t\t\t\t\t\t\t\t\t${isHitCategory ? `<div class="item-goods__item-promo">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../../img/icons/hit-bg.svg" alt="Желтая лента" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__value">Хит</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>` : ``}\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t${product.details.isFavorite ? `<div class="item-goods__favorite">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../../img/icons/favorite.svg" alt="Иконка рекомендуемого" /></div>` : ``}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div class="item-goods__info">\n\t\t\t\t\t\t\t\t\t\t<div class="item-goods__title">${product.name}</div>\n\t\t\t\t\t\t\t\t\t\t${isSalesCategory ? `<div class="item-goods__current-price">${product.price} грн</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__old-price">${product.promotion.oldPrice} грн</div>` : `<div class="item-goods__current-price">${product.price} грн</div>`}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</a>`;
-            if (parentElement) parentElement.insertAdjacentHTML("beforeend", productTamplate);
-        }));
-    }
-    function debounce(fn, delay) {
-        let timeoutId;
-        return function() {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout((() => {
-                fn.apply(this, arguments);
-            }), delay);
-        };
-    }
-    if (document.querySelector(".page__goods .goods__items")) window.addEventListener("scroll", debounce(checkScrollPosition, 250));
-    function checkScrollPosition() {
-        if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 200) loadProducts(initialLoading, ++pageLoadingCounter);
     }
     window["FLS"] = false;
     menuInit();
