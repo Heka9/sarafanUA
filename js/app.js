@@ -3492,6 +3492,7 @@
             slidesPerView: 1,
             spaceBetween: 20,
             speed: 800,
+            touchRatio: 1,
             controller: {
                 control: ".main-image-seller-page__slider"
             },
@@ -3514,18 +3515,6 @@
             }));
         }
     }), 0);
-    const searchForm = document.querySelector(".search-panel__form");
-    if (searchForm) searchForm.addEventListener("submit", onFormSubmit);
-    function onFormSubmit(e) {
-        e.preventDefault();
-        const select = document.querySelector(".search-panel__select-categoty").value;
-        const input = document.querySelector(".search-panel__input input").value;
-        const obj = {
-            select,
-            input
-        };
-        console.log(obj);
-    }
     window["FLS"] = false;
     menuInit();
     spollers();
