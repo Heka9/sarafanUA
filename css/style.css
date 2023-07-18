@@ -599,6 +599,10 @@ h6 {
 
 .slide-categories__label {
   font-size: 7px;
+  text-align: center;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .slide-categories__icon {
@@ -619,24 +623,56 @@ h6 {
           align-items: center;
 }
 
-.slide-categories__icon_purple {
-  background: #cdb4db;
+.slide-categories__icon_child {
+  background-color: #b6f3f3;
 }
 
-.slide-categories__icon_pink {
-  background: #ffc8dd;
+.slide-categories__icon_auto {
+  background-color: #bbcc82;
 }
 
-.slide-categories__icon_light-blue {
-  background: #bde0fe;
+.slide-categories__icon_details {
+  background-color: #fad080;
 }
 
-.slide-categories__icon_yellow {
-  background: #ffd60a;
+.slide-categories__icon_zoo {
+  background-color: #f3b1ea;
 }
 
-.slide-categories__icon_blue {
-  background: #669bbc;
+.slide-categories__icon_house {
+  background-color: #f6cd3c;
+}
+
+.slide-categories__icon_instruments {
+  background-color: #b9e8a4;
+}
+
+.slide-categories__icon_home-products {
+  background-color: #a49afd;
+}
+
+.slide-categories__icon_electronic {
+  background-color: #fdc3c3;
+}
+
+.slide-categories__icon_clothes {
+  background-color: #e68a87;
+}
+
+.slide-categories__icon_textile {
+  background-color: #a3ad84;
+}
+
+.slide-categories__icon_sport {
+  background-color: #c0adcf;
+}
+
+.slide-categories__icon_bussines {
+  background-color: #8ab8ff;
+}
+
+.slide-categories__icon_army {
+  background-color: #b28e75;
 }
 
 .slider-button {
@@ -788,9 +824,12 @@ h6 {
 }
 
 .item-goods__favorite {
+  padding: 0.1875rem;
+  border-radius: 4px;
+  background-color: rgba(172, 172, 172, 0.6);
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 2px;
+  right: 2px;
 }
 
 .item-goods__info {
@@ -1125,7 +1164,7 @@ h6 {
   display: grid;
   -ms-grid-columns: (1fr)[7];
   grid-template-columns: repeat(7, 1fr);
-  gap: 12px;
+  gap: 6px 12px;
 }
 
 .search-block__icon {
@@ -1149,32 +1188,61 @@ h6 {
   margin-bottom: 5px;
 }
 
-.search-block__icon_all {
-  background-color: #cdb4db;
+.search-block__icon img {
+  width: 0.75rem;
+  height: 0.75rem;
 }
 
-.search-block__icon_technic {
-  background-color: #4f772d;
+.search-block__icon_child {
+  background-color: #b6f3f3;
+}
+
+.search-block__icon_auto {
+  background-color: #bbcc82;
+}
+
+.search-block__icon_details {
+  background-color: #fad080;
+}
+
+.search-block__icon_zoo {
+  background-color: #f3b1ea;
 }
 
 .search-block__icon_house {
-  background-color: #ffc8dd;
+  background-color: #f6cd3c;
 }
 
-.search-block__icon_transport {
-  background-color: #bde0fe;
+.search-block__icon_instruments {
+  background-color: #b9e8a4;
 }
 
-.search-block__icon_food {
-  background-color: #ffd60a;
+.search-block__icon_home-products {
+  background-color: #a49afd;
 }
 
-.search-block__icon_shoes {
-  background-color: #669bbc;
+.search-block__icon_electronic {
+  background-color: #fdc3c3;
 }
 
 .search-block__icon_clothes {
-  background: rgba(255, 109, 0, 0.55);
+  background-color: #e68a87;
+}
+
+.search-block__icon_textile {
+  background-color: #a3ad84;
+}
+
+.search-block__icon_sport {
+  background-color: #c0adcf;
+}
+
+.search-block__icon_bussines {
+  background-color: #8ab8ff;
+}
+
+.search-block__icon_army {
+  background-color: #b28e75;
 }
 
 .search-block__title {
@@ -2028,6 +2096,11 @@ h6 {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+}
+
+.swiper-initialized {
+  -ms-touch-action: pan-y;
+      touch-action: pan-y;
 }
 
 .swiper-initialized .swiper-slide {
