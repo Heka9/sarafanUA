@@ -4263,7 +4263,7 @@
         }
     }
     async function loadProducts(initialLoad, offset, limit, searchParam) {
-        const apiUrl = `http://localhost:3000/products?_page=${offset}&_limit=${limit}`;
+        const apiUrl = `/api/products?page=${offset}&amount=${limit}`;
         if (!loadMore) return;
         if (initialLoad) {
             initialLoading = false;
