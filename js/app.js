@@ -4251,13 +4251,18 @@
     let pageLoadingCounter = 1;
     let initialLoading = true;
     let loadMore = true;
+    let searchParam = false;
+    let limit = 2;
     function windowLoad() {
         const parentElementMainPage = document.querySelector(".page__goods .goods__items");
         const parentElementProductsPage = document.querySelector(".product-page .goods__items.goods__items_row-gap-20");
-        if (parentElementMainPage) loadProducts(initialLoading, pageLoadingCounter);
-        if (parentElementProductsPage) loadProducts(initialLoading, pageLoadingCounter, 2, true);
+        if (parentElementMainPage) loadProducts(initialLoading, pageLoadingCounter, limit, searchParam);
+        if (parentElementProductsPage) {
+            searchParam = true;
+            loadProducts(initialLoading, pageLoadingCounter, limit, searchParam);
+        }
     }
-    async function loadProducts(initialLoad, offset, limit = 2, searchParam = false) {
+    async function loadProducts(initialLoad, offset, limit, searchParam) {
         const apiUrl = `/api/products?page=${offset}&amount=${limit}`;
         if (!loadMore) return;
         if (initialLoad) {
@@ -4295,7 +4300,7 @@
         }
     }
     function createCards(data, parentNode) {
-        if (data.length < 2) loadMore = false;
+        if (data.length < limit) loadMore = false;
         let productTamplate;
         const parentElement = document.querySelector(parentNode);
         parentElement.addEventListener("click", toggleFavorite);
@@ -4357,7 +4362,7 @@
     }
     if (document.querySelector(".page__goods .goods__items")) window.addEventListener("scroll", debounce(checkScrollPosition, 250));
     function checkScrollPosition() {
-        if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 200) loadProducts(initialLoading, ++pageLoadingCounter);
+        if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 200) loadProducts(initialLoading, ++pageLoadingCounter, limit, searchParam);
     }
     window["FLS"] = false;
     menuInit();
