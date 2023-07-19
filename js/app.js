@@ -4248,20 +4248,23 @@
         if (inputValue.trim() === "") e.preventDefault();
     }
     const buttonBack = document.querySelector(".menu-footer__link");
-    let firstLoad = true;
-    if (buttonBack && firstLoad) {
+    let firstLoad = sessionStorage.getItem("backUrl");
+    if (buttonBack && !firstLoad) {
         buttonBack.href = "javascript:void(0)";
-        firstLoad = false;
-    } else if (firstLoad) {
         const currentUrl = window.location.href;
         sessionStorage.setItem("backUrl", currentUrl);
         firstLoad = false;
-    } else if (buttonBack && !firstLoad) {
+    } else if (!firstLoad) {
+        const currentUrl = window.location.href;
+        sessionStorage.setItem("backUrl", currentUrl);
+        firstLoad = false;
+    } else if (buttonBack && firstLoad) {
         const currentUrl = window.location.href;
         const backUrl = sessionStorage.getItem("backUrl");
+        console.log(backUrl);
         sessionStorage.setItem("backUrl", currentUrl);
         buttonBack.href = backUrl;
-    } else if (!firstLoad) {
+    } else if (firstLoad) {
         const currentUrl = window.location.href;
         sessionStorage.setItem("backUrl", currentUrl);
     }
