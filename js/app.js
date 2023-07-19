@@ -4270,23 +4270,23 @@
                     const data = await response.json();
                     if (offset === 1 && data.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
                 }
-            }
-            const apiUrl = `/api/products?page=1&amount=${limit}`;
-            const response = await fetch(apiUrl);
-            if (response.ok) {
-                const data = await response.json();
-                createCards(data, ".page__goods .goods__items");
-            }
-        } else if (loadMore) {
-            if (searchParam) {
-                const searchValue = localStorage.getItem("searchValue");
-                const apiUrl = `api/products/search?searchValue=${searchValue}&page=${offset}&amount=${limit}`;
+            } else {
+                const apiUrl = `/api/products?page=1&amount=${limit}`;
                 const response = await fetch(apiUrl);
                 if (response.ok) {
                     const data = await response.json();
-                    createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
+                    createCards(data, ".page__goods .goods__items");
                 }
             }
+        } else if (loadMore) if (searchParam) {
+            const searchValue = localStorage.getItem("searchValue");
+            const apiUrl = `api/products/search?searchValue=${searchValue}&page=${offset}&amount=${limit}`;
+            const response = await fetch(apiUrl);
+            if (response.ok) {
+                const data = await response.json();
+                createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
+            }
+        } else {
             const response = await fetch(apiUrl);
             if (response.ok) {
                 const data = await response.json();
