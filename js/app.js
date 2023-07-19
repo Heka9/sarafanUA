@@ -4350,14 +4350,13 @@
         const targetElement = e.target;
         const iconParent = targetElement.closest(".main-image-product__favorite");
         const id = document.querySelector(".info-description-product__value-id").innerText;
-        console.log(targetElement);
         if (iconParent) {
-            const parentSlide = targetElement.closest(".main-image-product__wrapper");
-            if (parentSlide.getAttribute("data-is-favorite") === "true") {
-                parentSlide.setAttribute("data-is-favorite", "false");
+            const parentElement = targetElement.closest(".main-image-product__wrapper.swiper-wrapper");
+            if (parentElement.getAttribute("data-is-favorite") === "true") {
+                parentElement.setAttribute("data-is-favorite", "false");
                 removeFavorite(id);
-            } else if (parentSlide.getAttribute("data-is-favorite") === "false") {
-                parentSlide.setAttribute("data-is-favorite", "true");
+            } else if (parentElement.getAttribute("data-is-favorite") === "false") {
+                parentElement.setAttribute("data-is-favorite", "true");
                 addFavorite(id);
             }
         }
