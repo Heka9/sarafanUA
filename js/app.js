@@ -4254,7 +4254,7 @@
     }), 0);
     if (buttonBack) {
         const backUrl = localStorage.getItem("backUrl");
-        buttonBack.href = backUrl;
+        buttonBack.href = backUrl ? backUrl : "";
     }
     window.addEventListener("DOMContentLoaded", windowLoad);
     let pageLoadingCounter = 1;
