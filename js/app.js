@@ -4257,7 +4257,9 @@
         sessionStorage.setItem("backUrl", currentUrl);
         firstLoad = false;
     } else if (buttonBack && !firstLoad) {
+        const currentUrl = window.location.href;
         const backUrl = sessionStorage.getItem("backUrl");
+        sessionStorage.setItem("backUrl", currentUrl);
         buttonBack.href = backUrl;
     } else if (!firstLoad) {
         const currentUrl = window.location.href;
