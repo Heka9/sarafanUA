@@ -4355,6 +4355,7 @@
             if (parentElement.getAttribute("data-is-favorite") === "true") {
                 parentElement.setAttribute("data-is-favorite", "false");
                 removeFavorite(id);
+                return;
             }
             if (parentElement.getAttribute("data-is-favorite") === "false") {
                 parentElement.setAttribute("data-is-favorite", "true");
