@@ -4269,7 +4269,7 @@
             initialLoading = false;
             if (searchParam) {
                 const searchValue = localStorage.getItem("searchValue");
-                const apiUrl = `api/products/search?searchValue=${searchValue}&page=1&amount=${limit}`;
+                const apiUrl = `/api/products/search?searchValue=${searchValue}&page=1&amount=${limit}`;
                 const response = await fetch(apiUrl);
                 if (response.ok) {
                     const data = await response.json();
@@ -4285,7 +4285,7 @@
             }
         } else if (loadMore) if (searchParam) {
             const searchValue = localStorage.getItem("searchValue");
-            const apiUrl = `api/products/search?searchValue=${searchValue}&page=${offset}&amount=${limit}`;
+            const apiUrl = `/api/products/search?searchValue=${searchValue}&page=${offset}&amount=${limit}`;
             const response = await fetch(apiUrl);
             if (response.ok) {
                 const data = await response.json();
