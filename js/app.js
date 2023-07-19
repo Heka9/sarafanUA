@@ -4247,14 +4247,21 @@
         const inputValue = input.value;
         if (inputValue.trim() === "") e.preventDefault();
     }
-    const buttonBack = document.querySelector(".search-block__back");
-    const currentUrl = window.location.href;
-    setTimeout((() => {
-        localStorage.setItem("backUrl", currentUrl);
-    }), 0);
-    if (buttonBack) {
-        const backUrl = localStorage.getItem("backUrl");
-        buttonBack.href = backUrl ? backUrl : "";
+    const buttonBack = document.querySelector(".menu-footer__link");
+    let firstLoad = true;
+    if (buttonBack && firstLoad) {
+        buttonBack.href = "javascript:void(0)";
+        firstLoad = false;
+    } else if (firstLoad) {
+        const currentUrl = window.location.href;
+        sessionStorage.setItem("backUrl", currentUrl);
+        firstLoad = false;
+    } else if (buttonBack && !firstLoad) {
+        const backUrl = sessionStorage.getItem("backUrl");
+        buttonBack.href = backUrl;
+    } else if (!firstLoad) {
+        const currentUrl = window.location.href;
+        sessionStorage.setItem("backUrl", currentUrl);
     }
     window.addEventListener("DOMContentLoaded", windowLoad);
     let pageLoadingCounter = 1;
