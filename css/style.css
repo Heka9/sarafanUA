@@ -410,7 +410,8 @@ body::after {
   padding: 0.4375rem 1.125rem;
   border: 1px solid #ffd60a;
   border-radius: 5px;
-  background-color: #ffd60a;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f1ca0a), color-stop(17.97%, rgba(241, 202, 10, 0.82)), color-stop(33.59%, rgba(241, 202, 10, 0.67)), color-stop(49.74%, rgba(241, 202, 10, 0.5)), color-stop(59.64%, rgba(241, 202, 10, 0.493)), color-stop(77.87%, rgba(241, 202, 10, 0.356)), color-stop(86.2%, rgba(241, 202, 10, 0.267)), color-stop(99.22%, rgba(241, 202, 10, 0.178)));
+  background: linear-gradient(180deg, #f1ca0a 0%, rgba(241, 202, 10, 0.82) 17.97%, rgba(241, 202, 10, 0.67) 33.59%, rgba(241, 202, 10, 0.5) 49.74%, rgba(241, 202, 10, 0.493) 59.64%, rgba(241, 202, 10, 0.356) 77.87%, rgba(241, 202, 10, 0.267) 86.2%, rgba(241, 202, 10, 0.178) 99.22%);
 }
 
 .spollers__title {
@@ -712,6 +713,13 @@ body::after {
 .main-image__bg-img-ibg {
   text-align: center;
   padding-bottom: 60%;
+}
+
+.main-image__telegram-icon {
+  position: absolute;
+  z-index: 2;
+  bottom: 12%;
+  left: 60%;
 }
 
 .info-block {
@@ -2807,6 +2815,11 @@ body::after {
 }
 
 @media (max-width: 29.99875em) {
+  .main-image__telegram-icon {
+    bottom: 11.5%;
+    left: 59%;
+  }
+
   .product-line {
     gap: 0.5rem;
   }
@@ -2824,6 +2837,11 @@ body::after {
 }
 
 @media (max-width: 23.43625em) {
+  .main-image__telegram-icon {
+    bottom: 10.5%;
+    left: 58%;
+  }
+
   .categories__slider {
     padding-left: 1.5625rem;
     padding-right: 1.5625rem;

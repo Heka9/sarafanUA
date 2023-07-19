@@ -4236,13 +4236,16 @@
     if (searchPanel) searchPanel.addEventListener("submit", onSearchPanelSubmit);
     function onSearchPanelSubmit(e) {
         const input = document.querySelector(".search-panel__input input");
-        if (input.value === "") e.preventDefault();
+        const inputValue = input.value;
+        if (inputValue === "") e.preventDefault();
+        localStorage.setItem("searchingValue", inputValue);
     }
     const searchForm = document.querySelector(".form-search-block");
     if (searchForm) searchForm.addEventListener("submit", onSearchFormSubmit);
     function onSearchFormSubmit(e) {
         const input = document.querySelector(".form-search-block input");
-        if (input.value === "") e.preventDefault();
+        const inputValue = input.value;
+        if (inputValue === "") e.preventDefault();
     }
     window.addEventListener("DOMContentLoaded", (() => windowLoad(".page__goods .goods__items")));
     let pageLoadingCounter = 1;
