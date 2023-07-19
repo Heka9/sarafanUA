@@ -4247,6 +4247,15 @@
         const inputValue = input.value;
         if (inputValue.trim() === "") e.preventDefault();
     }
+    const buttonBack = document.querySelector(".search-block__back");
+    const currentUrl = window.location.href;
+    setTimeout((() => {
+        localStorage.setItem("backUrl", currentUrl);
+    }), 0);
+    if (buttonBack) {
+        const backUrl = localStorage.getItem("backUrl");
+        buttonBack.href = backUrl;
+    }
     window.addEventListener("DOMContentLoaded", windowLoad);
     let pageLoadingCounter = 1;
     let initialLoading = true;
