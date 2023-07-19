@@ -4252,7 +4252,7 @@
     let initialLoading = true;
     let loadMore = true;
     let searchParam = false;
-    let limit = 2;
+    let limit = 5;
     function windowLoad() {
         const parentElementMainPage = document.querySelector(".page__goods .goods__items");
         const parentElementProductsPage = document.querySelector(".product-page .goods__items.goods__items_row-gap-20");
@@ -4263,7 +4263,7 @@
         }
     }
     async function loadProducts(initialLoad, offset, limit, searchParam) {
-        const apiUrl = `/api/products?page=${offset}&amount=${limit}`;
+        const apiUrl = `http://localhost:3000/products?_page=${offset}&_limit=${limit}`;
         if (!loadMore) return;
         if (initialLoad) {
             initialLoading = false;
@@ -4273,7 +4273,7 @@
                 const response = await fetch(apiUrl);
                 if (response.ok) {
                     const data = await response.json();
-                    if (offset === 1 && data.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
+                    if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
                 }
             } else {
                 const apiUrl = `/api/products?page=1&amount=${limit}`;
