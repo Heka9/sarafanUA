@@ -4252,6 +4252,8 @@
     function goBack() {
         window.history.back();
     }
+    const productWrapper = document.querySelector(".main-image-product__wrapper");
+    if (productWrapper) productWrapper.addEventListener("click", toggleFavoriteProduct);
     window.addEventListener("DOMContentLoaded", windowLoad);
     let pageLoadingCounter = 1;
     let initialLoading = true;
@@ -4341,6 +4343,22 @@
                 product.classList.add("favorite");
                 const productId = product.getAttribute("data-id");
                 addFavorite(productId);
+            }
+        }
+    }
+    function toggleFavoriteProduct(e) {
+        const targetElement = e.target;
+        const iconParent = targetElement.closest(".main-image-product__favorite");
+        const id = document.querySelector(".info-description-product__value-id").innerText;
+        console.log(targetElement);
+        if (iconParent) {
+            const parentSlide = targetElement.closest(".main-image-product__wrapper");
+            if (parentSlide.getAttribute("data-is-favorite") === "true") {
+                parentSlide.setAttribute("data-is-favorite", "false");
+                removeFavorite(id);
+            } else if (parentSlide.getAttribute("data-is-favorite") === "false") {
+                parentSlide.setAttribute("data-is-favorite", "true");
+                addFavorite(id);
             }
         }
     }

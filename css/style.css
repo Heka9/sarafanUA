@@ -2421,7 +2421,7 @@ body::after {
   width: 1.25rem;
   height: 1.25rem;
   border-radius: 2px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.3);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2433,6 +2433,15 @@ body::after {
           align-items: center;
   top: 0;
   right: 0;
+}
+
+.main-image-product__favorite svg {
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+[data-is-favorite=true] .main-image-product__favorite svg path {
+  fill: #f1ca0a;
 }
 
 .main-image-product__pagination {
