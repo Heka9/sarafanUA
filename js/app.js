@@ -3987,7 +3987,7 @@
         }
     }), 0);
     const searchInput = document.querySelector(".search-panel__input input");
-    searchInput.addEventListener("focus", showSelect);
+    if (searchInput) searchInput.addEventListener("focus", showSelect);
     function showSelect(e) {
         const parentForm = e.target.closest("form");
         parentForm.classList.add("focus");
