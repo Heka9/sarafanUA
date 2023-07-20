@@ -2,7 +2,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=Lalezar:regular&display=swap);
 
-@import url(https://fonts.googleapis.com/css?family=Inter:regular&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Inter:regular,500,700&display=swap);
 
 @charset "UTF-8";
 
@@ -2420,8 +2420,8 @@ body::after {
   position: absolute;
   width: 1.25rem;
   height: 1.25rem;
-  border-radius: 2px;
-  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  background-color: rgba(172, 172, 172, 0.6);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2562,10 +2562,6 @@ body::after {
 
 .info-description-product__value-status_avalaible {
   color: #2dbd21;
-}
-
-.info-description-product__value-status_not-avalaible {
-  color: #dd2e17;
 }
 
 .info-description-product__value-category a {
@@ -2787,6 +2783,255 @@ body::after {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.categories-page__container {
+  padding: 0.9375rem 0.625rem;
+}
+
+.categories-page__header {
+  padding-left: 0.625rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.categories-page__header:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.categories-page__cancel {
+  font-family: "Inter";
+  font-size: 12px;
+}
+
+.categories-page__title {
+  font-family: "Inter";
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.categories-page__info-block {
+  -ms-flex-item-align: stretch;
+      -ms-grid-row-align: stretch;
+      align-self: stretch;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.categories-page__item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.info-block-categories__icon {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50px;
+          flex: 0 0 50px;
+}
+
+.info-block-categories__icon img {
+  max-width: 100%;
+}
+
+.info-block-categories__body {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.info-block-categories__label {
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.info-block-categories__label:not(:last-child) {
+  margin-bottom: 2px;
+}
+
+.info-block-categories__text {
+  font-family: "Inter";
+}
+
+.title-item-spoller {
+  width: 100%;
+  padding: 0.625rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+}
+
+.title-item-spoller_child-world {
+  background: #d7ffff;
+}
+
+.title-item-spoller_auto-moto {
+  background: #d2e494;
+}
+
+.title-item-spoller_details {
+  background: #fedea0;
+}
+
+.title-item-spoller_zoo {
+  background: #ffcdf8;
+}
+
+.title-item-spoller_house {
+  background: #ffde6b;
+}
+
+.title-item-spoller_instruments {
+  background: #d2ffbd;
+}
+
+.title-item-spoller_home-products {
+  background: #c3bdf9;
+}
+
+.title-item-spoller_electronic {
+  background: #f6d5d5;
+}
+
+.title-item-spoller_clothes {
+  background: #f4a09e;
+}
+
+.title-item-spoller_textile {
+  background: #bec89e;
+}
+
+.title-item-spoller_sport {
+  background: #d5c6e0;
+}
+
+.title-item-spoller_bussiness {
+  background: #b6d2fd;
+}
+
+.title-item-spoller_army {
+  background: #d8b196;
+}
+
+.title-item-spoller__image {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50px;
+          flex: 0 0 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.title-item-spoller__image img {
+  max-width: 100%;
+}
+
+.title-item-spoller__body {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  text-align: left;
+}
+
+.title-item-spoller__name {
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.title-item-spoller__name:not(:last-child) {
+  margin-bottom: 2px;
+}
+
+.title-item-spoller__text {
+  font-family: "Inter";
+}
+
+.title-item-spoller__arrow {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 20px;
+          flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: -webkit-transform 0.3s ease 0s;
+  transition: -webkit-transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+}
+
+._spoller-active .title-item-spoller__arrow {
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.body-item-spoller {
+  padding: 1.25rem 0.625rem;
+}
+
+.body-item-spoller__item-list {
+  padding-bottom: 0.4375rem;
+  position: relative;
+}
+
+.body-item-spoller__item-list::before {
+  content: "";
+  position: absolute;
+  width: calc(100% + 10px);
+  height: 1px;
+  bottom: 0;
+  left: -5px;
+  background: #ffd60a;
+}
+
+.body-item-spoller__item-list:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.body-item-spoller__label {
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.body-item-spoller__label:not(:last-child) {
+  margin-bottom: 2px;
+}
+
+.body-item-spoller__text {
+  font-family: "Inter";
 }
 
 .swiper {
