@@ -6,7 +6,7 @@
 	<meta charset="UTF-8" />
 	<meta name="format-detection" content="telephone=no" />
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230720171726" />
+	<link rel="stylesheet" href="css/style.min.css?_v=20230720175046" />
 	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,7 +23,8 @@
 				<div class="search-panel__container">
 					<form class="search-panel__form">
 						<select name="search-category" class="search-panel__select-categoty">
-							<option selected value="product" class="search-panel__option">Поиск по товару</option>
+							<option selected value="all" class="search-panel__option"></option>
+							<option value="product" class="search-panel__option">Поиск по товару</option>
 							<option value="container" class="search-panel__option">Поиск по контейнеру</option>
 						</select>
 						<div class="search-panel__input">
@@ -271,7 +272,7 @@
                      </button>
                   </div> -->
 					<div class="categories__items">
-						<a href="#" class="categories__item slide-categories">
+						<a href="#" class="categories__slide slide-categories">
 							<div class="slide-categories__label">Детский мир</div>
 							<div class="slide-categories__icon slide-categories__icon_child">
 								<img src="img/icons/categories/cat-child-world.svg" alt="Детский мир" />
@@ -430,7 +431,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="page__base base">
+			<div class="page__base base categories">
 				<div class="base__container">
 					<div class="base__header header-block">
 						<div class="header-block__title">
@@ -438,44 +439,76 @@
 						</div>
 						<a href="#" class="header-block__link">Смотреть больше</a>
 					</div>
-					<div class="base__slider swiper">
-						<div class="base__wrapper swiper-wrapper">
-							<div class="base__slide swiper-slide base__slide_purple">
-								<div class="base__text">ул.Центральная</div>
-							</div>
-							<div class="base__slide swiper-slide base__slide_pink">
-								<div class="base__text">ул.Банковская</div>
-							</div>
-							<div class="base__slide swiper-slide base__slide_light-blue">
-								<div class="base__text">ул.Розовая</div>
-							</div>
-							<div class="base__slide swiper-slide base__slide_yellow">
-								<div class="base__text">ул.Фабричная</div>
-							</div>
-							<div class="base__slide swiper-slide base__slide_purple">
-								<div class="base__text">ул.Центральная</div>
-							</div>
-							<div class="base__slide swiper-slide base__slide_pink">
-								<div class="base__text">ул.Банковская</div>
-							</div>
-							<div class="base__slide swiper-slide base__slide_light-blue">
-								<div class="base__text">ул.Розовая</div>
-							</div>
-							<div class="base__slide swiper-slide base__slide_yellow">
-								<div class="base__text">ул.Фабричная</div>
-							</div>
+					<div class="categories__items">
+						<div class="base__slide swiper-slide base__slide_purple">
+							<div class="base__text">ул.Центральная</div>
 						</div>
-						<button type="button" class="base-button-prev slider-button">
-							<svg width="6" height="16" viewBox="0 0 6 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M3.19278 4.40059L1.20429 7.69517L3.12276 10.8746C4.64913 13.3858 5.04123 14.1691 5.04123 14.676C5.04123 15.275 4.9292 15.4132 4.48109 15.298C4.36906 15.275 3.3048 13.6853 2.14252 11.7731C0.504123 9.10055 0 8.13291 0 7.69517C0 7.25743 0.504123 6.28979 2.14252 3.64031C3.3048 1.72807 4.38307 0.0923004 4.5091 0.0231838C4.76116 -0.11505 5.18126 0.391808 5.18126 0.829549C5.18126 0.967783 4.28504 2.58051 3.19278 4.40059Z" fill="black" />
-							</svg>
-						</button>
-						<button type="button" class="base-button-next slider-button">
-							<svg width="6" height="16" viewBox="0 0 6 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M2.80722 5.06543L4.79571 8.36001L2.87724 11.5394C1.35087 14.0506 0.958774 14.834 0.958774 15.3408C0.958774 15.9398 1.0708 16.0781 1.51891 15.9629C1.63094 15.9398 2.6952 14.3501 3.85748 12.4379C5.49588 9.76538 6 8.79775 6 8.36001C6 7.92226 5.49588 6.95463 3.85748 4.30514C2.6952 2.3929 1.61693 0.757133 1.4909 0.688017C1.23884 0.549783 0.818739 1.05664 0.818739 1.49438C0.818739 1.63262 1.71496 3.24535 2.80722 5.06543Z" fill="black" />
-							</svg>
-						</button>
+						<div class="base__slide swiper-slide base__slide_pink">
+							<div class="base__text">ул.Банковская</div>
+						</div>
+						<div class="base__slide swiper-slide base__slide_light-blue">
+							<div class="base__text">ул.Розовая</div>
+						</div>
+						<div class="base__slide swiper-slide base__slide_yellow">
+							<div class="base__text">ул.Фабричная</div>
+						</div>
+						<div class="base__slide swiper-slide base__slide_purple">
+							<div class="base__text">ул.Центральная</div>
+						</div>
+						<div class="base__slide swiper-slide base__slide_pink">
+							<div class="base__text">ул.Банковская</div>
+						</div>
+						<div class="base__slide swiper-slide base__slide_light-blue">
+							<div class="base__text">ул.Розовая</div>
+						</div>
+						<div class="base__slide swiper-slide base__slide_yellow">
+							<div class="base__text">ул.Фабричная</div>
+						</div>
 					</div>
+					<!-- <div class="base__slider swiper">
+                     <div class="base__wrapper swiper-wrapper">
+                        <div class="base__slide swiper-slide base__slide_purple">
+                           <div class="base__text">ул.Центральная</div>
+                        </div>
+                        <div class="base__slide swiper-slide base__slide_pink">
+                           <div class="base__text">ул.Банковская</div>
+                        </div>
+                        <div class="base__slide swiper-slide base__slide_light-blue">
+                           <div class="base__text">ул.Розовая</div>
+                        </div>
+                        <div class="base__slide swiper-slide base__slide_yellow">
+                           <div class="base__text">ул.Фабричная</div>
+                        </div>
+                        <div class="base__slide swiper-slide base__slide_purple">
+                           <div class="base__text">ул.Центральная</div>
+                        </div>
+                        <div class="base__slide swiper-slide base__slide_pink">
+                           <div class="base__text">ул.Банковская</div>
+                        </div>
+                        <div class="base__slide swiper-slide base__slide_light-blue">
+                           <div class="base__text">ул.Розовая</div>
+                        </div>
+                        <div class="base__slide swiper-slide base__slide_yellow">
+                           <div class="base__text">ул.Фабричная</div>
+                        </div>
+                     </div>
+                     <button type="button" class="base-button-prev slider-button">
+                        <svg width="6" height="16" viewBox="0 0 6 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path
+                              d="M3.19278 4.40059L1.20429 7.69517L3.12276 10.8746C4.64913 13.3858 5.04123 14.1691 5.04123 14.676C5.04123 15.275 4.9292 15.4132 4.48109 15.298C4.36906 15.275 3.3048 13.6853 2.14252 11.7731C0.504123 9.10055 0 8.13291 0 7.69517C0 7.25743 0.504123 6.28979 2.14252 3.64031C3.3048 1.72807 4.38307 0.0923004 4.5091 0.0231838C4.76116 -0.11505 5.18126 0.391808 5.18126 0.829549C5.18126 0.967783 4.28504 2.58051 3.19278 4.40059Z"
+                              fill="black"
+                           />
+                        </svg>
+                     </button>
+                     <button type="button" class="base-button-next slider-button">
+                        <svg width="6" height="16" viewBox="0 0 6 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path
+                              d="M2.80722 5.06543L4.79571 8.36001L2.87724 11.5394C1.35087 14.0506 0.958774 14.834 0.958774 15.3408C0.958774 15.9398 1.0708 16.0781 1.51891 15.9629C1.63094 15.9398 2.6952 14.3501 3.85748 12.4379C5.49588 9.76538 6 8.79775 6 8.36001C6 7.92226 5.49588 6.95463 3.85748 4.30514C2.6952 2.3929 1.61693 0.757133 1.4909 0.688017C1.23884 0.549783 0.818739 1.05664 0.818739 1.49438C0.818739 1.63262 1.71496 3.24535 2.80722 5.06543Z"
+                              fill="black"
+                           />
+                        </svg>
+                     </button>
+                  </div> -->
 				</div>
 			</div>
 			<div class="page__sales sales">
@@ -783,7 +816,7 @@
 		</footer>
 
 	</div>
-	<script src="js/app.min.js?_v=20230720171726"></script>
+	<script src="js/app.min.js?_v=20230720175046"></script>
 </body>
 
 </html>

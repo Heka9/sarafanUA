@@ -859,6 +859,10 @@ body::after {
   padding-bottom: 1.1875rem;
 }
 
+.base .categories__items {
+  gap: 30px;
+}
+
 .header-block {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -994,17 +998,8 @@ body::after {
   margin-bottom: 20px;
 }
 
-.base__slider {
-  position: relative;
-  margin-left: -0.3125rem;
-  margin-right: -0.3125rem;
-  padding-left: 1.625rem;
-  padding-right: 1.625rem;
-}
-
-.base__wrapper {
-  padding-top: 0.625rem;
-  padding-bottom: 1.1875rem;
+.base__header:not(:last-child) {
+  margin-bottom: 10px;
 }
 
 .base__slide {
