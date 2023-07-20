@@ -3986,6 +3986,16 @@
             }));
         }
     }), 0);
+    const swipeArea = document.querySelector(".categories__items");
+    console.log(swipeArea);
+    let touchStartX = 0;
+    let touchEndX = 0;
+    swipeArea.addEventListener("touchstart", (event => {
+        touchStartX = event.touches[0].clientX;
+    }));
+    swipeArea.addEventListener("touchend", (event => {
+        touchEndX = event.changedTouches[0].clientX;
+    }));
     const searchPanel = document.querySelector(".search-panel__form");
     if (searchPanel) searchPanel.addEventListener("submit", onSearchPanelSubmit);
     function onSearchPanelSubmit(e) {

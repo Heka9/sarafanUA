@@ -842,19 +842,20 @@ body::after {
   color: #f00;
 }
 
+.categories__container {
+  overflow: hidden;
+}
+
 .categories__header:not(:last-child) {
   margin-bottom: 10px;
 }
 
-.categories__slider {
-  padding-left: 0.3125rem;
-  padding-right: 0.3125rem;
-  margin-left: -0.3125rem;
-  margin-right: -0.3125rem;
-  position: relative;
-}
-
-.categories__wrapper {
+.categories__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
   padding-bottom: 1.1875rem;
 }
 
@@ -981,22 +982,6 @@ body::after {
 
 .slide-categories__icon_army {
   background-color: #b28e75;
-}
-
-.slider-button {
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(0px, -50%);
-      -ms-transform: translate(0px, -50%);
-          transform: translate(0px, -50%);
-}
-
-.categories-button-prev {
-  left: 5px;
-}
-
-.categories-button-next {
-  right: 5px;
 }
 
 .base {
@@ -3148,11 +3133,6 @@ body::after {
   .main-image__telegram-icon {
     bottom: 10.5%;
     left: 58%;
-  }
-
-  .categories__slider {
-    padding-left: 1.5625rem;
-    padding-right: 1.5625rem;
   }
 
   .info-sales__icon-persent {
