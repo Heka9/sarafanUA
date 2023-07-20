@@ -6,7 +6,7 @@
 	<meta charset="UTF-8" />
 	<meta name="format-detection" content="telephone=no" />
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230720101057" />
+	<link rel="stylesheet" href="css/style.min.css?_v=20230720162613" />
 	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,103 +22,197 @@
 			<div class="sales-page__search-block search-block">
 				<div class="search-block__container">
 					<div class="search-block__header">
-						<button type="button" class="search-block__back">
-							<svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M3.08566 3.44353L1.16389 6.02159L3.018 8.5095C4.49316 10.4746 4.8721 11.0876 4.8721 11.4842C4.8721 11.9529 4.76383 12.0611 4.33076 11.9709C4.22249 11.9529 3.19393 10.709 2.07064 9.21261C0.48721 7.12132 0 6.36413 0 6.02159C0 5.67905 0.48721 4.92186 2.07064 2.84859C3.19393 1.35224 4.23602 0.0722256 4.35782 0.0181408C4.60143 -0.0900297 5.00744 0.306595 5.00744 0.649134C5.00744 0.757303 4.14128 2.01929 3.08566 3.44353Z" fill="black" />
-							</svg>
-						</button>
-						<form class="search-block__form form-search-block">
-							<div class="form-search-block__icon-search">
-								<img src="img/icons/search.svg" alt="Иконка поиска" />
-							</div>
-							<div class="form-search-block__input">
-								<input type="text" class="form-search-block__input" placeholder="Введите наименование" />
-								<button type="reset" class="form-search-block__icon-cancel">
-									<img src="img/icons/cancel.svg" alt="Иконка очистки поля ввода" />
-								</button>
-							</div>
-							<button type="reset" class="form-search-block__cancel">Отмена</button>
-						</form>
+						<div class="search-block__inner">
+							<button type="button" class="search-block__back">
+								<svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M3.08566 3.44353L1.16389 6.02159L3.018 8.5095C4.49316 10.4746 4.8721 11.0876 4.8721 11.4842C4.8721 11.9529 4.76383 12.0611 4.33076 11.9709C4.22249 11.9529 3.19393 10.709 2.07064 9.21261C0.48721 7.12132 0 6.36413 0 6.02159C0 5.67905 0.48721 4.92186 2.07064 2.84859C3.19393 1.35224 4.23602 0.0722256 4.35782 0.0181408C4.60143 -0.0900297 5.00744 0.306595 5.00744 0.649134C5.00744 0.757303 4.14128 2.01929 3.08566 3.44353Z" fill="black" />
+								</svg>
+							</button>
+							<form class="search-block__form form-search-block">
+								<div class="form-search-block__icon-search">
+									<img src="img/icons/search.svg" alt="Иконка поиска" />
+								</div>
+								<div class="form-search-block__input">
+									<input type="text" class="form-search-block__input" placeholder="Введите наименование" />
+									<button type="reset" class="form-search-block__icon-cancel">
+										<img src="img/icons/cancel.svg" alt="Иконка очистки поля ввода" />
+									</button>
+								</div>
+								<button type="reset" class="form-search-block__cancel">Отмена</button>
+							</form>
+						</div>
 					</div>
-					<div class="search-block__items">
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_child">
-								<img src="img/icons/categories/cat-child-world.svg" alt="Детский мир" />
+					<div class="search-block__items categories">
+						<div class="categories__slider swiper">
+							<div class="categories__wrapper swiper-wrapper">
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Детский мир</div>
+									<div class="slide-categories__icon slide-categories__icon_child">
+										<img src="img/icons/categories/cat-child-world.svg" alt="Детский мир" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Авто и мото</div>
+									<div class="slide-categories__icon slide-categories__icon_auto">
+										<img src="img/icons/categories/cat-car-moto.svg" alt="Авто и мото" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Запчасти для транспорта</div>
+									<div class="slide-categories__icon slide-categories__icon_details">
+										<img src="img/icons/categories/cat-transport-details.svg" alt="Запчасти для транспорта" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Зоотовары</div>
+									<div class="slide-categories__icon slide-categories__icon_zoo">
+										<img src="img/icons/categories/cat-zoo-products.svg" alt="Зоотовары" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Дом и сад</div>
+									<div class="slide-categories__icon slide-categories__icon_house">
+										<img src="img/icons/categories/cat-house.svg" alt="Дом и сад" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Инструменты</div>
+									<div class="slide-categories__icon slide-categories__icon_instruments">
+										<img src="img/icons/categories/cat-instruments.svg" alt="Инструменты" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Бытовая химия/хозяйственный</div>
+									<div class="slide-categories__icon slide-categories__icon_home-products">
+										<img src="img/icons/categories/cat-home-products.svg" alt="Бытовая химия/хозяйственный" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Электроника</div>
+									<div class="slide-categories__icon slide-categories__icon_electronic">
+										<img src="img/icons/categories/cat-electronic.svg" alt="Электроника" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Мода и стиль</div>
+									<div class="slide-categories__icon slide-categories__icon_clothes">
+										<img src="img/icons/categories/cat-clothes.svg" alt="Мода и стиль" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Ткани и фурнитура</div>
+									<div class="slide-categories__icon slide-categories__icon_textile">
+										<img src="img/icons/categories/cat-textile.svg" alt="Ткани и фурнитура" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Хобби, отдых и спорт</div>
+									<div class="slide-categories__icon slide-categories__icon_sport">
+										<img src="img/icons/categories/cat-sport.svg" alt="Хобби, отдых и спорт" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Оборудование и бизнес</div>
+									<div class="slide-categories__icon slide-categories__icon_bussines">
+										<img src="img/icons/categories/cat-bussines.svg" alt="Оборудование и бизнес" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Военка</div>
+									<div class="slide-categories__icon slide-categories__icon_army">
+										<img src="img/icons/categories/cat-army.svg" alt="Военка" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Детский мир</div>
+									<div class="slide-categories__icon slide-categories__icon_child">
+										<img src="img/icons/categories/cat-child-world.svg" alt="Детский мир" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Авто и мото</div>
+									<div class="slide-categories__icon slide-categories__icon_auto">
+										<img src="img/icons/categories/cat-car-moto.svg" alt="Авто и мото" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Запчасти для транспорта</div>
+									<div class="slide-categories__icon slide-categories__icon_details">
+										<img src="img/icons/categories/cat-transport-details.svg" alt="Запчасти для транспорта" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Зоотовары</div>
+									<div class="slide-categories__icon slide-categories__icon_zoo">
+										<img src="img/icons/categories/cat-zoo-products.svg" alt="Зоотовары" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Дом и сад</div>
+									<div class="slide-categories__icon slide-categories__icon_house">
+										<img src="img/icons/categories/cat-house.svg" alt="Дом и сад" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Инструменты</div>
+									<div class="slide-categories__icon slide-categories__icon_instruments">
+										<img src="img/icons/categories/cat-instruments.svg" alt="Инструменты" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Бытовая химия/хозяйственный</div>
+									<div class="slide-categories__icon slide-categories__icon_home-products">
+										<img src="img/icons/categories/cat-home-products.svg" alt="Бытовая химия/хозяйственный" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Электроника</div>
+									<div class="slide-categories__icon slide-categories__icon_electronic">
+										<img src="img/icons/categories/cat-electronic.svg" alt="Электроника" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Мода и стиль</div>
+									<div class="slide-categories__icon slide-categories__icon_clothes">
+										<img src="img/icons/categories/cat-clothes.svg" alt="Мода и стиль" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Ткани и фурнитура</div>
+									<div class="slide-categories__icon slide-categories__icon_textile">
+										<img src="img/icons/categories/cat-textile.svg" alt="Ткани и фурнитура" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Хобби, отдых и спорт</div>
+									<div class="slide-categories__icon slide-categories__icon_sport">
+										<img src="img/icons/categories/cat-sport.svg" alt="Хобби, отдых и спорт" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Оборудование и бизнес</div>
+									<div class="slide-categories__icon slide-categories__icon_bussines">
+										<img src="img/icons/categories/cat-bussines.svg" alt="Оборудование и бизнес" />
+									</div>
+								</a>
+								<a href="#" class="categories__slide slide-categories swiper-slide">
+									<div class="slide-categories__label">Военка</div>
+									<div class="slide-categories__icon slide-categories__icon_army">
+										<img src="img/icons/categories/cat-army.svg" alt="Военка" />
+									</div>
+								</a>
 							</div>
-							<h2 class="search-block__title">Детский мир</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_auto">
-								<img src="img/icons/categories/cat-car-moto.svg" alt="Авто и мото" />
-							</div>
-							<h2 class="search-block__title">Авто и мото</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_details">
-								<img src="img/icons/categories/cat-transport-details.svg" alt="Запчасти для транспорта" />
-							</div>
-							<h2 class="search-block__title">Запчасти для транспорта</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_zoo">
-								<img src="img/icons/categories/cat-zoo-products.svg" alt="Зоотовары" />
-							</div>
-							<h2 class="search-block__title">Зоотовары</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_house">
-								<img src="img/icons/categories/cat-house.svg" alt="Дом и сад" />
-							</div>
-							<h2 class="search-block__title">Дом и сад</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_instruments">
-								<img src="img/icons/categories/cat-instruments.svg" alt="Инструменты" />
-							</div>
-							<h2 class="search-block__title">Инструменты</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_home-products">
-								<img src="img/icons/categories/cat-home-products.svg" alt="Бытовая химия/хозяйственный" />
-							</div>
-							<h2 class="search-block__title">Бытовая химия/хозяйственный</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_electronic">
-								<img src="img/icons/categories/cat-electronic.svg" alt="Электроника" />
-							</div>
-							<h2 class="search-block__title">Электроника</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_clothes">
-								<img src="img/icons/categories/cat-clothes.svg" alt="Мода и стиль" />
-							</div>
-							<h2 class="search-block__title">Мода и стиль</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_textile">
-								<img src="img/icons/categories/cat-textile.svg" alt="Ткани и фурнитура" />
-							</div>
-							<h2 class="search-block__title">Ткани и фурнитура</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_sport">
-								<img src="img/icons/categories/cat-sport.svg" alt="Хобби, отдых и спорт" />
-							</div>
-							<h2 class="search-block__title">Хобби, отдых и спорт</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_bussines">
-								<img src="img/icons/categories/cat-bussines.svg" alt="Оборудование и бизнес" />
-							</div>
-							<h2 class="search-block__title">Оборудование и бизнес</h2>
-						</a>
-						<a href="#" class="search-block__item">
-							<div class="search-block__icon search-block__icon_army">
-								<img src="img/icons/categories/cat-army.svg" alt="Военка" />
-							</div>
-							<h2 class="search-block__title">Военка</h2>
-						</a>
+							<button type="button" class="categories-button-prev slider-button">
+								<svg width="6" height="16" viewBox="0 0 6 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M3.19278 4.40059L1.20429 7.69517L3.12276 10.8746C4.64913 13.3858 5.04123 14.1691 5.04123 14.676C5.04123 15.275 4.9292 15.4132 4.48109 15.298C4.36906 15.275 3.3048 13.6853 2.14252 11.7731C0.504123 9.10055 0 8.13291 0 7.69517C0 7.25743 0.504123 6.28979 2.14252 3.64031C3.3048 1.72807 4.38307 0.0923004 4.5091 0.0231838C4.76116 -0.11505 5.18126 0.391808 5.18126 0.829549C5.18126 0.967783 4.28504 2.58051 3.19278 4.40059Z" fill="black" />
+								</svg>
+							</button>
+							<button type="button" class="categories-button-next slider-button">
+								<svg width="6" height="16" viewBox="0 0 6 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M2.80722 5.06543L4.79571 8.36001L2.87724 11.5394C1.35087 14.0506 0.958774 14.834 0.958774 15.3408C0.958774 15.9398 1.0708 16.0781 1.51891 15.9629C1.63094 15.9398 2.6952 14.3501 3.85748 12.4379C5.49588 9.76538 6 8.79775 6 8.36001C6 7.92226 5.49588 6.95463 3.85748 4.30514C2.6952 2.3929 1.61693 0.757133 1.4909 0.688017C1.23884 0.549783 0.818739 1.05664 0.818739 1.49438C0.818739 1.63262 1.71496 3.24535 2.80722 5.06543Z" fill="black" />
+								</svg>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -393,7 +487,7 @@
 		</footer>
 
 	</div>
-	<script src="js/app.min.js?_v=20230720101057"></script>
+	<script src="js/app.min.js?_v=20230720162613"></script>
 </body>
 
 </html>
