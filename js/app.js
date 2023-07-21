@@ -3875,58 +3875,6 @@
         });
     }
     function initSliders() {
-        if (document.querySelector(".categories__slider")) new core(".categories__slider", {
-            modules: [ Navigation ],
-            observer: true,
-            observeParents: true,
-            slidesPerView: 5,
-            spaceBetween: 10,
-            speed: 800,
-            loop: true,
-            navigation: {
-                prevEl: ".categories-button-prev",
-                nextEl: ".categories-button-next"
-            },
-            breakpoints: {
-                320: {
-                    slidesPerView: 5,
-                    spaceBetween: 5
-                },
-                375: {
-                    slidesPerView: 5,
-                    spaceBetween: 10
-                }
-            },
-            on: {}
-        });
-        if (document.querySelector(".base__slider")) new core(".base__slider", {
-            modules: [ Navigation ],
-            observer: true,
-            observeParents: true,
-            slidesPerView: 4,
-            spaceBetween: 10,
-            speed: 800,
-            loop: true,
-            navigation: {
-                prevEl: ".base-button-prev",
-                nextEl: ".base-button-next"
-            },
-            breakpoints: {
-                320: {
-                    slidesPerView: 4,
-                    spaceBetween: 5
-                },
-                375: {
-                    slidesPerView: 4,
-                    spaceBetween: 25
-                },
-                479: {
-                    slidesPerView: 4,
-                    spaceBetween: 35
-                }
-            },
-            on: {}
-        });
         if (document.querySelector(".main-image-seller-page__slider")) new core(".main-image-seller-page__slider", {
             modules: [ Navigation ],
             observer: true,
