@@ -2514,7 +2514,7 @@ body::after {
 }
 
 .description-product__title {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   padding-bottom: 0.625rem;
   position: relative;
@@ -2569,8 +2569,12 @@ body::after {
 
 .info-description-product__label {
   color: #b9b3b3;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 500;
+}
+
+.info-description-product__label_fz-10 {
+  font-size: 10px;
 }
 
 .info-description-product__label:not(:last-child) {
@@ -2587,7 +2591,7 @@ body::after {
 }
 
 .info-description-product__value-status {
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .info-description-product__value-status_avalaible {
@@ -2596,7 +2600,7 @@ body::after {
 
 .info-description-product__value-category a {
   color: #077cf6;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 500;
   text-decoration-line: underline;
 }
@@ -2613,7 +2617,7 @@ body::after {
 
 .info-description-product__value-address span {
   color: #077cf6;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 500;
   text-decoration-line: underline;
 }
@@ -2668,7 +2672,7 @@ body::after {
 }
 
 .about-product__title {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   padding-bottom: 0.625rem;
   position: relative;
@@ -2709,8 +2713,8 @@ body::after {
 
 .about-product__spoller span {
   text-align: left;
-  min-width: 70px;
-  font-size: 10px;
+  min-width: 95px;
+  font-size: 14px;
   font-weight: 700;
   margin-right: 0.3125rem;
 }
@@ -2737,7 +2741,7 @@ body::after {
 }
 
 .block__content {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -2758,8 +2762,8 @@ body::after {
 
 .block__more span {
   text-align: left;
-  min-width: 70px;
-  font-size: 10px;
+  min-width: 95px;
+  font-size: 14px;
   font-weight: 700;
   margin-right: 0.3125rem;
 }
@@ -2797,7 +2801,7 @@ body::after {
   border-radius: 10px;
   border: 1px solid #ffd60a;
   background: #ffd60a;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   padding: 0.53125rem 4.375rem;
