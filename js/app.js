@@ -3975,7 +3975,9 @@
         if (inputValue.trim() === "") e.preventDefault();
     }
     const buttonBack = document.querySelector(".menu-footer__link");
+    const categoryButtonBack = document.querySelector(".one-category .categories-page__back");
     if (buttonBack) buttonBack.addEventListener("click", goBack);
+    if (categoryButtonBack) categoryButtonBack.addEventListener("click", goBack);
     function goBack() {
         window.history.back();
     }

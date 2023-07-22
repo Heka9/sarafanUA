@@ -2938,6 +2938,10 @@ body::after {
   font-weight: 700;
 }
 
+.one-category .categories-page__title {
+  padding-bottom: 0.625rem;
+}
+
 .categories-page__info-block {
   -ms-flex-item-align: stretch;
       -ms-grid-row-align: stretch;
