@@ -685,15 +685,16 @@ body::after {
   border-radius: 2px;
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+  text-overflow: ellipsis;
 }
 
 .focus .search-panel__select-categoty {
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 25%;
-          flex: 0 0 25%;
-  width: 25%;
+      -ms-flex: 0 0 23%;
+          flex: 0 0 23%;
+  width: 23%;
 }
 
 .search-panel__option {
@@ -718,6 +719,26 @@ body::after {
   height: 100%;
   background: #fff;
   padding: 0rem 0.3125rem 0rem 1.25rem;
+}
+
+.search-panel__input input::-webkit-input-placeholder {
+  font-size: 0.875rem;
+}
+
+.search-panel__input input::-moz-placeholder {
+  font-size: 0.875rem;
+}
+
+.search-panel__input input:-ms-input-placeholder {
+  font-size: 0.875rem;
+}
+
+.search-panel__input input::-ms-input-placeholder {
+  font-size: 0.875rem;
+}
+
+.search-panel__input input::placeholder {
+  font-size: 0.875rem;
 }
 
 .search-panel__icon-search {
