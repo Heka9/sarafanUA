@@ -1,706 +1,512 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 
 <head>
-	<title>PHP course</title>
-	<meta charset="UTF-8">
-	<meta name="format-detection" content="telephone=no">
+	<title>Главная</title>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230721232555">
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" href="css/style.min.css?_v=20230722103359" />
+	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 " />
+	<!-- maximum-scale=1 -->
 </head>
 
 <body>
-	<div class="wrapper main-page">
+	<div class="wrapper">
 		<header class="header">
 			<div class="header__container">
 			</div>
 		</header>
 		<main class="page">
-			<section class="page__main-block main-block">
-				<div class="main-block__container">
-					<div class="main-block__change-lang lang">
-						<a href="#" class="lang__ru">RU</a>
-						<a href="#" class="lang__ua">UA</a>
+			<div class="page__search-panel search-panel">
+				<div class="search-panel__container">
+					<form class="search-panel__form">
+						<select name="search-category" class="search-panel__select-categoty">
+							<option value="product" class="search-panel__option">Поиск по товару</option>
+							<option value="container" class="search-panel__option">Поиск по контейнеру</option>
+						</select>
+						<div class="search-panel__input">
+							<input type="text" name="search-value" placeholder="Введите наименование" />
+							<button type="submit" class="search-panel__icon-search">
+								<img src="img/icons/search.svg" alt="Кнопка поиска" />
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="page__main-image main-image">
+				<div class="main-image__container">
+					<div class="main-image__bg-img-ibg">
+						<img src="img/main/main-image.svg" alt="Страница приветствия" />
+						<div class="main-image__telegram-icon">
+							<svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7.12193 2.21792C3.46221 3.4261 0.353791 4.51697 0.236492 4.62254C-0.0215654 4.85714 -0.0802148 5.49055 0.119193 5.84245C0.177843 5.95975 0.987204 6.39376 1.90214 6.79257C2.8288 7.20312 3.62643 7.56674 3.67335 7.61366C3.732 7.66058 3.97832 8.66935 4.23638 9.85407C4.48271 11.0388 4.7525 12.1297 4.81115 12.2704C5.01055 12.7514 5.43283 12.6106 6.80523 11.5901L8.09551 10.6517L9.05736 11.4611C10.6995 12.8217 11.1453 13.1267 11.4972 13.1267C12.2479 13.1267 12.2362 13.1502 13.6789 7.02717C14.4179 3.90702 15.0161 1.1505 15.0161 0.9159C15.0161 0.399785 14.5939 -0.0224905 14.0895 0.000969887C13.9253 0.000969887 10.7817 0.99801 7.12193 2.21792ZM14.0191 1.18569C13.9839 1.2678 13.4091 3.70761 12.7288 6.61662C12.0485 9.5139 11.4854 11.9303 11.462 11.9889C11.4503 12.0476 7.80227 9.16201 7.06328 8.4934C7.05155 8.48167 8.04859 7.40252 9.29196 6.10051C10.5353 4.79849 11.6027 3.6255 11.6614 3.49647C11.8139 3.1915 11.462 2.80441 11.1101 2.89825C10.9693 2.93344 9.33888 3.80145 7.49729 4.82195L4.15427 6.687L2.58247 5.98321L1.02239 5.29115L3.23934 4.57562C4.45925 4.18854 7.35653 3.22669 9.67905 2.45251C12.0016 1.67834 13.937 1.04493 13.9839 1.04493C14.0308 1.04493 14.0426 1.11531 14.0191 1.18569ZM7.05155 6.95679C5.87857 8.14151 5.84338 8.18843 5.58532 9.09163L5.31553 10.0066L5.10439 9.0799C4.74077 7.41426 4.6352 7.60193 6.51198 6.54624C7.41518 6.04186 8.17762 5.65477 8.20108 5.68996C8.23627 5.72515 7.72016 6.28819 7.05155 6.95679ZM6.89907 9.67812C7.03982 9.77196 7.15712 9.90099 7.15712 9.94791C7.15712 10.0769 6.33603 10.6986 6.26565 10.6282C6.19527 10.5579 6.47679 9.49044 6.57063 9.49044C6.60582 9.49044 6.75831 9.57255 6.89907 9.67812Z" fill="white" />
+							</svg>
+						</div>
 					</div>
-					<div class="main-block__content">
-						<div class="main-block__heading">
-							<h1 class="main-block__title">Курс PHP разработки</h1>
-							<p class="main-block__sub-title">Перестань бесконечно учиться, получи работу и зарабатывай $</p>
-							<div class="main-block__info response">
-								<div class="response__text">
-									<p>
-										Узнай как выделиться, кто нужен работодателям, как подготовиться правильно и пройти
-										собеседование через двухнедельный практический курс от практикующего тимлида
-									</p>
-								</div>
-								<div class="response__value">
-									<div class="response__decor">
-										<img src="img/main-block/decor-1.png" alt="decor" />
+				</div>
+			</div>
+			<div class="page__info-block info-block">
+				<div class="info-block__container">
+					<div class="info-block__product-line product-line">
+						<div class="product-line__item">Термобелье для всей семьи</div>
+						<div class="product-line__item">Чешский бисер</div>
+						<div class="product-line__item">Конструкторы</div>
+					</div>
+					<div class="info-block__stats stats">
+						<div class="stats__item">
+							<div class="stats__label">Предпринимателей</div>
+							<div class="stats__value stats__value_light-red">4800</div>
+						</div>
+						<div class="stats__item">
+							<div class="stats__label">Посетителей</div>
+							<div class="stats__value stats__value_blue">20000</div>
+						</div>
+						<div class="stats__item">
+							<div class="stats__label">Товаров</div>
+							<div class="stats__value stats__value_orange">137000</div>
+						</div>
+						<div class="stats__item">
+							<div class="stats__label">Распродажи</div>
+							<div class="stats__value stats__value_red">-70%</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page__categories categories">
+				<div class="categories__container">
+					<div class="categories__header header-block">
+						<div class="header-block__title">
+							<img src="img/main/categories/title.svg" alt="Категории товаров" />
+						</div>
+						<a href="#" class="header-block__link">Смотреть больше</a>
+					</div>
+					<div class="categories__items swipe-area">
+						<a href="#" class="categories__slide slide-categories">
+							<div class="slide-categories__label">Детский мир</div>
+							<div class="slide-categories__icon slide-categories__icon_child">
+								<img src="img/icons/categories/cat-child-world.svg" alt="Детский мир" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Авто и мото</div>
+							<div class="slide-categories__icon slide-categories__icon_auto">
+								<img src="img/icons/categories/cat-car-moto.svg" alt="Авто и мото" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Запчасти для транспорта</div>
+							<div class="slide-categories__icon slide-categories__icon_details">
+								<img src="img/icons/categories/cat-transport-details.svg" alt="Запчасти для транспорта" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Зоотовары</div>
+							<div class="slide-categories__icon slide-categories__icon_zoo">
+								<img src="img/icons/categories/cat-zoo-products.svg" alt="Зоотовары" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Дом и сад</div>
+							<div class="slide-categories__icon slide-categories__icon_house">
+								<img src="img/icons/categories/cat-house.svg" alt="Дом и сад" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Инструменты</div>
+							<div class="slide-categories__icon slide-categories__icon_instruments">
+								<img src="img/icons/categories/cat-instruments.svg" alt="Инструменты" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Бытовая химия/хозяйственный</div>
+							<div class="slide-categories__icon slide-categories__icon_home-products">
+								<img src="img/icons/categories/cat-home-products.svg" alt="Бытовая химия/хозяйственный" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Электроника</div>
+							<div class="slide-categories__icon slide-categories__icon_electronic">
+								<img src="img/icons/categories/cat-electronic.svg" alt="Электроника" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Мода и стиль</div>
+							<div class="slide-categories__icon slide-categories__icon_clothes">
+								<img src="img/icons/categories/cat-clothes.svg" alt="Мода и стиль" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Ткани и фурнитура</div>
+							<div class="slide-categories__icon slide-categories__icon_textile">
+								<img src="img/icons/categories/cat-textile.svg" alt="Ткани и фурнитура" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Хобби, отдых и спорт</div>
+							<div class="slide-categories__icon slide-categories__icon_sport">
+								<img src="img/icons/categories/cat-sport.svg" alt="Хобби, отдых и спорт" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Оборудование и бизнес</div>
+							<div class="slide-categories__icon slide-categories__icon_bussines">
+								<img src="img/icons/categories/cat-bussines.svg" alt="Оборудование и бизнес" />
+							</div>
+						</a>
+						<a href="#" class="categories__slide slide-categories swiper-slide">
+							<div class="slide-categories__label">Военка</div>
+							<div class="slide-categories__icon slide-categories__icon_army">
+								<img src="img/icons/categories/cat-army.svg" alt="Военка" />
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="page__base base">
+				<div class="base__container">
+					<div class="base__header header-block">
+						<div class="header-block__title">
+							<img src="img/main/base/title.svg" alt="База контейнеров" />
+						</div>
+						<a href="#" class="header-block__link">Смотреть больше</a>
+					</div>
+					<div class="base__items swipe-area">
+						<a href="#" class="base__slide base__slide_purple">
+							<div class="base__text">ул.Центральная</div>
+						</a>
+						<a href="#" class="base__slide base__slide_pink">
+							<div class="base__text">ул.Банковская</div>
+						</a>
+						<a href="#" class="base__slide base__slide_light-blue">
+							<div class="base__text">ул.Розовая</div>
+						</a>
+						<a href="#" class="base__slide base__slide_yellow">
+							<div class="base__text">ул.Фабричная</div>
+						</a>
+						<a href="#" class="base__slide base__slide_purple">
+							<div class="base__text">ул.Центральная</div>
+						</a>
+						<a href="#" class="base__slide base__slide_pink">
+							<div class="base__text">ул.Банковская</div>
+						</a>
+						<a href="#" class="base__slide base__slide_light-blue">
+							<div class="base__text">ул.Розовая</div>
+						</a>
+						<a href="#" class="base__slide base__slide_yellow">
+							<div class="base__text">ул.Фабричная</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="page__sales sales">
+				<div class="sales__container">
+					<div class="sales__header header-block">
+						<div class="header-block__title">
+							<img src="img/main/sales/title.svg" alt="Распродажа" />
+						</div>
+						<a href="#" class="header-block__link">Смотреть больше</a>
+					</div>
+					<div class="sales__items">
+						<a href="#" class="sales__item item-goods">
+							<div class="item-goods__image-ibg">
+								<img src="img/main/sales/item-01.jpg" alt="Рубашка" />
+								<div class="item-goods__promo">
+									<div class="item-goods__item-promo">
+										<img src="img/icons/discont-bg.svg" alt="Красная лента" />
+										<div class="item-goods__value">-70%</div>
 									</div>
-									<div class="response__block">
-										<div class="response__number">50</div>
-										<div class="response__caption">
-											<p>cреднее количество откликов на вакансию Junior</p>
+								</div>
+								<div class="item-goods__favorite">
+									<img src="img/icons/favorite.svg" alt="Иконка рекомендуемого" />
+								</div>
+							</div>
+							<div class="item-goods__info">
+								<div class="item-goods__title">Мужская рубашка синяя</div>
+								<div class="item-goods__current-price">500 грн</div>
+								<div class="item-goods__old-price">150 грн</div>
+							</div>
+						</a>
+						<a href="#" class="sales__item item-goods">
+							<div class="item-goods__image-ibg">
+								<img src="img/main/sales/item-02.jpg" alt="Рубашка" />
+								<div class="item-goods__promo">
+									<div class="item-goods__item-promo">
+										<img src="img/icons/discont-bg.svg" alt="Красная лента" />
+										<div class="item-goods__value">-70%</div>
+									</div>
+								</div>
+								<div class="item-goods__favorite">
+									<img src="img/icons/favorite.svg" alt="Иконка рекомендуемого" />
+								</div>
+							</div>
+							<div class="item-goods__info">
+								<div class="item-goods__title">Мужская рубашка синяя</div>
+								<div class="item-goods__current-price">500 грн</div>
+								<div class="item-goods__old-price">150 грн</div>
+							</div>
+						</a>
+						<a href="#" class="sales__item item-goods">
+							<div class="item-goods__image-ibg">
+								<img src="img/main/sales/item-03.jpg" alt="Рубашка" />
+								<div class="item-goods__promo">
+									<div class="item-goods__item-promo">
+										<img src="img/icons/discont-bg.svg" alt="Красная лента" />
+										<div class="item-goods__value">-70%</div>
+									</div>
+								</div>
+								<div class="item-goods__favorite">
+									<img src="img/icons/favorite.svg" alt="Иконка рекомендуемого" />
+								</div>
+							</div>
+							<div class="item-goods__info">
+								<div class="item-goods__title">Мужская рубашка синяя</div>
+								<div class="item-goods__current-price">500 грн</div>
+								<div class="item-goods__old-price">150 грн</div>
+							</div>
+						</a>
+						<a href="#" class="sales__item item-goods">
+							<div class="item-goods__image-ibg">
+								<img src="img/main/sales/item-04.jpg" alt="Рубашка" />
+								<div class="item-goods__promo">
+									<div class="item-goods__item-promo">
+										<img src="img/icons/discont-bg.svg" alt="Красная лента" />
+										<div class="item-goods__value">-70%</div>
+									</div>
+								</div>
+								<div class="item-goods__favorite">
+									<img src="img/icons/favorite.svg" alt="Иконка рекомендуемого" />
+								</div>
+							</div>
+							<div class="item-goods__info">
+								<div class="item-goods__title">Мужская рубашка синяя</div>
+								<div class="item-goods__current-price">500 грн</div>
+								<div class="item-goods__old-price">150 грн</div>
+							</div>
+						</a>
+						<a href="#" class="sales__item item-goods">
+							<div class="item-goods__image-ibg">
+								<img src="img/main/sales/item-05.jpg" alt="Кросовки" />
+								<div class="item-goods__promo">
+									<div class="item-goods__item-promo">
+										<img src="img/icons/discont-bg.svg" alt="Красная лента" />
+										<div class="item-goods__value">-70%</div>
+									</div>
+								</div>
+								<div class="item-goods__favorite">
+									<img src="img/icons/favorite.svg" alt="Иконка рекомендуемого" />
+								</div>
+							</div>
+							<div class="item-goods__info">
+								<div class="item-goods__title">Мужская рубашка синяя</div>
+								<div class="item-goods__current-price">500 грн</div>
+								<div class="item-goods__old-price">150 грн</div>
+							</div>
+						</a>
+						<a href="#" class="sales__item item-goods">
+							<div class="item-goods__image-ibg">
+								<img src="img/main/sales/item-06.jpg" alt="Рубашка" />
+								<div class="item-goods__promo">
+									<div class="item-goods__item-promo">
+										<img src="img/icons/discont-bg.svg" alt="Красная лента" />
+										<div class="item-goods__value">-70%</div>
+									</div>
+								</div>
+								<div class="item-goods__favorite">
+									<img src="img/icons/favorite.svg" alt="Иконка рекомендуемого" />
+								</div>
+							</div>
+							<div class="item-goods__info">
+								<div class="item-goods__title">Мужская рубашка синяя</div>
+								<div class="item-goods__current-price">500 грн</div>
+								<div class="item-goods__old-price">150 грн</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="page__goods goods">
+				<div class="goods__container">
+					<div class="goods__header header-block">
+						<div class="header-block__title">
+							<img src="img/main/goods/title.svg" alt="Товары" />
+						</div>
+					</div>
+					<div class="goods__items"></div>
+				</div>
+			</div>
+			<aside class="page__sidebar-menu sidebar">
+				<div class="sidebar__container">
+					<button type="button" class="sidebar__close-icon">
+						<img src="img/icons/close.svg" alt="Закрыть меню" />
+					</button>
+					<div class="sidebar__image-ibg">
+						<img src="img/main/sidebar/sidebar-image.svg" alt="Логотип" />
+						<div class="sidebar__promo">
+							<img src="img/icons/promo-platform.svg" alt="Промо-платформа" />
+						</div>
+					</div>
+					<div class="sidebar__menu menu-sidebar">
+						<nav data-spollers data-one-spoller class="menu-sidebar__body spollers">
+							<ul class="menu-sidebar__list">
+								<li class="menu-sidebar__item">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/apps.svg" alt="Иконка товаров" />
+										<span>Каталог товаров</span>
+									</a>
+								</li>
+								<li class="menu-sidebar__item">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/window.svg" alt="Иконка контейнеров" />
+										<span>База контейнеров</span>
+									</a>
+								</li>
+								<li class="menu-sidebar__item menu-sidebar__item_border">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/sales.svg" alt="Иконка распродажи" />
+										<div class="menu-sidebar__decor">
+											<img src="img/main/sidebar/item-decor.svg" alt="Декор" />
+											<span>Распродажа</span>
+										</div>
+									</a>
+								</li>
+								<li class="menu-sidebar__item">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/favorite-black.svg" alt="Иконка избранное" />
+										<span>Избранное</span>
+									</a>
+								</li>
+								<li class="menu-sidebar__item">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/cart.svg" alt="Иконка корзины" />
+										<span>Корзина</span>
+									</a>
+								</li>
+								<li class="menu-sidebar__item menu-sidebar__item_border">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/hamburger.svg" alt="Иконка новости" />
+										<span>Новости</span>
+									</a>
+								</li>
+								<li class="menu-sidebar__item">
+									<div class="menu-sidebar__link spollers__item">
+										<img src="img/icons/services.svg" alt="Иконка сервисы" />
+										<button type="button" data-spoller class="spollers__title">Сервисы</button>
+										<div class="spollers__body">
+											<div class="spollers__inner">
+												<a href="#">Видео обзоры и съемки</a>
+												<a href="#">Независимый переучет</a>
+												<a href="#">Онлайн распродажа</a>
+												<a href="#">Отправка товаров</a>
+												<a href="#">Продвижение и реклама</a>
+												<a href="#">Товар под ключ КАРГО</a>
+											</div>
 										</div>
 									</div>
-								</div>
-							</div>
+								</li>
+								<li class="menu-sidebar__item">
+									<div class="menu-sidebar__link spollers__item">
+										<img src="img/icons/avatar.svg" alt="Иконка о нас" />
+										<button type="button" data-spoller class="spollers__title">Кто мы</button>
+										<div class="spollers__body">
+											<div class="spollers__inner">
+												<a href="#">О нас</a>
+												<a href="#">Еще о нас</a>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="menu-sidebar__item">
+									<div class="menu-sidebar__link spollers__item">
+										<img src="img/icons/partner.svg" alt="Иконка партнеры" />
+										<button type="button" data-spoller class="spollers__title">Партнеры</button>
+										<div class="spollers__body">
+											<div class="spollers__inner">
+												<a href="#">О партнерах</a>
+												<a href="#">Еще о партнерах</a>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="menu-sidebar__item menu-sidebar__item_border">
+									<a href="#" class="menu-sidebar__link">
+										<img src="img/icons/telegram.svg" alt="Иконка телеграм" />
+										<span>Чат с Сарафан</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<a href="#" class="sidebar__login">Войти в свой контейнер</a>
+					<div class="sidebar__socials socials-sidebar">
+						<h3 class="socials-sidebar__title">Смотрите распродажи в прямых эфирах</h3>
+						<div class="socials-sidebar__image">
+							<img src="img/main/sidebar/online-shop.svg" alt="Онлайн трансляции" />
 						</div>
-						<ul class="main-block__list list-main-block">
-							<li class="list-main-block__item">
-								<div class="list-main-block__icon">
-									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-										<path d="M2.99993 15.8996V19.4909L4.51489 18.6241L9.27677 15.8996H13.9997C15.1026 15.8996 15.9996 15.0443 15.9996 13.9925V6.36373C15.9996 5.31191 15.1026 4.45654 13.9997 4.45654H1.99995C0.896978 4.45654 0 5.31191 0 6.36373V13.9925C0 15.0443 0.896978 15.8996 1.99995 15.8996H2.99993ZM1.99995 6.36373H13.9997V13.9925H8.72278L4.99988 16.1228V13.9925H1.99995V6.36373Z" fill="#0017E8" />
-										<path d="M17.9995 0.641602H5.99983C4.89686 0.641602 3.99988 1.49697 3.99988 2.54878H15.9996C17.1026 2.54878 17.9995 3.40416 17.9995 4.45597V12.0847C19.1025 12.0847 19.9995 11.2293 19.9995 10.1775V2.54878C19.9995 1.49697 19.1025 0.641602 17.9995 0.641602Z" fill="#0017E8" />
-									</svg>
+						<div class="socials-sidebar__items">
+							<a href="#" class="socials-sidebar__item item-socials-sidebar">
+								<div class="item-socials-sidebar__image">
+									<img src="img/main/sidebar/tiktok.svg" alt="tiktok" />
 								</div>
-								<div class="list-main-block__text">
-									<p>Сильный кейс в резюме (чат-бот с ChatGPT) + знаешь каким оно должно быть</p>
+								<div class="item-socials-sidebar__label">Sarafan</div>
+							</a>
+							<a href="#" class="socials-sidebar__item item-socials-sidebar">
+								<div class="item-socials-sidebar__image">
+									<img src="img/main/sidebar/instagram.svg" alt="instagram" />
 								</div>
+								<div class="item-socials-sidebar__label">Sarafan</div>
+							</a>
+							<a href="#" class="socials-sidebar__item item-socials-sidebar">
+								<div class="item-socials-sidebar__image">
+									<img src="img/main/sidebar/youtube.svg" alt="youtube" />
+								</div>
+								<div class="item-socials-sidebar__label">Sarafan</div>
+							</a>
+						</div>
+						<div class="socials-sidebar__info info-socials-sidebar">
+							<a href="#" class="info-socials-sidebar__lang info-socials-sidebar_block">???</a>
+							<a href="#" class="info-socials-sidebar__currency info-socials-sidebar_block">Курс USA</a>
+							<a href="#" class="info-socials-sidebar__date info-socials-sidebar_block">Дата</a>
+						</div>
+					</div>
+				</div>
+			</aside>
+		</main>
+		<footer data-lp class="footer">
+			<div class="footer__container">
+				<div class="footer__menu menu-footer">
+					<nav class="menu-footer__body">
+						<ul class="menu-footer__list">
+							<li class="menu-footer__item">
+								<a href="#" class="menu-footer__link"><img src="img/icons/circle-left.svg" alt="Иконка круга со стрелкой влево" /></a>
 							</li>
-							<li class="list-main-block__item">
-								<div class="list-main-block__icon">
-									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-										<path d="M18 9.21064C18 13.8962 13.9702 17.6928 9 17.6928C4.02979 17.6928 0 13.8962 0 9.21064C0 4.52779 4.02979 0.728516 9 0.728516C13.9702 0.728516 18 4.52779 18 9.21064ZM9.24151 3.53309C7.2638 3.53309 6.00242 4.31827 5.01191 5.71375C4.88359 5.89454 4.92652 6.13836 5.11044 6.2698L6.36968 7.16966C6.55857 7.30466 6.8277 7.27254 6.97446 7.09708C7.62275 6.32213 8.06727 5.87275 9.054 5.87275C9.79537 5.87275 10.7124 6.32244 10.7124 6.99998C10.7124 7.5122 10.2637 7.77524 9.53173 8.16203C8.67803 8.61306 7.54839 9.17442 7.54839 10.5787V10.7155C7.54839 10.9422 7.74337 11.126 7.98387 11.126H10.0161C10.2566 11.126 10.4516 10.9422 10.4516 10.7155V10.6699C10.4516 9.69648 13.4705 9.65595 13.4705 7.0217C13.4705 5.03791 11.2871 3.53309 9.24151 3.53309ZM9 12.0152C8.0795 12.0152 7.33065 12.721 7.33065 13.5885C7.33065 14.456 8.0795 15.1618 9 15.1618C9.9205 15.1618 10.6694 14.456 10.6694 13.5885C10.6694 12.721 9.9205 12.0152 9 12.0152Z" fill="#0017E8" />
-									</svg>
-								</div>
-								<div class="list-main-block__text">
-									<p>Знаешь 80% вопросов, которые тебе зададут на следующем собеседовании</p>
-								</div>
+							<li class="menu-footer__item icon-menu">
+								<button type="button" class="menu-footer__link">
+									<img src="img/icons/hamburger.svg" alt="Иконка бургер-меню" />
+								</button>
 							</li>
-							<li class="list-main-block__item">
-								<div class="list-main-block__icon">
-									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="22" viewBox="0 0 18 22" fill="none">
-										<path d="M0 4.12943C0 2.2554 4.02955 0.736328 9 0.736328C13.9705 0.736328 18 2.2554 18 4.12943V5.82535C18 7.69938 13.9705 9.21845 9 9.21845C4.02955 9.21845 0 7.69938 0 5.82535V4.12943Z" fill="#0017E8" />
-										<path d="M0 8.79492V12.6117C0 14.4832 4.02955 16.0035 9 16.0035C13.9705 16.0035 18 14.4844 18 12.6104V8.79492C17.3921 9.20765 16.7306 9.54542 16.0318 9.8C14.1432 10.5125 11.6553 10.9145 9 10.9145C6.34603 10.9145 3.85811 10.5112 1.96955 9.8C1.27069 9.54544 0.609259 9.20768 0.00135 8.79492H0Z" fill="#0017E8" />
-										<path d="M18 15.5814C17.392 15.9936 16.7306 16.331 16.0318 16.5852C14.1419 17.2976 11.6553 17.6997 8.99865 17.6997C6.34468 17.6997 3.85676 17.2976 1.9682 16.5852C1.26936 16.3306 0.607924 15.9928 0 15.5801V17.6997C0 19.5737 4.02955 21.0928 9 21.0928C13.9705 21.0928 18 19.5737 18 17.6997V15.5814Z" fill="#0017E8" />
-									</svg>
-								</div>
-								<div class="list-main-block__text">
-									<p>Тотальное понимание клиент-серверных приложений</p>
-								</div>
+							<li class="menu-footer__item">
+								<a href="#" class="menu-footer__link"><img src="img/icons/apps.svg" alt="Иконка товаров" /></a>
 							</li>
-							<li class="list-main-block__item">
-								<div class="list-main-block__icon">
-									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-										<path d="M6.8644e-06 8.96112C6.8644e-06 4.27657 4.02943 0.479004 9 0.479004C13.9706 0.479004 18 4.27657 18 8.96112C18 13.6457 13.9706 17.4432 9 17.4432C7.47772 17.4432 6.04158 17.0864 4.78286 16.4563L1.22915 17.4087C1.06399 17.4528 0.88932 17.4546 0.723189 17.4138C0.557059 17.3731 0.405488 17.2912 0.284132 17.1768C0.162776 17.0624 0.0760344 16.9195 0.032867 16.7629C-0.0103004 16.6063 -0.00832886 16.4417 0.0385782 16.286L1.04915 12.9374C0.358499 11.7132 -0.00181363 10.3476 6.8644e-06 8.96112ZM5.14286 7.14352C5.14286 7.30421 5.21059 7.45831 5.33115 7.57194C5.45171 7.68556 5.61522 7.74939 5.78572 7.74939H12.2143C12.3848 7.74939 12.5483 7.68556 12.6689 7.57194C12.7894 7.45831 12.8571 7.30421 12.8571 7.14352C12.8571 6.98284 12.7894 6.82874 12.6689 6.71511C12.5483 6.60149 12.3848 6.53766 12.2143 6.53766H5.78572C5.61522 6.53766 5.45171 6.60149 5.33115 6.71511C5.21059 6.82874 5.14286 6.98284 5.14286 7.14352ZM5.78572 10.1729C5.61522 10.1729 5.45171 10.2367 5.33115 10.3503C5.21059 10.4639 5.14286 10.618 5.14286 10.7787C5.14286 10.9394 5.21059 11.0935 5.33115 11.2071C5.45171 11.3208 5.61522 11.3846 5.78572 11.3846H9.64286C9.81336 11.3846 9.97687 11.3208 10.0974 11.2071C10.218 11.0935 10.2857 10.9394 10.2857 10.7787C10.2857 10.618 10.218 10.4639 10.0974 10.3503C9.97687 10.2367 9.81336 10.1729 9.64286 10.1729H5.78572Z" fill="#0017E8" />
-									</svg>
-								</div>
-								<div class="list-main-block__text">
-									<p>Не боишься собеседований</p>
-								</div>
+							<li class="menu-footer__item">
+								<a href="#" class="menu-footer__link"><img src="img/icons/window.svg" alt="Иконка контейнеров" /></a>
 							</li>
-							<li class="list-main-block__item">
-								<div class="list-main-block__icon">
-									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-										<path d="M9 0.479004C13.9707 0.479004 18 4.30095 18 9.01585C18 13.7307 13.9707 17.5527 9 17.5527C4.0293 17.5527 0 13.7307 0 9.01585C0 4.30095 4.0293 0.479004 9 0.479004ZM9 3.89374C8.7613 3.89374 8.53239 3.98368 8.3636 4.14378C8.19482 4.30388 8.1 4.52102 8.1 4.74743V9.01585C8.10005 9.24224 8.19491 9.45934 8.3637 9.6194L11.0637 12.1805C11.2334 12.336 11.4608 12.422 11.6968 12.4201C11.9327 12.4181 12.1585 12.3283 12.3253 12.1701C12.4922 12.0118 12.5869 11.7977 12.5889 11.5738C12.591 11.35 12.5002 11.1344 12.3363 10.9733L9.9 8.66242V4.74743C9.9 4.52102 9.80518 4.30388 9.6364 4.14378C9.46761 3.98368 9.23869 3.89374 9 3.89374Z" fill="#0017E8" />
-									</svg>
-								</div>
-								<div class="list-main-block__text">
-									<p>Доступ на пол года</p>
-								</div>
+							<li class="menu-footer__item">
+								<a href="#" class="menu-footer__link"><img src="img/icons/home.svg" alt="Иконка главная страница" /></a>
 							</li>
-							<li class="list-main-block__item">
-								<div class="list-main-block__icon">
-									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-										<path d="M2.37955 12.7397C2.37955 12.7397 0.70108 15.1316 1.68273 16.0685C2.6634 17.0064 5.1668 15.4028 5.1668 15.4028" fill="#0017E8" />
-										<path d="M2.37955 12.7397C2.37955 12.7397 0.70108 15.1316 1.68273 16.0685C2.6634 17.0064 5.1668 15.4028 5.1668 15.4028" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-										<path fill-rule="evenodd" clip-rule="evenodd" d="M17.7115 0.754491C17.8292 0.866983 17.9151 1.00612 17.9613 1.15893C18.0075 1.31174 18.0124 1.47324 17.9756 1.62836L17.6632 2.94857C17.293 4.50886 16.4681 5.93718 15.284 7.06835L10.7069 11.4414C11.7191 12.6392 12.0473 13.7768 11.791 14.8616C11.5239 15.9916 10.6477 16.8259 10.1037 17.3447L10.0445 17.4012C9.93861 17.5023 9.80997 17.579 9.66839 17.6255C9.52681 17.6719 9.37601 17.687 9.22744 17.6695C9.07886 17.652 8.93641 17.6023 8.8109 17.5244C8.68539 17.4464 8.58012 17.3421 8.50308 17.2195L6.53879 14.0885C6.49741 14.0227 6.44776 13.9619 6.39095 13.9077L3.85798 11.4895L3.10893 11.0601L6.5181 7.44125C6.52038 7.44285 6.52268 7.44442 6.525 7.44596L11.1021 3.07475C12.2863 1.9432 13.7816 1.15509 15.415 0.801574L16.7968 0.502125C16.9593 0.467084 17.1284 0.471939 17.2883 0.516235C17.4483 0.560531 17.5938 0.641883 17.7115 0.754491ZM5.70301 6.8998C4.74797 6.36776 3.83038 6.21991 2.94631 6.41013C1.76359 6.66626 0.890358 7.50246 0.347296 8.0232L0.288161 8.07876C0.182382 8.17997 0.102125 8.30288 0.0534811 8.43815C0.00483732 8.57342 -0.0109148 8.7175 0.00741981 8.85946C0.0257545 9.00141 0.0776941 9.13751 0.159297 9.25742C0.2409 9.37734 0.350022 9.47792 0.47838 9.55152L2.24851 10.5666L5.70301 6.8998Z" fill="#0017E8" />
-									</svg>
-								</div>
-								<div class="list-main-block__text">
-									<p>Начать можешь сразу после оплаты</p>
-								</div>
+							<li class="menu-footer__item">
+								<a href="#" class="menu-footer__link"><img src="img/icons/cart.svg" alt="Иконка корзины" /></a>
 							</li>
 						</ul>
-						<div class="main-block__try try-main-block">
-							<div class="try-main-block__top">
-								<a href="#" target="_blank" class="try-main-block__button">КУПИТЬ КУРС</a>
-								<div class="try-main-block__price price-block">
-									<div class="price-block__current-price">24$</div>
-									<div class="price-block__prev-price">300$</div>
-									<div class="price-block__discont">-92%</div>
-								</div>
-							</div>
-							<div class="try-main-block__bottom">
-								<div class="try-main-block__price price-block">
-									<div class="price-block__current-price">24$</div>
-									<div class="price-block__prev-price">300$</div>
-								</div>
-								<a href="#" target="_blank" class="try-main-block__button">купить со скидкой 92%</a>
-							</div>
-						</div>
-					</div>
-					<div data-da=".main-block__content, 767.98, 2" class="main-block__image">
-						<img src="img/main-block/main-hero.png" alt="main hero" />
-					</div>
-					<div class="main-block__decor-2">
-						<svg xmlns="http://www.w3.org/2000/svg" width="295" height="271" viewBox="0 0 295 271" fill="none">
-							<path d="M294.928 135.402C294.928 139.831 294.695 144.26 294.229 148.675C293.747 153.09 293.048 157.476 292.1 161.82C291.168 166.163 289.987 170.463 288.588 174.707C287.189 178.95 285.557 183.122 283.708 187.223C281.859 191.323 279.807 195.324 277.523 199.238C275.254 203.139 272.768 206.939 270.079 210.625C267.406 214.312 264.531 217.869 261.47 221.298C258.393 224.727 255.16 228.013 251.741 231.142C248.322 234.285 244.748 237.257 241.018 240.072C237.289 242.886 233.419 245.53 229.394 247.987C225.384 250.445 221.251 252.73 216.993 254.816C212.719 256.902 208.368 258.803 203.907 260.503C199.447 262.203 194.894 263.689 190.278 264.975C185.663 266.261 180.97 267.347 176.245 268.204C171.505 269.075 166.734 269.718 161.932 270.161C157.115 270.59 152.297 270.804 147.464 270.804C142.647 270.804 137.829 270.59 133.011 270.161C128.209 269.718 123.439 269.075 118.699 268.204C113.959 267.347 109.281 266.261 104.666 264.975C100.05 263.689 95.4966 262.203 91.0365 260.503C86.5764 258.803 82.2095 256.902 77.9514 254.816C73.6933 252.73 69.5595 250.445 65.55 247.987C61.525 245.53 57.6554 242.886 53.9257 240.072C50.1804 237.257 46.6061 234.285 43.2027 231.142C39.7838 228.013 36.5358 224.727 33.4743 221.298C30.4128 217.869 27.5378 214.312 24.8649 210.625C22.1764 206.939 19.6899 203.139 17.4209 199.238C15.1365 195.324 13.0851 191.323 11.2358 187.223C9.38649 183.122 7.75473 178.95 6.35608 174.707C4.95743 170.463 3.77635 166.163 2.84392 161.82C1.89595 157.476 1.19662 153.09 0.714865 148.675C0.248647 144.26 0 139.831 0 135.402C0 130.973 0.248647 126.544 0.714865 122.129C1.19662 117.714 1.89595 113.342 2.84392 108.985C3.77635 104.641 4.95743 100.341 6.35608 96.0973C7.75473 91.8539 9.38649 87.682 11.2358 83.5815C13.0851 79.4953 15.1365 75.4805 17.4209 71.5801C19.6899 67.6653 22.1764 63.8648 24.8649 60.1787C27.5378 56.4925 30.4128 52.935 33.4743 49.506C36.5358 46.077 39.7838 42.7909 43.2027 39.6619C46.6061 36.5187 50.1804 33.5469 53.9257 30.7323C57.6554 27.9177 61.525 25.2888 65.55 22.817C69.5595 20.3596 73.6933 18.0736 77.9514 15.9876C82.2095 13.9017 86.5764 12.0014 91.0365 10.3012C95.4966 8.61532 100.05 7.11514 104.666 5.82927C109.281 4.5434 113.959 3.47185 118.699 2.60031C123.439 1.74307 128.209 1.08585 133.011 0.657222C137.829 0.214314 142.647 0 147.464 0C152.297 0 157.115 0.214314 161.932 0.657222C166.734 1.08585 171.505 1.74307 176.245 2.60031C180.97 3.47185 185.663 4.5434 190.278 5.82927C194.894 7.11514 199.447 8.61532 203.907 10.3012C208.368 12.0014 212.719 13.9017 216.993 15.9876C221.251 18.0736 225.384 20.3596 229.394 22.817C233.419 25.2888 237.289 27.9177 241.018 30.7323C244.748 33.5469 248.322 36.5187 251.741 39.6619C255.16 42.7909 258.393 46.077 261.47 49.506C264.531 52.935 267.406 56.4925 270.079 60.1787C272.768 63.8648 275.254 67.6653 277.523 71.5801C279.807 75.4805 281.859 79.4953 283.708 83.5815C285.557 87.682 287.189 91.8539 288.588 96.0973C289.987 100.341 291.168 104.641 292.1 108.985C293.048 113.342 293.747 117.714 294.229 122.129C294.695 126.544 294.928 130.973 294.928 135.402Z" fill="#BDFF00" />
-						</svg>
-					</div>
-					<div class="main-block__decor-3">
-						<svg xmlns="http://www.w3.org/2000/svg" width="59" height="54" viewBox="0 0 59 54" fill="none">
-							<path d="M58.8896 26.7948C58.8896 27.6688 58.8436 28.5427 58.7516 29.4139C58.6565 30.285 58.5185 31.1505 58.3315 32.0076C58.1475 32.8647 57.9144 33.7133 57.6384 34.5506C57.3624 35.3879 57.0405 36.2111 56.6755 37.0202C56.3106 37.8294 55.9058 38.6188 55.4551 39.3912C55.0073 40.1609 54.5167 40.9108 53.9862 41.6382C53.4587 42.3656 52.8914 43.0676 52.2873 43.7442C51.6802 44.4208 51.0423 45.0692 50.3677 45.6867C49.6931 46.3069 48.9877 46.8933 48.2518 47.4487C47.5158 48.0041 46.7523 48.5257 45.958 49.0106C45.1669 49.4955 44.3512 49.9466 43.5109 50.3582C42.6676 50.7698 41.809 51.1447 40.9289 51.4802C40.0488 51.8157 39.1503 52.1089 38.2396 52.3627C37.3288 52.6164 36.4027 52.8307 35.4705 52.9998C34.5352 53.1718 33.5938 53.2987 32.6462 53.3861C31.6956 53.4706 30.745 53.5129 29.7913 53.5129C28.8407 53.5129 27.89 53.4706 26.9394 53.3861C25.9919 53.2987 25.0504 53.1718 24.1151 52.9998C23.1798 52.8307 22.2568 52.6164 21.3461 52.3627C20.4353 52.1089 19.5368 51.8157 18.6567 51.4802C17.7766 51.1447 16.9149 50.7698 16.0747 50.3582C15.2345 49.9466 14.4188 49.4955 13.6276 49.0106C12.8334 48.5257 12.0698 48.0041 11.3338 47.4487C10.5948 46.8933 9.88951 46.3069 9.21794 45.6867C8.5433 45.0692 7.9024 44.4208 7.2983 43.7442C6.69419 43.0676 6.12688 42.3656 5.59944 41.6382C5.06893 40.9108 4.57828 40.1609 4.13057 39.3912C3.67979 38.6188 3.27501 37.8294 2.91009 37.0202C2.54518 36.2111 2.22319 35.3879 1.9472 34.5506C1.67122 33.7133 1.43816 32.8647 1.25417 32.0076C1.06711 31.1505 0.929116 30.285 0.834053 29.4139C0.742057 28.5427 0.692993 27.6688 0.692993 26.7948C0.692993 25.9208 0.742057 25.0468 0.834053 24.1757C0.929116 23.3045 1.06711 22.4419 1.25417 21.582C1.43816 20.7249 1.67122 19.8763 1.9472 19.039C2.22319 18.2017 2.54518 17.3785 2.91009 16.5693C3.27501 15.763 3.67979 14.9708 4.13057 14.2012C4.57828 13.4287 5.06893 12.6788 5.59944 11.9514C6.12688 11.224 6.69419 10.522 7.2983 9.8454C7.9024 9.16877 8.5433 8.52034 9.21794 7.90293C9.88951 7.28269 10.5948 6.69628 11.3338 6.14089C12.0698 5.58549 12.8334 5.06675 13.6276 4.57902C14.4188 4.09411 15.2345 3.64302 16.0747 3.23141C16.9149 2.8198 17.7766 2.44484 18.6567 2.10935C19.5368 1.77667 20.4353 1.48065 21.3461 1.22692C22.2568 0.973185 23.1798 0.76174 24.1151 0.589766C25.0504 0.42061 25.9919 0.290924 26.9394 0.206346C27.89 0.11895 28.8407 0.0766602 29.7913 0.0766602C30.745 0.0766602 31.6956 0.11895 32.6462 0.206346C33.5938 0.290924 34.5352 0.42061 35.4705 0.589766C36.4027 0.76174 37.3288 0.973185 38.2396 1.22692C39.1503 1.48065 40.0488 1.77667 40.9289 2.10935C41.809 2.44484 42.6676 2.8198 43.5109 3.23141C44.3512 3.64302 45.1669 4.09411 45.958 4.57902C46.7523 5.06675 47.5158 5.58549 48.2518 6.14089C48.9877 6.69628 49.6931 7.28269 50.3677 7.90293C51.0423 8.52034 51.6802 9.16877 52.2873 9.8454C52.8914 10.522 53.4587 11.224 53.9862 11.9514C54.5167 12.6788 55.0073 13.4287 55.4551 14.2012C55.9058 14.9708 56.3106 15.763 56.6755 16.5693C57.0405 17.3785 57.3624 18.2017 57.6384 19.039C57.9144 19.8763 58.1475 20.7249 58.3315 21.582C58.5185 22.4419 58.6565 23.3045 58.7516 24.1757C58.8436 25.0468 58.8896 25.9208 58.8896 26.7948Z" fill="black" />
-						</svg>
-					</div>
-					<div class="main-block__decor-4">
-						<img src="img/main-block/decor-4.png" alt="decor" />
-					</div>
+					</nav>
 				</div>
-			</section>
-			<section class="page__for-whom for-whom">
-				<div class="for-whom__container">
-					<h2 class="for-whom__title title">Для кого этот курс</h2>
-					<div class="for-whom__items">
-						<article class="for-whom__item item-for-whom">
-							<div class="item-for-whom__decor">
-								<img src="img/for-whom/decor-1.png" alt="decor" />
-							</div>
-							<div class="item-for-whom__heading">
-								<h3 class="item-for-whom__title">Полный новичёк и интересно попробовать</h3>
-								<div class="item-for-whom__decor-title">
-									<img src="img/for-whom/title-decor-1.png" alt="title-decor" />
-								</div>
-							</div>
-							<ul class="item-for-whom__list">
-								<li class="item-for-whom__item">
-									Если у тебя совсем нет опыта, то для тебя это будет тестом - зайдет или не зайдет
-								</li>
-								<li class="item-for-whom__item">
-									Тебе нет смысла вписываться в годовые программы от школ и тестировать
-								</li>
-								<li class="item-for-whom__item">
-									Информация подается как если бы я объяснял это своей маме
-								</li>
-								<li class="item-for-whom__item">Попробуй за две недели и сделай свой выбор</li>
-							</ul>
-						</article>
-						<article class="for-whom__item item-for-whom">
-							<div class="item-for-whom__decor">
-								<img src="img/for-whom/decor-2.png" alt="decor" />
-							</div>
-							<div class="item-for-whom__heading">
-								<h3 class="item-for-whom__title">
-									Уже проходил какие-то платные или самостоятельные обучения
-								</h3>
-								<div class="item-for-whom__decor-title">
-									<img src="img/for-whom/title-decor-2.png" alt="title-decor" />
-								</div>
-							</div>
-							<div class="item-for-whom__text">
-								<p>
-									Если ты уже имеешь какой-то опыт разработки, тебе будет легче проходить курс и ты откроешь
-									новые векторы для изучения, которые повысят вероятность успешного прохождения
-									собеседований
-								</p>
-							</div>
-						</article>
-						<article class="for-whom__item item-for-whom">
-							<div class="item-for-whom__decor">
-								<img src="img/for-whom/decor-3.png" alt="decor" />
-							</div>
-							<div class="item-for-whom__heading">
-								<h3 class="item-for-whom__title">
-									Уже работаешь на должности PHP разработчика но хочешь повышения
-								</h3>
-								<div class="item-for-whom__decor-title">
-									<img src="img/for-whom/title-decor-3.png" alt="title-decor" />
-								</div>
-							</div>
-							<div class="item-for-whom__text">
-								<p>
-									База, которую я даю, объема middle уровня и ты откроешь для себя механики лучшей
-									подготовки и векторы, которые ты можешь изучитьуже сам базируясь на методике
-								</p>
-							</div>
-						</article>
-					</div>
-				</div>
-			</section>
-			<section class="page__technical technical">
-				<div class="technical__container">
-					<div class="technical__heading">
-						<h2 class="technical__title title">Про курс технически</h2>
-						<div class="technical__decor">
-							<img src="img/technical/decor-1.svg" alt="decor" />
-						</div>
-					</div>
-					<ul class="technical__list">
-						<li class="technical__item">
-							<div class="technical__icon">
-								<img src="img/technical/check.svg" alt="check" />
-							</div>
-							<div class="technical__text">
-								<p>Обучение полностью онлайн и уроки доступны в любое время на платформе</p>
-							</div>
-						</li>
-						<li class="technical__item">
-							<div class="technical__icon">
-								<img src="img/technical/check.svg" alt="check" />
-							</div>
-							<div class="technical__text">
-								<p>24 урока длинной до 40 минут каждый</p>
-							</div>
-						</li>
-						<li class="technical__item">
-							<div class="technical__icon">
-								<img src="img/technical/check.svg" alt="check" />
-							</div>
-							<div class="technical__text">
-								<p>
-									Бонусом так же 12 уроков по базовой подготовке JS Зачем? потому что PHP разработка тесно
-									связана с Frontend где используется JS
-								</p>
-							</div>
-						</li>
-						<li class="technical__item">
-							<div class="technical__icon">
-								<img src="img/technical/check.svg" alt="check" />
-							</div>
-							<div class="technical__text">
-								<p>
-									Второй бонус - 12 уроков по использованию Docker + работа с серверами. Зачем? Потому что
-									чем больше ты умеешь тем ты ценнее. Особенно актуально для PHP разработчиков
-								</p>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</section>
-			<section class="page__emotional emotional">
-				<div class="emotional__container">
-					<div class="emotional__heading">
-						<h2 class="emotional__title title">Про курс эмоционально</h2>
-						<div class="emotional__decor">
-							<img class="emotional__vector-1" src="img/emotional/decor-1.svg" alt="title-decor" />
-							<img class="emotional__vector-2" src="img/emotional/decor-2.svg" alt="title-decor" />
-						</div>
-					</div>
-					<div class="emotional__items">
-						<article class="emotional__item item-emotional">
-							<h3 class="item-emotional__title">Начни зарабатывать в долларе</h3>
-							<div class="item-emotional__text">
-								<p>
-									Вот ориентир зарплат, на которые ты можешь
-									<a data-popup="#popup" href="#">расчитывать</a>
-									Зарабатываешь в долларах и можешь позволять себе достойную жизнь с гаджетами, авто и
-									местами где приятно жить
-								</p>
-							</div>
-						</article>
-						<article class="emotional__item item-emotional">
-							<h3 class="item-emotional__title">
-								После COVID 80% работодателей ОК когда ты работаешь удаленно
-							</h3>
-							<div class="item-emotional__text">
-								<p>
-									Главное быть в оговоренное время на звонках. Хоть с ТайландаМожешь выбирать где ты
-									работаешь сегодня - в городе, в горах или на островах
-								</p>
-							</div>
-						</article>
-						<article class="emotional__item item-emotional">
-							<h3 class="item-emotional__title">Самый сложный язык программирования - первый</h3>
-							<div class="item-emotional__text">
-								<p>
-									Дальше ты можешь для себя определить что тебе больше нравится (криптовалюты, компьютерное
-									зрение, работа с большими данными, работа с серверами и инфраструктурой, фронтенд).
-									Разработка - это не только про код, каждый может себе найти отдельную сферу интересов.
-								</p>
-							</div>
-						</article>
-						<article class="emotional__item item-emotional">
-							<h3 class="item-emotional__title">Со временем у тебя будут появляться свои идеи продуктов</h3>
-							<div class="item-emotional__text">
-								<p>и ты сможешь их создавать и зарабатывать уже с них или даже создавать свои команды</p>
-							</div>
-						</article>
-					</div>
-					<div class="emotional__main-decor-1">
-						<img src="img/emotional/main-decor-1.png" alt="decor" />
-					</div>
-					<div class="emotional__main-decor-2">
-						<img src="img/emotional/main-decor-2.png" alt="decor" />
-					</div>
-				</div>
-			</section>
-			<section class="page__author author">
-				<div class="author__container">
-					<div class="author__content">
-						<div class="author__picture">
-							<div class="author__decor-image">
-								<img src="img/author/decor.png" alt="decor image" />
-							</div>
-						</div>
-						<div class="author__body">
-							<!-- <h2 class="author__title title">про автора</h2> -->
-							<h2 class="author__title title">
-								<img src="img/author/gredient-text.svg" alt="text" />
-							</h2>
-							<ul class="author__list">
-								<li class="author__item">В разработке более 8 лет</li>
-								<li class="author__item">
-									Опыт от Junior до Engineering Team Lead с менеджментом двух команд
-								</li>
-								<li class="author__item">
-									Обанкротился стартап, в котором работал во время COVID из-за чего пришлось за две недели
-									провести 30 собеседований и занять позицию middle разработчика (именно тогда
-									сформировалась идея курса и только сейчас её реализовал)
-								</li>
-								<li class="author__item">
-									Два года подряд провожу собеседования и знаю что ищут в кандидатах тимлиды и я не вижу в
-									джунах понимания базовых вещей
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section class="page__programm programm">
-				<div class="programm__container">
-					<h2 class="programm__title title">программа</h2>
-					<div class="programm__slider swiper">
-						<div class="programm__wrapper swiper-wrapper">
-							<div class="programm__slide swiper-slide">Теоретический блок</div>
-							<div class="programm__slide swiper-slide">Теоретический блок</div>
-							<div class="programm__slide swiper-slide">Теоретический блок</div>
-							<div class="programm__slide swiper-slide">Теоретический блок</div>
-							<div class="programm__slide swiper-slide">Теоретический блок</div>
-							<div class="programm__slide swiper-slide">Теоретический блок</div>
-							<div class="programm__slide swiper-slide">Теоретический блок</div>
-						</div>
-					</div>
-					<div class="programm__theory-part">
-						<article class="programm__item item-programm">
-							<div class="item-programm__image">
-								<img src="img/programm/image-01.jpg" alt="Module image" />
-							</div>
-							<h3 class="item-programm__title">Модуль 1. Приветствие</h3>
-							<div class="item-programm__subtitle">Ожидания от курса (7 вложенных тем)</div>
-							<ul class="item-programm__list">
-								<li class="item-programm__item-list">это не волшебное заклинание для интервьюеров</li>
-								<li class="item-programm__item-list">карта навыков Junior и Middle уровней</li>
-								<li class="item-programm__item-list">формирование личной карты развития</li>
-								<li class="item-programm__item-list">выделение 20% самых важных и слабых мест</li>
-								<li class="item-programm__item-list">корректировка личного плана обучения</li>
-								<li class="item-programm__item-list">
-									когда готовить CV и рассылать на собеседования план по занятию должности разработчика
-								</li>
-								<li class="item-programm__item-list">план по занятию должности разработчика</li>
-							</ul>
-							<button class="item-programm__button">развернуть</button>
-						</article>
-						<article class="programm__item item-programm">
-							<div class="item-programm__image">
-								<img src="img/programm/image-02.jpg" alt="Module image" />
-							</div>
-							<h3 class="item-programm__title">Модуль 2. Карта навыков Junior и Middle уровня</h3>
-							<ul class="item-programm__list">
-								<li class="item-programm__item-list">Личное отношение к неизвестным темам</li>
-								<li class="item-programm__item-list">Определение основных блоков и из чего они состоят</li>
-								<li class="item-programm__item-list">
-									ВАЖНО! Не погружаемся навсегда в обучение. Лимитируем себя
-								</li>
-								<li class="item-programm__item-list">Понимание этапа перехода от обучения к рассылке CV</li>
-							</ul>
-							<button class="item-programm__button">развернуть</button>
-						</article>
-						<article class="programm__item item-programm">
-							<div class="item-programm__image">
-								<img src="img/programm/image-03.jpg" alt="Module image" />
-							</div>
-							<h3 class="item-programm__title">Модуль 3. Подготовка платформ найма</h3>
-							<ul class="item-programm__list">
-								<li class="item-programm__item-list">CV Must</li>
-								<li class="item-programm__item-list">Linkedin Must</li>
-								<li class="item-programm__item-list">Djinni Must</li>
-								<li class="item-programm__item-list">dou.ua Must</li>
-								<li class="item-programm__item-list">rabota.ua Must (low priority)</li>
-								<li class="item-programm__item-list">work.ua Must (low priority)</li>
-								<li class="item-programm__item-list">git MUST</li>
-								<li class="item-programm__item-list">site low priority</li>
-								<li class="item-programm__item-list">коммуникация во время собеседования</li>
-								<li class="item-programm__item-list">ретроспективы</li>
-								<li class="item-programm__item-list">отношение к собеседованию</li>
-							</ul>
-							<button class="item-programm__button">развернуть</button>
-						</article>
-						<article class="programm__item item-programm">
-							<div class="item-programm__image">
-								<img src="img/programm/image-04.jpg" alt="Module image" />
-							</div>
-							<h3 class="item-programm__title">Модуль 4. Собеседование (SOFT)</h3>
-							<ul class="item-programm__list">
-								<li class="item-programm__item-list">что нужно знать о компании ДО собеседования</li>
-								<li class="item-programm__item-list">какие софт-скиллы от тебя ждет работодатель</li>
-								<li class="item-programm__item-list">у тебя всегда должны быть к интервьюеру вопросы</li>
-								<li class="item-programm__item-list">список стандартных вопросов</li>
-								<li class="item-programm__item-list">
-									список СТОП вопросов, которые НЕ НУЖНО задавать на собеседовании
-								</li>
-								<li class="item-programm__item-list">что НЕ говорить на собеседовании</li>
-							</ul>
-							<button class="item-programm__button">развернуть</button>
-						</article>
-						<article class="programm__item item-programm">
-							<div class="item-programm__image">
-								<img src="img/programm/image-05.jpg" alt="Module image" />
-							</div>
-							<h3 class="item-programm__title">Модуль 5. PHP</h3>
-							<ul class="item-programm__list">
-								<li class="item-programm__item-list">История языка</li>
-								<li class="item-programm__item-list">Что нужно знать на базе найденных вопросов</li>
-								<li class="item-programm__item-list">База языка</li>
-								<li class="item-programm__item-list">Composer</li>
-								<li class="item-programm__item-list">Как работает</li>
-								<li class="item-programm__item-list">Внутренняя работа</li>
-								<li class="item-programm__item-list">Нюансы полезные для собеседования</li>
-								<li class="item-programm__item-list">Возможные задачи на собеседовании</li>
-							</ul>
-							<button class="item-programm__button">развернуть</button>
-						</article>
-						<article class="programm__item item-programm">
-							<div class="item-programm__image">
-								<img src="img/programm/image-06.jpg" alt="Module image" />
-							</div>
-							<h3 class="item-programm__title">Модуль 6. Frameworks</h3>
-							<ul class="item-programm__list">
-								<li class="item-programm__item-list">Основные составляющие</li>
-								<li class="item-programm__item-list">Паттерны</li>
-								<li class="item-programm__item-list">Структура фреймворка на базе Laravel</li>
-								<li class="item-programm__item-list">
-									Особенности/различия фреймворков (Laravel, Symfony, Yii2)
-								</li>
-								<li class="item-programm__item-list">Регулярные задачи</li>
-								<li class="item-programm__item-list">MVC</li>
-								<li class="item-programm__item-list">Роутинг</li>
-								<li class="item-programm__item-list">Авторизация + типы авторизации + как работает</li>
-								<li class="item-programm__item-list">Кеширование</li>
-								<li class="item-programm__item-list">Очереди + провайдеры очередей</li>
-								<li class="item-programm__item-list">Базы данных + типы + множественные коннекты</li>
-								<li class="item-programm__item-list">DI + практическое использование</li>
-							</ul>
-							<button class="item-programm__button">развернуть</button>
-						</article>
-						<article class="programm__item item-programm">
-							<div class="item-programm__image">
-								<img src="img/programm/image-07.jpg" alt="Module image" />
-							</div>
-							<h3 class="item-programm__title">Модуль 7. SQL</h3>
-							<ul class="item-programm__list">
-								<li class="item-programm__item-list">проектирование БД (подход)</li>
-								<li class="item-programm__item-list">связи в реляционных БД</li>
-								<li class="item-programm__item-list">скорость работы</li>
-								<li class="item-programm__item-list">оптимизация (мониторинг и оптимизация)</li>
-								<li class="item-programm__item-list">индексы</li>
-								<li class="item-programm__item-list">потенциальные теоретические вопросы</li>
-								<li class="item-programm__item-list">возможные задачи на собеседовании</li>
-							</ul>
-							<button class="item-programm__button">развернуть</button>
-						</article>
-						<article class="programm__item item-programm">
-							<div class="item-programm__image">
-								<img src="img/programm/image-08.jpg" alt="Module image" />
-							</div>
-							<h3 class="item-programm__title">Модуль 8. Инфраструктура</h3>
-							<ul class="item-programm__list">
-								<li class="item-programm__item-list">база сети (DNS, NS, SSL, запросы)</li>
-								<li class="item-programm__item-list">серверы</li>
-								<li class="item-programm__item-list">домены сеть + Cloudflare</li>
-								<li class="item-programm__item-list">клиент</li>
-								<li class="item-programm__item-list">серверное приложение (суть)</li>
-								<li class="item-programm__item-list">Git (основные команды)</li>
-								<li class="item-programm__item-list">Git (GitFlow)</li>
-								<li class="item-programm__item-list">Docker</li>
-							</ul>
-							<button class="item-programm__button">развернуть</button>
-						</article>
-						<article class="programm__item item-programm">
-							<div class="item-programm__image">
-								<img src="img/programm/image-09.jpg" alt="Module image" />
-							</div>
-							<h3 class="item-programm__title">Модуль 9. Инструменты</h3>
-							<ul class="item-programm__list">
-								<li class="item-programm__item-list">DevTools (часто используемый функционал)</li>
-								<li class="item-programm__item-list">Postman</li>
-								<li class="item-programm__item-list">PHPStorm. Servers, DB, terminal</li>
-								<li class="item-programm__item-list">BONUS. Cypress + e2e тестирование</li>
-								<li class="item-programm__item-list">BONUS. k6. Load тестирование</li>
-							</ul>
-							<button class="item-programm__button">развернуть</button>
-						</article>
-						<article class="programm__item item-programm">
-							<div class="item-programm__image">
-								<img src="img/programm/image-10.jpg" alt="Module image" />
-							</div>
-							<h3 class="item-programm__title">
-								Модуль 10. Запускаем собственное клиент-серверное приложение Наше собственное портфолио
-							</h3>
-							<ul class="item-programm__list">
-								<li class="item-programm__item-list">Покупка домена</li>
-								<li class="item-programm__item-list">Покупка сервера DO</li>
-								<li class="item-programm__item-list">Запуск приложения на DO</li>
-								<li class="item-programm__item-list">
-									Cloudflare настройка. Теперь наш сайт доступен под доменом
-								</li>
-								<li class="item-programm__item-list">Добавляем приложение в резюме</li>
-								<li class="item-programm__item-list">Правим контент под себя</li>
-							</ul>
-							<button class="item-programm__button">развернуть</button>
-						</article>
-					</div>
-					<div class="programm__slider swiper">
-						<div class="programm__wrapper swiper-wrapper">
-							<div class="programm__slide swiper-slide">Практический блок</div>
-							<div class="programm__slide swiper-slide">Практический блок</div>
-							<div class="programm__slide swiper-slide">Практический блок</div>
-							<div class="programm__slide swiper-slide">Практический блок</div>
-							<div class="programm__slide swiper-slide">Практический блок</div>
-							<div class="programm__slide swiper-slide">Практический блок</div>
-							<div class="programm__slide swiper-slide">Практический блок</div>
-						</div>
-					</div>
-					<div class="programm__practise-part">
-						PRACTISE PART Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident ex accusamus
-						cupiditate laudantium, delectus obcaecati illo reprehenderit laborum nemo esse eum officia maxime
-						dolores numquam recusandae voluptas modi qui eos, placeat, fugit ad dolorem sint quod odit. Soluta
-						delectus quos nisi iusto cum voluptas architecto aperiam blanditiis, hic ut est porro molestias
-						assumenda impedit nam nobis natus, earum dolorem. Fugiat laudantium, corrupti debitis illo vitae
-						tempore repellat quis, aliquid ipsa est omnis, dignissimos veritatis saepe in iusto porro soluta
-						maxime! Beatae molestiae aspernatur, corporis pariatur totam blanditiis culpa atque quidem quos
-						animi quod temporibus quibusdam ex saepe, sequi voluptas dolorem.
-					</div>
-				</div>
-			</section>
-			<section class="page__qa qa">
-				<div class="qa__container">
-					<div class="qa__content">
-						<div class="qa__heading">
-							<h2 class="qa__main-title title">вопросы/ответы</h2>
-							<div class="qa__decor">
-								<img src="img/qa/arrow.svg" alt="arrow" />
-							</div>
-						</div>
-						<div data-spollers class="qa__spollers">
-							<div class="qa__item">
-								<button type="button" data-spoller class="qa__title">
-									<div class="qa__number">01</div>
-									<div class="qa__question">
-										<p>
-											Я не проходил курсы ранее, но хочу стать разработчиком. Для меня не рано в такой
-											курс погружаться?
-										</p>
-									</div>
-									<div class="qa__arrow">
-										<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M7 6.53125C7.28125 6.25 7.28125 5.78125 7 5.46875L2.75 1.21875C2.4375 0.9375 1.96875 0.9375 1.6875 1.21875L0.96875 1.9375C0.6875 2.25 0.6875 2.71875 0.96875 3L4 6.03125L0.96875 9.03125C0.6875 9.3125 0.6875 9.78125 0.96875 10.0938L1.6875 10.7812C1.96875 11.0938 2.4375 11.0938 2.75 10.7812L7 6.53125Z" fill="#444444" />
-										</svg>
-									</div>
-								</button>
-								<div class="qa__body">
-									<div class="qa__text">
-										Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet omnis numquam illum
-										voluptatibus aliquam exercitationem ratione non labore, debitis, quas eveniet repellat
-										quia laborum possimus nemo quasi. Voluptatum, animi magni?
-									</div>
-								</div>
-							</div>
-							<div class="qa__item">
-								<button type="button" data-spoller class="qa__title">
-									<div class="qa__number">02</div>
-									<div class="qa__question">
-										<p>Я уже проходил курсы месячные или годовые, чему ты меня можешь научить?</p>
-									</div>
-									<div class="qa__arrow">
-										<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M7 6.53125C7.28125 6.25 7.28125 5.78125 7 5.46875L2.75 1.21875C2.4375 0.9375 1.96875 0.9375 1.6875 1.21875L0.96875 1.9375C0.6875 2.25 0.6875 2.71875 0.96875 3L4 6.03125L0.96875 9.03125C0.6875 9.3125 0.6875 9.78125 0.96875 10.0938L1.6875 10.7812C1.96875 11.0938 2.4375 11.0938 2.75 10.7812L7 6.53125Z" fill="#444444" />
-										</svg>
-									</div>
-								</button>
-								<div class="qa__body">
-									<div class="qa__text">
-										Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet omnis numquam illum
-										voluptatibus aliquam exercitationem ratione non labore, debitis, quas eveniet repellat
-										quia laborum possimus nemo quasi. Voluptatum, animi magni?
-									</div>
-								</div>
-							</div>
-							<div class="qa__item">
-								<button type="button" data-spoller class="qa__title">
-									<div class="qa__number">03</div>
-									<div class="qa__question">
-										<p>Звучит как обман - пройду собеседование, а меня потом через неделю уволят</p>
-									</div>
-									<div class="qa__arrow">
-										<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M7 6.53125C7.28125 6.25 7.28125 5.78125 7 5.46875L2.75 1.21875C2.4375 0.9375 1.96875 0.9375 1.6875 1.21875L0.96875 1.9375C0.6875 2.25 0.6875 2.71875 0.96875 3L4 6.03125L0.96875 9.03125C0.6875 9.3125 0.6875 9.78125 0.96875 10.0938L1.6875 10.7812C1.96875 11.0938 2.4375 11.0938 2.75 10.7812L7 6.53125Z" fill="#444444" />
-										</svg>
-									</div>
-								</button>
-								<div class="qa__body">
-									<div class="qa__text">
-										Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet omnis numquam illum
-										voluptatibus aliquam exercitationem ratione non labore, debitis, quas eveniet repellat
-										quia laborum possimus nemo quasi. Voluptatum, animi magni?
-									</div>
-								</div>
-							</div>
-							<div class="qa__item">
-								<button type="button" data-spoller class="qa__title">
-									<div class="qa__number">04</div>
-									<div class="qa__question">
-										<p>
-											Я отправил 5 резюме и мне никто не ответил. На курсе ты научишь как делать так,
-											чтобы отвечали на каждый запрос?
-										</p>
-									</div>
-									<div class="qa__arrow">
-										<svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path d="M7 6.53125C7.28125 6.25 7.28125 5.78125 7 5.46875L2.75 1.21875C2.4375 0.9375 1.96875 0.9375 1.6875 1.21875L0.96875 1.9375C0.6875 2.25 0.6875 2.71875 0.96875 3L4 6.03125L0.96875 9.03125C0.6875 9.3125 0.6875 9.78125 0.96875 10.0938L1.6875 10.7812C1.96875 11.0938 2.4375 11.0938 2.75 10.7812L7 6.53125Z" fill="#444444" />
-										</svg>
-									</div>
-								</button>
-								<div class="qa__body">
-									<div class="qa__text">
-										Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet omnis numquam illum
-										voluptatibus aliquam exercitationem ratione non labore, debitis, quas eveniet repellat
-										quia laborum possimus nemo quasi. Voluptatum, animi magni?
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</main>
-		<footer class="footer">
-			<div class="footer__container">
-				<div class="footer__info">ФОП Цевменко А.I. IН: 3397913755</div>
-				<div class="footer__contacts">
-					<a href="mailto:anton.tsevmenko@gmail.com" class="footer__mail">anton.tsevmenko@gmail.com</a>
-					<a href="tel:+380952231757" class="footer__phone">+380952231757</a>
-				</div>
-				<a href="offer.html" target="_blank" class="footer__offer">Оферта</a>
-				<a href="privacy-statements.html" target="_blank" class="footer__privacy">Политика конфиденциальности</a>
 			</div>
 		</footer>
 
 	</div>
-	<div id="popup" aria-hidden="true" class="popup">
-		<div class="popup__wrapper">
-			<div class="popup__content">
-				<button data-close type="button" class="popup__close"></button>
-				<div class="popup__text">
-					<img src="img/popup-image.webp" alt="Salary statistic" />
-				</div>
-			</div>
-		</div>
-	</div>
-	<script src="js/app.min.js?_v=20230721232555"></script>
+	<script src="js/app.min.js?_v=20230722103359"></script>
 </body>
 
 </html>
