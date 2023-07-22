@@ -1,6 +1,19 @@
 (() => {
     "use strict";
     const modules_flsModules = {};
+    function isWebp() {
+        function testWebP(callback) {
+            let webP = new Image;
+            webP.onload = webP.onerror = function() {
+                callback(webP.height == 2);
+            };
+            webP.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
+        }
+        testWebP((function(support) {
+            let className = support === true ? "webp" : "no-webp";
+            document.documentElement.classList.add(className);
+        }));
+    }
     let _slideUp = (target, duration = 500, showmore = 0) => {
         if (!target.classList.contains("_slide")) {
             target.classList.add("_slide");
@@ -71,9 +84,6 @@
         if (target.hidden) return _slideDown(target, duration); else return _slideUp(target, duration);
     };
     let bodyLockStatus = true;
-    let bodyLockToggle = (delay = 500) => {
-        if (document.documentElement.classList.contains("lock")) bodyUnlock(delay); else bodyLock(delay);
-    };
     let bodyUnlock = (delay = 500) => {
         let body = document.querySelector("body");
         if (bodyLockStatus) {
@@ -187,116 +197,6 @@
                 }));
             }));
         }
-    }
-    function menuInit() {
-        if (document.querySelector(".icon-menu")) document.addEventListener("click", (function(e) {
-            if (bodyLockStatus && e.target.closest(".icon-menu") || e.target.closest(".sidebar__close-icon")) {
-                bodyLockToggle();
-                document.documentElement.classList.toggle("menu-open");
-            }
-        }));
-    }
-    function showMore() {
-        window.addEventListener("load", (function(e) {
-            const showMoreBlocks = document.querySelectorAll("[data-showmore]");
-            let showMoreBlocksRegular;
-            let mdQueriesArray;
-            if (showMoreBlocks.length) {
-                showMoreBlocksRegular = Array.from(showMoreBlocks).filter((function(item, index, self) {
-                    return !item.dataset.showmoreMedia;
-                }));
-                showMoreBlocksRegular.length ? initItems(showMoreBlocksRegular) : null;
-                document.addEventListener("click", showMoreActions);
-                window.addEventListener("resize", showMoreActions);
-                mdQueriesArray = dataMediaQueries(showMoreBlocks, "showmoreMedia");
-                if (mdQueriesArray && mdQueriesArray.length) {
-                    mdQueriesArray.forEach((mdQueriesItem => {
-                        mdQueriesItem.matchMedia.addEventListener("change", (function() {
-                            initItems(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
-                        }));
-                    }));
-                    initItemsMedia(mdQueriesArray);
-                }
-            }
-            function initItemsMedia(mdQueriesArray) {
-                mdQueriesArray.forEach((mdQueriesItem => {
-                    initItems(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
-                }));
-            }
-            function initItems(showMoreBlocks, matchMedia) {
-                showMoreBlocks.forEach((showMoreBlock => {
-                    initItem(showMoreBlock, matchMedia);
-                }));
-            }
-            function initItem(showMoreBlock, matchMedia = false) {
-                showMoreBlock = matchMedia ? showMoreBlock.item : showMoreBlock;
-                let showMoreContent = showMoreBlock.querySelectorAll("[data-showmore-content]");
-                let showMoreButton = showMoreBlock.querySelectorAll("[data-showmore-button]");
-                showMoreContent = Array.from(showMoreContent).filter((item => item.closest("[data-showmore]") === showMoreBlock))[0];
-                showMoreButton = Array.from(showMoreButton).filter((item => item.closest("[data-showmore]") === showMoreBlock))[0];
-                const hiddenHeight = getHeight(showMoreBlock, showMoreContent);
-                if (matchMedia.matches || !matchMedia) if (hiddenHeight < getOriginalHeight(showMoreContent)) {
-                    _slideUp(showMoreContent, 0, hiddenHeight);
-                    showMoreButton.hidden = false;
-                } else {
-                    _slideDown(showMoreContent, 0, hiddenHeight);
-                    showMoreButton.hidden = true;
-                } else {
-                    _slideDown(showMoreContent, 0, hiddenHeight);
-                    showMoreButton.hidden = true;
-                }
-            }
-            function getHeight(showMoreBlock, showMoreContent) {
-                let hiddenHeight = 0;
-                const showMoreType = showMoreBlock.dataset.showmore ? showMoreBlock.dataset.showmore : "size";
-                if (showMoreType === "items") {
-                    const showMoreTypeValue = showMoreContent.dataset.showmoreContent ? showMoreContent.dataset.showmoreContent : 3;
-                    const showMoreItems = showMoreContent.children;
-                    for (let index = 1; index < showMoreItems.length; index++) {
-                        const showMoreItem = showMoreItems[index - 1];
-                        hiddenHeight += showMoreItem.offsetHeight;
-                        if (index == showMoreTypeValue) break;
-                    }
-                } else {
-                    const showMoreTypeValue = showMoreContent.dataset.showmoreContent ? showMoreContent.dataset.showmoreContent : 150;
-                    hiddenHeight = showMoreTypeValue;
-                }
-                return hiddenHeight;
-            }
-            function getOriginalHeight(showMoreContent) {
-                let parentHidden;
-                let hiddenHeight = showMoreContent.offsetHeight;
-                showMoreContent.style.removeProperty("height");
-                if (showMoreContent.closest(`[hidden]`)) {
-                    parentHidden = showMoreContent.closest(`[hidden]`);
-                    parentHidden.hidden = false;
-                }
-                let originalHeight = showMoreContent.offsetHeight;
-                parentHidden ? parentHidden.hidden = true : null;
-                showMoreContent.style.height = `${hiddenHeight}px`;
-                return originalHeight;
-            }
-            function showMoreActions(e) {
-                const targetEvent = e.target;
-                const targetType = e.type;
-                if (targetType === "click") {
-                    if (targetEvent.closest("[data-showmore-button]")) {
-                        const showMoreButton = targetEvent.closest("[data-showmore-button]");
-                        const showMoreBlock = showMoreButton.closest("[data-showmore]");
-                        const showMoreContent = showMoreBlock.querySelector("[data-showmore-content]");
-                        const showMoreSpeed = showMoreBlock.dataset.showmoreButton ? showMoreBlock.dataset.showmoreButton : "500";
-                        const hiddenHeight = getHeight(showMoreBlock, showMoreContent);
-                        if (!showMoreContent.classList.contains("_slide")) {
-                            showMoreBlock.classList.contains("_showmore-active") ? _slideUp(showMoreContent, showMoreSpeed, hiddenHeight) : _slideDown(showMoreContent, showMoreSpeed, hiddenHeight);
-                            showMoreBlock.classList.toggle("_showmore-active");
-                        }
-                    }
-                } else if (targetType === "resize") {
-                    showMoreBlocksRegular && showMoreBlocksRegular.length ? initItems(showMoreBlocksRegular) : null;
-                    mdQueriesArray && mdQueriesArray.length ? initItemsMedia(mdQueriesArray) : null;
-                }
-            }
-        }));
     }
     function functions_FLS(message) {
         setTimeout((() => {
@@ -592,25 +492,6 @@
         }
     }
     modules_flsModules.popup = new Popup({});
-    function formQuantity() {
-        document.addEventListener("click", (function(e) {
-            let targetElement = e.target;
-            if (targetElement.closest("[data-quantity-plus]") || targetElement.closest("[data-quantity-minus]")) {
-                const valueElement = targetElement.closest("[data-quantity]").querySelector("[data-quantity-value]");
-                let value = parseInt(valueElement.value);
-                if (targetElement.hasAttribute("data-quantity-plus")) {
-                    value++;
-                    if (+valueElement.dataset.quantityMax && +valueElement.dataset.quantityMax < value) value = valueElement.dataset.quantityMax;
-                } else {
-                    --value;
-                    if (+valueElement.dataset.quantityMin) {
-                        if (+valueElement.dataset.quantityMin > value) value = valueElement.dataset.quantityMin;
-                    } else if (value < 1) value = 1;
-                }
-                targetElement.closest("[data-quantity]").querySelector("[data-quantity-value]").value = value;
-            }
-        }));
-    }
     function ssr_window_esm_isObject(obj) {
         return obj !== null && typeof obj === "object" && "constructor" in obj && obj.constructor === Object;
     }
@@ -895,15 +776,7 @@
         }
         return parents;
     }
-    function utils_elementTransitionEnd(el, callback) {
-        function fireCallBack(e) {
-            if (e.target !== el) return;
-            callback.call(el, e);
-            el.removeEventListener("transitionend", fireCallBack);
-        }
-        if (callback) el.addEventListener("transitionend", fireCallBack);
-    }
-    function elementOuterSize(el, size, includeMargins) {
+    function utils_elementOuterSize(el, size, includeMargins) {
         const window = ssr_window_esm_getWindow();
         if (includeMargins) return el[size === "width" ? "offsetWidth" : "offsetHeight"] + parseFloat(window.getComputedStyle(el, null).getPropertyValue(size === "width" ? "margin-right" : "margin-top")) + parseFloat(window.getComputedStyle(el, null).getPropertyValue(size === "width" ? "margin-left" : "margin-bottom"));
         return el.offsetWidth;
@@ -1249,7 +1122,7 @@
                 const currentWebKitTransform = slide.style.webkitTransform;
                 if (currentTransform) slide.style.transform = "none";
                 if (currentWebKitTransform) slide.style.webkitTransform = "none";
-                if (params.roundLengths) slideSize = swiper.isHorizontal() ? elementOuterSize(slide, "width", true) : elementOuterSize(slide, "height", true); else {
+                if (params.roundLengths) slideSize = swiper.isHorizontal() ? utils_elementOuterSize(slide, "width", true) : utils_elementOuterSize(slide, "height", true); else {
                     const width = getDirectionPropertyValue(slideStyles, "width");
                     const paddingLeft = getDirectionPropertyValue(slideStyles, "padding-left");
                     const paddingRight = getDirectionPropertyValue(slideStyles, "padding-right");
@@ -3409,515 +3282,271 @@
             destroy
         });
     }
-    function classes_to_selector_classesToSelector(classes = "") {
-        return `.${classes.trim().replace(/([\.:!+\/])/g, "\\$1").replace(/ /g, ".")}`;
-    }
-    function Pagination({swiper, extendParams, on, emit}) {
-        const pfx = "swiper-pagination";
+    function Autoplay({swiper, extendParams, on, emit, params}) {
+        swiper.autoplay = {
+            running: false,
+            paused: false,
+            timeLeft: 0
+        };
         extendParams({
-            pagination: {
-                el: null,
-                bulletElement: "span",
-                clickable: false,
-                hideOnClick: false,
-                renderBullet: null,
-                renderProgressbar: null,
-                renderFraction: null,
-                renderCustom: null,
-                progressbarOpposite: false,
-                type: "bullets",
-                dynamicBullets: false,
-                dynamicMainBullets: 1,
-                formatFractionCurrent: number => number,
-                formatFractionTotal: number => number,
-                bulletClass: `${pfx}-bullet`,
-                bulletActiveClass: `${pfx}-bullet-active`,
-                modifierClass: `${pfx}-`,
-                currentClass: `${pfx}-current`,
-                totalClass: `${pfx}-total`,
-                hiddenClass: `${pfx}-hidden`,
-                progressbarFillClass: `${pfx}-progressbar-fill`,
-                progressbarOppositeClass: `${pfx}-progressbar-opposite`,
-                clickableClass: `${pfx}-clickable`,
-                lockClass: `${pfx}-lock`,
-                horizontalClass: `${pfx}-horizontal`,
-                verticalClass: `${pfx}-vertical`,
-                paginationDisabledClass: `${pfx}-disabled`
+            autoplay: {
+                enabled: false,
+                delay: 3e3,
+                waitForTransition: true,
+                disableOnInteraction: true,
+                stopOnLastSlide: false,
+                reverseDirection: false,
+                pauseOnMouseEnter: false
             }
         });
-        swiper.pagination = {
-            el: null,
-            bullets: []
-        };
-        let bulletSize;
-        let dynamicBulletIndex = 0;
-        const makeElementsArray = el => {
-            if (!Array.isArray(el)) el = [ el ].filter((e => !!e));
-            return el;
-        };
-        function isPaginationDisabled() {
-            return !swiper.params.pagination.el || !swiper.pagination.el || Array.isArray(swiper.pagination.el) && swiper.pagination.el.length === 0;
+        let timeout;
+        let raf;
+        let autoplayDelayTotal = params && params.autoplay ? params.autoplay.delay : 3e3;
+        let autoplayDelayCurrent = params && params.autoplay ? params.autoplay.delay : 3e3;
+        let autoplayTimeLeft;
+        let autoplayStartTime = (new Date).getTime;
+        let wasPaused;
+        let isTouched;
+        let pausedByTouch;
+        let touchStartTimeout;
+        let slideChanged;
+        let pausedByInteraction;
+        function onTransitionEnd(e) {
+            if (!swiper || swiper.destroyed || !swiper.wrapperEl) return;
+            if (e.target !== swiper.wrapperEl) return;
+            swiper.wrapperEl.removeEventListener("transitionend", onTransitionEnd);
+            resume();
         }
-        function setSideBullets(bulletEl, position) {
-            const {bulletActiveClass} = swiper.params.pagination;
-            if (!bulletEl) return;
-            bulletEl = bulletEl[`${position === "prev" ? "previous" : "next"}ElementSibling`];
-            if (bulletEl) {
-                bulletEl.classList.add(`${bulletActiveClass}-${position}`);
-                bulletEl = bulletEl[`${position === "prev" ? "previous" : "next"}ElementSibling`];
-                if (bulletEl) bulletEl.classList.add(`${bulletActiveClass}-${position}-${position}`);
+        const calcTimeLeft = () => {
+            if (swiper.destroyed || !swiper.autoplay.running) return;
+            if (swiper.autoplay.paused) wasPaused = true; else if (wasPaused) {
+                autoplayDelayCurrent = autoplayTimeLeft;
+                wasPaused = false;
             }
-        }
-        function onBulletClick(e) {
-            const bulletEl = e.target.closest(classes_to_selector_classesToSelector(swiper.params.pagination.bulletClass));
-            if (!bulletEl) return;
-            e.preventDefault();
-            const index = utils_elementIndex(bulletEl) * swiper.params.slidesPerGroup;
-            if (swiper.params.loop) {
-                if (swiper.realIndex === index) return;
-                const newSlideIndex = swiper.getSlideIndexByData(index);
-                const currentSlideIndex = swiper.getSlideIndexByData(swiper.realIndex);
-                if (newSlideIndex > swiper.slides.length - swiper.loopedSlides) swiper.loopFix({
-                    direction: newSlideIndex > currentSlideIndex ? "next" : "prev",
-                    activeSlideIndex: newSlideIndex,
-                    slideTo: false
-                });
-                swiper.slideToLoop(index);
-            } else swiper.slideTo(index);
-        }
-        function update() {
-            const rtl = swiper.rtl;
-            const params = swiper.params.pagination;
-            if (isPaginationDisabled()) return;
-            let el = swiper.pagination.el;
-            el = makeElementsArray(el);
-            let current;
-            let previousIndex;
-            const slidesLength = swiper.virtual && swiper.params.virtual.enabled ? swiper.virtual.slides.length : swiper.slides.length;
-            const total = swiper.params.loop ? Math.ceil(slidesLength / swiper.params.slidesPerGroup) : swiper.snapGrid.length;
-            if (swiper.params.loop) {
-                previousIndex = swiper.previousRealIndex || 0;
-                current = swiper.params.slidesPerGroup > 1 ? Math.floor(swiper.realIndex / swiper.params.slidesPerGroup) : swiper.realIndex;
-            } else if (typeof swiper.snapIndex !== "undefined") {
-                current = swiper.snapIndex;
-                previousIndex = swiper.previousSnapIndex;
-            } else {
-                previousIndex = swiper.previousIndex || 0;
-                current = swiper.activeIndex || 0;
-            }
-            if (params.type === "bullets" && swiper.pagination.bullets && swiper.pagination.bullets.length > 0) {
-                const bullets = swiper.pagination.bullets;
-                let firstIndex;
-                let lastIndex;
-                let midIndex;
-                if (params.dynamicBullets) {
-                    bulletSize = elementOuterSize(bullets[0], swiper.isHorizontal() ? "width" : "height", true);
-                    el.forEach((subEl => {
-                        subEl.style[swiper.isHorizontal() ? "width" : "height"] = `${bulletSize * (params.dynamicMainBullets + 4)}px`;
-                    }));
-                    if (params.dynamicMainBullets > 1 && previousIndex !== void 0) {
-                        dynamicBulletIndex += current - (previousIndex || 0);
-                        if (dynamicBulletIndex > params.dynamicMainBullets - 1) dynamicBulletIndex = params.dynamicMainBullets - 1; else if (dynamicBulletIndex < 0) dynamicBulletIndex = 0;
-                    }
-                    firstIndex = Math.max(current - dynamicBulletIndex, 0);
-                    lastIndex = firstIndex + (Math.min(bullets.length, params.dynamicMainBullets) - 1);
-                    midIndex = (lastIndex + firstIndex) / 2;
-                }
-                bullets.forEach((bulletEl => {
-                    const classesToRemove = [ ...[ "", "-next", "-next-next", "-prev", "-prev-prev", "-main" ].map((suffix => `${params.bulletActiveClass}${suffix}`)) ].map((s => typeof s === "string" && s.includes(" ") ? s.split(" ") : s)).flat();
-                    bulletEl.classList.remove(...classesToRemove);
-                }));
-                if (el.length > 1) bullets.forEach((bullet => {
-                    const bulletIndex = utils_elementIndex(bullet);
-                    if (bulletIndex === current) bullet.classList.add(...params.bulletActiveClass.split(" "));
-                    if (params.dynamicBullets) {
-                        if (bulletIndex >= firstIndex && bulletIndex <= lastIndex) bullet.classList.add(...`${params.bulletActiveClass}-main`.split(" "));
-                        if (bulletIndex === firstIndex) setSideBullets(bullet, "prev");
-                        if (bulletIndex === lastIndex) setSideBullets(bullet, "next");
-                    }
-                })); else {
-                    const bullet = bullets[current];
-                    if (bullet) bullet.classList.add(...params.bulletActiveClass.split(" "));
-                    if (params.dynamicBullets) {
-                        const firstDisplayedBullet = bullets[firstIndex];
-                        const lastDisplayedBullet = bullets[lastIndex];
-                        for (let i = firstIndex; i <= lastIndex; i += 1) if (bullets[i]) bullets[i].classList.add(...`${params.bulletActiveClass}-main`.split(" "));
-                        setSideBullets(firstDisplayedBullet, "prev");
-                        setSideBullets(lastDisplayedBullet, "next");
-                    }
-                }
-                if (params.dynamicBullets) {
-                    const dynamicBulletsLength = Math.min(bullets.length, params.dynamicMainBullets + 4);
-                    const bulletsOffset = (bulletSize * dynamicBulletsLength - bulletSize) / 2 - midIndex * bulletSize;
-                    const offsetProp = rtl ? "right" : "left";
-                    bullets.forEach((bullet => {
-                        bullet.style[swiper.isHorizontal() ? offsetProp : "top"] = `${bulletsOffset}px`;
-                    }));
-                }
-            }
-            el.forEach(((subEl, subElIndex) => {
-                if (params.type === "fraction") {
-                    subEl.querySelectorAll(classes_to_selector_classesToSelector(params.currentClass)).forEach((fractionEl => {
-                        fractionEl.textContent = params.formatFractionCurrent(current + 1);
-                    }));
-                    subEl.querySelectorAll(classes_to_selector_classesToSelector(params.totalClass)).forEach((totalEl => {
-                        totalEl.textContent = params.formatFractionTotal(total);
-                    }));
-                }
-                if (params.type === "progressbar") {
-                    let progressbarDirection;
-                    if (params.progressbarOpposite) progressbarDirection = swiper.isHorizontal() ? "vertical" : "horizontal"; else progressbarDirection = swiper.isHorizontal() ? "horizontal" : "vertical";
-                    const scale = (current + 1) / total;
-                    let scaleX = 1;
-                    let scaleY = 1;
-                    if (progressbarDirection === "horizontal") scaleX = scale; else scaleY = scale;
-                    subEl.querySelectorAll(classes_to_selector_classesToSelector(params.progressbarFillClass)).forEach((progressEl => {
-                        progressEl.style.transform = `translate3d(0,0,0) scaleX(${scaleX}) scaleY(${scaleY})`;
-                        progressEl.style.transitionDuration = `${swiper.params.speed}ms`;
-                    }));
-                }
-                if (params.type === "custom" && params.renderCustom) {
-                    subEl.innerHTML = params.renderCustom(swiper, current + 1, total);
-                    if (subElIndex === 0) emit("paginationRender", subEl);
-                } else {
-                    if (subElIndex === 0) emit("paginationRender", subEl);
-                    emit("paginationUpdate", subEl);
-                }
-                if (swiper.params.watchOverflow && swiper.enabled) subEl.classList[swiper.isLocked ? "add" : "remove"](params.lockClass);
+            const timeLeft = swiper.autoplay.paused ? autoplayTimeLeft : autoplayStartTime + autoplayDelayCurrent - (new Date).getTime();
+            swiper.autoplay.timeLeft = timeLeft;
+            emit("autoplayTimeLeft", timeLeft, timeLeft / autoplayDelayTotal);
+            raf = requestAnimationFrame((() => {
+                calcTimeLeft();
             }));
-        }
-        function render() {
-            const params = swiper.params.pagination;
-            if (isPaginationDisabled()) return;
-            const slidesLength = swiper.virtual && swiper.params.virtual.enabled ? swiper.virtual.slides.length : swiper.slides.length;
-            let el = swiper.pagination.el;
-            el = makeElementsArray(el);
-            let paginationHTML = "";
-            if (params.type === "bullets") {
-                let numberOfBullets = swiper.params.loop ? Math.ceil(slidesLength / swiper.params.slidesPerGroup) : swiper.snapGrid.length;
-                if (swiper.params.freeMode && swiper.params.freeMode.enabled && numberOfBullets > slidesLength) numberOfBullets = slidesLength;
-                for (let i = 0; i < numberOfBullets; i += 1) if (params.renderBullet) paginationHTML += params.renderBullet.call(swiper, i, params.bulletClass); else paginationHTML += `<${params.bulletElement} class="${params.bulletClass}"></${params.bulletElement}>`;
-            }
-            if (params.type === "fraction") if (params.renderFraction) paginationHTML = params.renderFraction.call(swiper, params.currentClass, params.totalClass); else paginationHTML = `<span class="${params.currentClass}"></span>` + " / " + `<span class="${params.totalClass}"></span>`;
-            if (params.type === "progressbar") if (params.renderProgressbar) paginationHTML = params.renderProgressbar.call(swiper, params.progressbarFillClass); else paginationHTML = `<span class="${params.progressbarFillClass}"></span>`;
-            swiper.pagination.bullets = [];
-            el.forEach((subEl => {
-                if (params.type !== "custom") subEl.innerHTML = paginationHTML || "";
-                if (params.type === "bullets") swiper.pagination.bullets.push(...subEl.querySelectorAll(classes_to_selector_classesToSelector(params.bulletClass)));
-            }));
-            if (params.type !== "custom") emit("paginationRender", el[0]);
-        }
-        function init() {
-            swiper.params.pagination = create_element_if_not_defined_createElementIfNotDefined(swiper, swiper.originalParams.pagination, swiper.params.pagination, {
-                el: "swiper-pagination"
-            });
-            const params = swiper.params.pagination;
-            if (!params.el) return;
-            let el;
-            if (typeof params.el === "string" && swiper.isElement) el = swiper.el.shadowRoot.querySelector(params.el);
-            if (!el && typeof params.el === "string") el = [ ...document.querySelectorAll(params.el) ];
-            if (!el) el = params.el;
-            if (!el || el.length === 0) return;
-            if (swiper.params.uniqueNavElements && typeof params.el === "string" && Array.isArray(el) && el.length > 1) {
-                el = [ ...swiper.el.querySelectorAll(params.el) ];
-                if (el.length > 1) el = el.filter((subEl => {
-                    if (utils_elementParents(subEl, ".swiper")[0] !== swiper.el) return false;
-                    return true;
-                }))[0];
-            }
-            if (Array.isArray(el) && el.length === 1) el = el[0];
-            Object.assign(swiper.pagination, {
-                el
-            });
-            el = makeElementsArray(el);
-            el.forEach((subEl => {
-                if (params.type === "bullets" && params.clickable) subEl.classList.add(params.clickableClass);
-                subEl.classList.add(params.modifierClass + params.type);
-                subEl.classList.add(swiper.isHorizontal() ? params.horizontalClass : params.verticalClass);
-                if (params.type === "bullets" && params.dynamicBullets) {
-                    subEl.classList.add(`${params.modifierClass}${params.type}-dynamic`);
-                    dynamicBulletIndex = 0;
-                    if (params.dynamicMainBullets < 1) params.dynamicMainBullets = 1;
-                }
-                if (params.type === "progressbar" && params.progressbarOpposite) subEl.classList.add(params.progressbarOppositeClass);
-                if (params.clickable) subEl.addEventListener("click", onBulletClick);
-                if (!swiper.enabled) subEl.classList.add(params.lockClass);
-            }));
-        }
-        function destroy() {
-            const params = swiper.params.pagination;
-            if (isPaginationDisabled()) return;
-            let el = swiper.pagination.el;
-            if (el) {
-                el = makeElementsArray(el);
-                el.forEach((subEl => {
-                    subEl.classList.remove(params.hiddenClass);
-                    subEl.classList.remove(params.modifierClass + params.type);
-                    subEl.classList.remove(swiper.isHorizontal() ? params.horizontalClass : params.verticalClass);
-                    if (params.clickable) subEl.removeEventListener("click", onBulletClick);
-                }));
-            }
-            if (swiper.pagination.bullets) swiper.pagination.bullets.forEach((subEl => subEl.classList.remove(...params.bulletActiveClass.split(" "))));
-        }
-        on("changeDirection", (() => {
-            if (!swiper.pagination || !swiper.pagination.el) return;
-            const params = swiper.params.pagination;
-            let {el} = swiper.pagination;
-            el = makeElementsArray(el);
-            el.forEach((subEl => {
-                subEl.classList.remove(params.horizontalClass, params.verticalClass);
-                subEl.classList.add(swiper.isHorizontal() ? params.horizontalClass : params.verticalClass);
-            }));
-        }));
-        on("init", (() => {
-            if (swiper.params.pagination.enabled === false) disable(); else {
-                init();
-                render();
-                update();
-            }
-        }));
-        on("activeIndexChange", (() => {
-            if (typeof swiper.snapIndex === "undefined") update();
-        }));
-        on("snapIndexChange", (() => {
-            update();
-        }));
-        on("snapGridLengthChange", (() => {
-            render();
-            update();
-        }));
-        on("destroy", (() => {
-            destroy();
-        }));
-        on("enable disable", (() => {
-            let {el} = swiper.pagination;
-            if (el) {
-                el = makeElementsArray(el);
-                el.forEach((subEl => subEl.classList[swiper.enabled ? "remove" : "add"](swiper.params.pagination.lockClass)));
-            }
-        }));
-        on("lock unlock", (() => {
-            update();
-        }));
-        on("click", ((_s, e) => {
-            const targetEl = e.target;
-            let {el} = swiper.pagination;
-            if (!Array.isArray(el)) el = [ el ].filter((element => !!element));
-            if (swiper.params.pagination.el && swiper.params.pagination.hideOnClick && el && el.length > 0 && !targetEl.classList.contains(swiper.params.pagination.bulletClass)) {
-                if (swiper.navigation && (swiper.navigation.nextEl && targetEl === swiper.navigation.nextEl || swiper.navigation.prevEl && targetEl === swiper.navigation.prevEl)) return;
-                const isHidden = el[0].classList.contains(swiper.params.pagination.hiddenClass);
-                if (isHidden === true) emit("paginationShow"); else emit("paginationHide");
-                el.forEach((subEl => subEl.classList.toggle(swiper.params.pagination.hiddenClass)));
-            }
-        }));
-        const enable = () => {
-            swiper.el.classList.remove(swiper.params.pagination.paginationDisabledClass);
-            let {el} = swiper.pagination;
-            if (el) {
-                el = makeElementsArray(el);
-                el.forEach((subEl => subEl.classList.remove(swiper.params.pagination.paginationDisabledClass)));
-            }
-            init();
-            render();
-            update();
         };
-        const disable = () => {
-            swiper.el.classList.add(swiper.params.pagination.paginationDisabledClass);
-            let {el} = swiper.pagination;
-            if (el) {
-                el = makeElementsArray(el);
-                el.forEach((subEl => subEl.classList.add(swiper.params.pagination.paginationDisabledClass)));
-            }
-            destroy();
+        const getSlideDelay = () => {
+            let activeSlideEl;
+            if (swiper.virtual && swiper.params.virtual.enabled) activeSlideEl = swiper.slides.filter((slideEl => slideEl.classList.contains("swiper-slide-active")))[0]; else activeSlideEl = swiper.slides[swiper.activeIndex];
+            if (!activeSlideEl) return;
+            const currentSlideDelay = parseInt(activeSlideEl.getAttribute("data-swiper-autoplay"), 10);
+            return currentSlideDelay;
         };
-        Object.assign(swiper.pagination, {
-            enable,
-            disable,
-            render,
-            update,
-            init,
-            destroy
-        });
-    }
-    function Controller({swiper, extendParams, on}) {
-        extendParams({
-            controller: {
-                control: void 0,
-                inverse: false,
-                by: "slide"
+        const run = delayForce => {
+            if (swiper.destroyed || !swiper.autoplay.running) return;
+            cancelAnimationFrame(raf);
+            calcTimeLeft();
+            let delay = typeof delayForce === "undefined" ? swiper.params.autoplay.delay : delayForce;
+            autoplayDelayTotal = swiper.params.autoplay.delay;
+            autoplayDelayCurrent = swiper.params.autoplay.delay;
+            const currentSlideDelay = getSlideDelay();
+            if (!Number.isNaN(currentSlideDelay) && currentSlideDelay > 0 && typeof delayForce === "undefined") {
+                delay = currentSlideDelay;
+                autoplayDelayTotal = currentSlideDelay;
+                autoplayDelayCurrent = currentSlideDelay;
             }
-        });
-        swiper.controller = {
-            control: void 0
-        };
-        function LinearSpline(x, y) {
-            const binarySearch = function search() {
-                let maxIndex;
-                let minIndex;
-                let guess;
-                return (array, val) => {
-                    minIndex = -1;
-                    maxIndex = array.length;
-                    while (maxIndex - minIndex > 1) {
-                        guess = maxIndex + minIndex >> 1;
-                        if (array[guess] <= val) minIndex = guess; else maxIndex = guess;
+            autoplayTimeLeft = delay;
+            const speed = swiper.params.speed;
+            const proceed = () => {
+                if (!swiper || swiper.destroyed) return;
+                if (swiper.params.autoplay.reverseDirection) {
+                    if (!swiper.isBeginning || swiper.params.loop || swiper.params.rewind) {
+                        swiper.slidePrev(speed, true, true);
+                        emit("autoplay");
+                    } else if (!swiper.params.autoplay.stopOnLastSlide) {
+                        swiper.slideTo(swiper.slides.length - 1, speed, true, true);
+                        emit("autoplay");
                     }
-                    return maxIndex;
-                };
-            }();
-            this.x = x;
-            this.y = y;
-            this.lastIndex = x.length - 1;
-            let i1;
-            let i3;
-            this.interpolate = function interpolate(x2) {
-                if (!x2) return 0;
-                i3 = binarySearch(this.x, x2);
-                i1 = i3 - 1;
-                return (x2 - this.x[i1]) * (this.y[i3] - this.y[i1]) / (this.x[i3] - this.x[i1]) + this.y[i1];
+                } else if (!swiper.isEnd || swiper.params.loop || swiper.params.rewind) {
+                    swiper.slideNext(speed, true, true);
+                    emit("autoplay");
+                } else if (!swiper.params.autoplay.stopOnLastSlide) {
+                    swiper.slideTo(0, speed, true, true);
+                    emit("autoplay");
+                }
+                if (swiper.params.cssMode) {
+                    autoplayStartTime = (new Date).getTime();
+                    requestAnimationFrame((() => {
+                        run();
+                    }));
+                }
             };
-            return this;
-        }
-        function getInterpolateFunction(c) {
-            swiper.controller.spline = swiper.params.loop ? new LinearSpline(swiper.slidesGrid, c.slidesGrid) : new LinearSpline(swiper.snapGrid, c.snapGrid);
-        }
-        function setTranslate(_t, byController) {
-            const controlled = swiper.controller.control;
-            let multiplier;
-            let controlledTranslate;
-            const Swiper = swiper.constructor;
-            function setControlledTranslate(c) {
-                if (c.destroyed) return;
-                const translate = swiper.rtlTranslate ? -swiper.translate : swiper.translate;
-                if (swiper.params.controller.by === "slide") {
-                    getInterpolateFunction(c);
-                    controlledTranslate = -swiper.controller.spline.interpolate(-translate);
-                }
-                if (!controlledTranslate || swiper.params.controller.by === "container") {
-                    multiplier = (c.maxTranslate() - c.minTranslate()) / (swiper.maxTranslate() - swiper.minTranslate());
-                    if (Number.isNaN(multiplier) || !Number.isFinite(multiplier)) multiplier = 1;
-                    controlledTranslate = (translate - swiper.minTranslate()) * multiplier + c.minTranslate();
-                }
-                if (swiper.params.controller.inverse) controlledTranslate = c.maxTranslate() - controlledTranslate;
-                c.updateProgress(controlledTranslate);
-                c.setTranslate(controlledTranslate, swiper);
-                c.updateActiveIndex();
-                c.updateSlidesClasses();
-            }
-            if (Array.isArray(controlled)) {
-                for (let i = 0; i < controlled.length; i += 1) if (controlled[i] !== byController && controlled[i] instanceof Swiper) setControlledTranslate(controlled[i]);
-            } else if (controlled instanceof Swiper && byController !== controlled) setControlledTranslate(controlled);
-        }
-        function setTransition(duration, byController) {
-            const Swiper = swiper.constructor;
-            const controlled = swiper.controller.control;
-            let i;
-            function setControlledTransition(c) {
-                if (c.destroyed) return;
-                c.setTransition(duration, swiper);
-                if (duration !== 0) {
-                    c.transitionStart();
-                    if (c.params.autoHeight) utils_nextTick((() => {
-                        c.updateAutoHeight();
-                    }));
-                    utils_elementTransitionEnd(c.wrapperEl, (() => {
-                        if (!controlled) return;
-                        c.transitionEnd();
-                    }));
-                }
-            }
-            if (Array.isArray(controlled)) {
-                for (i = 0; i < controlled.length; i += 1) if (controlled[i] !== byController && controlled[i] instanceof Swiper) setControlledTransition(controlled[i]);
-            } else if (controlled instanceof Swiper && byController !== controlled) setControlledTransition(controlled);
-        }
-        function removeSpline() {
-            if (!swiper.controller.control) return;
-            if (swiper.controller.spline) {
-                swiper.controller.spline = void 0;
-                delete swiper.controller.spline;
-            }
-        }
-        on("beforeInit", (() => {
-            if (typeof window !== "undefined" && (typeof swiper.params.controller.control === "string" || swiper.params.controller.control instanceof HTMLElement)) {
-                const controlElement = document.querySelector(swiper.params.controller.control);
-                if (controlElement && controlElement.swiper) swiper.controller.control = controlElement.swiper; else if (controlElement) {
-                    const onControllerSwiper = e => {
-                        swiper.controller.control = e.detail[0];
-                        swiper.update();
-                        controlElement.removeEventListener("init", onControllerSwiper);
-                    };
-                    controlElement.addEventListener("init", onControllerSwiper);
-                }
+            if (delay > 0) {
+                clearTimeout(timeout);
+                timeout = setTimeout((() => {
+                    proceed();
+                }), delay);
+            } else requestAnimationFrame((() => {
+                proceed();
+            }));
+            return delay;
+        };
+        const start = () => {
+            swiper.autoplay.running = true;
+            run();
+            emit("autoplayStart");
+        };
+        const stop = () => {
+            swiper.autoplay.running = false;
+            clearTimeout(timeout);
+            cancelAnimationFrame(raf);
+            emit("autoplayStop");
+        };
+        const pause = (internal, reset) => {
+            if (swiper.destroyed || !swiper.autoplay.running) return;
+            clearTimeout(timeout);
+            if (!internal) pausedByInteraction = true;
+            const proceed = () => {
+                emit("autoplayPause");
+                if (swiper.params.autoplay.waitForTransition) swiper.wrapperEl.addEventListener("transitionend", onTransitionEnd); else resume();
+            };
+            swiper.autoplay.paused = true;
+            if (reset) {
+                if (slideChanged) autoplayTimeLeft = swiper.params.autoplay.delay;
+                slideChanged = false;
+                proceed();
                 return;
             }
-            swiper.controller.control = swiper.params.controller.control;
+            const delay = autoplayTimeLeft || swiper.params.autoplay.delay;
+            autoplayTimeLeft = delay - ((new Date).getTime() - autoplayStartTime);
+            if (swiper.isEnd && autoplayTimeLeft < 0 && !swiper.params.loop) return;
+            if (autoplayTimeLeft < 0) autoplayTimeLeft = 0;
+            proceed();
+        };
+        const resume = () => {
+            if (swiper.isEnd && autoplayTimeLeft < 0 && !swiper.params.loop || swiper.destroyed || !swiper.autoplay.running) return;
+            autoplayStartTime = (new Date).getTime();
+            if (pausedByInteraction) {
+                pausedByInteraction = false;
+                run(autoplayTimeLeft);
+            } else run();
+            swiper.autoplay.paused = false;
+            emit("autoplayResume");
+        };
+        const onVisibilityChange = () => {
+            if (swiper.destroyed || !swiper.autoplay.running) return;
+            const document = ssr_window_esm_getDocument();
+            if (document.visibilityState === "hidden") {
+                pausedByInteraction = true;
+                pause(true);
+            }
+            if (document.visibilityState === "visible") resume();
+        };
+        const onPointerEnter = e => {
+            if (e.pointerType !== "mouse") return;
+            pausedByInteraction = true;
+            pause(true);
+        };
+        const onPointerLeave = e => {
+            if (e.pointerType !== "mouse") return;
+            if (swiper.autoplay.paused) resume();
+        };
+        const attachMouseEvents = () => {
+            if (swiper.params.autoplay.pauseOnMouseEnter) {
+                swiper.el.addEventListener("pointerenter", onPointerEnter);
+                swiper.el.addEventListener("pointerleave", onPointerLeave);
+            }
+        };
+        const detachMouseEvents = () => {
+            swiper.el.removeEventListener("pointerenter", onPointerEnter);
+            swiper.el.removeEventListener("pointerleave", onPointerLeave);
+        };
+        const attachDocumentEvents = () => {
+            const document = ssr_window_esm_getDocument();
+            document.addEventListener("visibilitychange", onVisibilityChange);
+        };
+        const detachDocumentEvents = () => {
+            const document = ssr_window_esm_getDocument();
+            document.removeEventListener("visibilitychange", onVisibilityChange);
+        };
+        on("init", (() => {
+            if (swiper.params.autoplay.enabled) {
+                attachMouseEvents();
+                attachDocumentEvents();
+                autoplayStartTime = (new Date).getTime();
+                start();
+            }
         }));
-        on("update", (() => {
-            removeSpline();
+        on("destroy", (() => {
+            detachMouseEvents();
+            detachDocumentEvents();
+            if (swiper.autoplay.running) stop();
         }));
-        on("resize", (() => {
-            removeSpline();
+        on("beforeTransitionStart", ((_s, speed, internal) => {
+            if (swiper.destroyed || !swiper.autoplay.running) return;
+            if (internal || !swiper.params.autoplay.disableOnInteraction) pause(true, true); else stop();
         }));
-        on("observerUpdate", (() => {
-            removeSpline();
+        on("sliderFirstMove", (() => {
+            if (swiper.destroyed || !swiper.autoplay.running) return;
+            if (swiper.params.autoplay.disableOnInteraction) {
+                stop();
+                return;
+            }
+            isTouched = true;
+            pausedByTouch = false;
+            pausedByInteraction = false;
+            touchStartTimeout = setTimeout((() => {
+                pausedByInteraction = true;
+                pausedByTouch = true;
+                pause(true);
+            }), 200);
         }));
-        on("setTranslate", ((_s, translate, byController) => {
-            if (!swiper.controller.control || swiper.controller.control.destroyed) return;
-            swiper.controller.setTranslate(translate, byController);
+        on("touchEnd", (() => {
+            if (swiper.destroyed || !swiper.autoplay.running || !isTouched) return;
+            clearTimeout(touchStartTimeout);
+            clearTimeout(timeout);
+            if (swiper.params.autoplay.disableOnInteraction) {
+                pausedByTouch = false;
+                isTouched = false;
+                return;
+            }
+            if (pausedByTouch && swiper.params.cssMode) resume();
+            pausedByTouch = false;
+            isTouched = false;
         }));
-        on("setTransition", ((_s, duration, byController) => {
-            if (!swiper.controller.control || swiper.controller.control.destroyed) return;
-            swiper.controller.setTransition(duration, byController);
+        on("slideChange", (() => {
+            if (swiper.destroyed || !swiper.autoplay.running) return;
+            slideChanged = true;
         }));
-        Object.assign(swiper.controller, {
-            setTranslate,
-            setTransition
+        Object.assign(swiper.autoplay, {
+            start,
+            stop,
+            pause,
+            resume
         });
     }
     function initSliders() {
-        if (document.querySelector(".main-image-seller-page__slider")) new core(".main-image-seller-page__slider", {
-            modules: [ Navigation ],
+        if (document.querySelector(".programm__slider")) new core(".programm__slider", {
+            modules: [ Navigation, Autoplay ],
             observer: true,
             observeParents: true,
-            slidesPerView: 1,
-            spaceBetween: 20,
             speed: 800,
-            allowSlideNext: false,
-            allowSlidePrev: false,
-            navigation: {
-                prevEl: ".container-info__button-prev",
-                nextEl: ".container-info__button-next"
+            loop: true,
+            autoplay: {
+                delay: 1e3,
+                disableOnInteraction: false
             },
-            on: {}
-        });
-        if (document.querySelector(".container-info__slider")) new core(".container-info__slider", {
-            modules: [ Navigation, Controller ],
-            observer: true,
-            observeParents: true,
-            slidesPerView: 1,
-            spaceBetween: 20,
-            speed: 800,
-            touchRatio: 1.5,
-            controller: {
-                control: ".main-image-seller-page__slider"
-            },
-            navigation: {
-                prevEl: ".container-info__button-prev",
-                nextEl: ".container-info__button-next"
-            },
-            on: {}
-        });
-        if (document.querySelector(".main-image-product__slider")) new core(".main-image-product__slider", {
-            modules: [ Navigation, Pagination ],
-            observer: true,
-            observeParents: true,
-            slidesPerView: 1,
-            spaceBetween: 20,
-            speed: 800,
-            touchRatio: 1.5,
-            pagination: {
-                el: ".main-image-product__pagination",
-                clickable: true
+            breakpoints: {
+                320: {
+                    slidesPerView: 1.8,
+                    spaceBetween: 20
+                },
+                640: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 30
+                },
+                768: {
+                    slidesPerView: 3
+                },
+                992: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 40
+                }
             },
             on: {}
         });
@@ -3934,188 +3563,134 @@
             }));
         }
     }), 0);
-    const searchInput = document.querySelector(".search-panel__input input");
-    if (searchInput) searchInput.addEventListener("focus", showSelect);
-    function showSelect(e) {
-        const parentForm = e.target.closest("form");
-        parentForm.classList.add("focus");
-        parentForm.addEventListener("submit", hideSelect);
-    }
-    function hideSelect(e) {
-        e.target.classList.remove("focus");
-        resetForm(e);
-    }
-    function resetForm(e) {
-        e.target.reset();
-    }
-    const swipeAreas = document.querySelectorAll(".swipe-area");
-    let touchStartX = 0;
-    let touchEndX = 0;
-    swipeAreas.forEach((swipeArea => {
-        swipeArea.addEventListener("touchstart", (event => {
-            touchStartX = event.touches[0].clientX;
-        }));
-        swipeArea.addEventListener("touchend", (event => {
-            touchEndX = event.changedTouches[0].clientX;
-        }));
-    }));
-    const searchPanel = document.querySelector(".search-panel__form");
-    if (searchPanel) searchPanel.addEventListener("submit", onSearchPanelSubmit);
-    function onSearchPanelSubmit(e) {
-        const input = document.querySelector(".search-panel__input input");
-        const inputValue = input.value;
-        if (inputValue.trim() === "") e.preventDefault();
-        localStorage.setItem("searchValue", inputValue);
-    }
-    const searchForm = document.querySelector(".form-search-block");
-    if (searchForm) searchForm.addEventListener("submit", onSearchFormSubmit);
-    function onSearchFormSubmit(e) {
-        const input = document.querySelector(".form-search-block input");
-        const inputValue = input.value;
-        if (inputValue.trim() === "") e.preventDefault();
-    }
-    const buttonBack = document.querySelector(".menu-footer__link");
-    if (buttonBack) buttonBack.addEventListener("click", goBack);
-    function goBack() {
-        window.history.back();
-    }
-    const productWrapper = document.querySelector(".main-image-product__wrapper");
-    if (productWrapper) productWrapper.addEventListener("click", toggleFavoriteProduct);
-    window.addEventListener("DOMContentLoaded", windowLoad);
-    let pageLoadingCounter = 1;
-    let initialLoading = true;
-    let loadMore = true;
-    let searchParam = false;
-    let limit = 6;
-    function windowLoad() {
-        const parentElementMainPage = document.querySelector(".page__goods .goods__items");
-        const parentElementProductsPage = document.querySelector(".product-page .goods__items.goods__items_row-gap-20");
-        if (parentElementMainPage) loadProducts(initialLoading, pageLoadingCounter, limit, searchParam);
-        if (parentElementProductsPage) {
-            searchParam = true;
-            loadProducts(initialLoading, pageLoadingCounter, limit, searchParam);
+    class DynamicAdapt {
+        constructor(type) {
+            this.type = type;
         }
-    }
-    async function loadProducts(initialLoad, offset, limit, searchParam) {
-        const apiUrl = `/api/products?page=${offset}&amount=${limit}`;
-        if (!loadMore) return;
-        if (initialLoad) {
-            initialLoading = false;
-            if (searchParam) {
-                const searchValue = localStorage.getItem("searchValue");
-                const apiUrl = `/api/products/search?searchValue=${searchValue}&page=1&amount=${limit}`;
-                const response = await fetch(apiUrl);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
+        init() {
+            this.оbjects = [];
+            this.daClassname = "_dynamic_adapt_";
+            this.nodes = [ ...document.querySelectorAll("[data-da]") ];
+            this.nodes.forEach((node => {
+                const data = node.dataset.da.trim();
+                const dataArray = data.split(",");
+                const оbject = {};
+                оbject.element = node;
+                оbject.parent = node.parentNode;
+                оbject.destination = document.querySelector(`${dataArray[0].trim()}`);
+                оbject.breakpoint = dataArray[1] ? dataArray[1].trim() : "767";
+                оbject.place = dataArray[2] ? dataArray[2].trim() : "last";
+                оbject.index = this.indexInParent(оbject.parent, оbject.element);
+                this.оbjects.push(оbject);
+            }));
+            this.arraySort(this.оbjects);
+            this.mediaQueries = this.оbjects.map((({breakpoint}) => `(${this.type}-width: ${breakpoint}px),${breakpoint}`)).filter(((item, index, self) => self.indexOf(item) === index));
+            this.mediaQueries.forEach((media => {
+                const mediaSplit = media.split(",");
+                const matchMedia = window.matchMedia(mediaSplit[0]);
+                const mediaBreakpoint = mediaSplit[1];
+                const оbjectsFilter = this.оbjects.filter((({breakpoint}) => breakpoint === mediaBreakpoint));
+                matchMedia.addEventListener("change", (() => {
+                    this.mediaHandler(matchMedia, оbjectsFilter);
+                }));
+                this.mediaHandler(matchMedia, оbjectsFilter);
+            }));
+        }
+        mediaHandler(matchMedia, оbjects) {
+            if (matchMedia.matches) оbjects.forEach((оbject => {
+                this.moveTo(оbject.place, оbject.element, оbject.destination);
+            })); else оbjects.forEach((({parent, element, index}) => {
+                if (element.classList.contains(this.daClassname)) this.moveBack(parent, element, index);
+            }));
+        }
+        moveTo(place, element, destination) {
+            element.classList.add(this.daClassname);
+            if (place === "last" || place >= destination.children.length) {
+                destination.append(element);
+                return;
+            }
+            if (place === "first") {
+                destination.prepend(element);
+                return;
+            }
+            destination.children[place].before(element);
+        }
+        moveBack(parent, element, index) {
+            element.classList.remove(this.daClassname);
+            if (parent.children[index] !== void 0) parent.children[index].before(element); else parent.append(element);
+        }
+        indexInParent(parent, element) {
+            return [ ...parent.children ].indexOf(element);
+        }
+        arraySort(arr) {
+            if (this.type === "min") arr.sort(((a, b) => {
+                if (a.breakpoint === b.breakpoint) {
+                    if (a.place === b.place) return 0;
+                    if (a.place === "first" || b.place === "last") return -1;
+                    if (a.place === "last" || b.place === "first") return 1;
+                    return 0;
                 }
-            } else {
-                const apiUrl = `/api/products?page=1&amount=${limit}`;
-                const response = await fetch(apiUrl);
-                if (response.ok) {
-                    const data = await response.json();
-                    createCards(data, ".page__goods .goods__items");
-                }
-            }
-        } else if (loadMore) if (searchParam) {
-            const searchValue = localStorage.getItem("searchValue");
-            const apiUrl = `/api/products/search?searchValue=${searchValue}&page=${offset}&amount=${limit}`;
-            const response = await fetch(apiUrl);
-            if (response.ok) {
-                const data = await response.json();
-                createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
-            }
-        } else {
-            const response = await fetch(apiUrl);
-            if (response.ok) {
-                const data = await response.json();
-                createCards(data, ".page__goods .goods__items");
+                return a.breakpoint - b.breakpoint;
+            })); else {
+                arr.sort(((a, b) => {
+                    if (a.breakpoint === b.breakpoint) {
+                        if (a.place === b.place) return 0;
+                        if (a.place === "first" || b.place === "last") return 1;
+                        if (a.place === "last" || b.place === "first") return -1;
+                        return 0;
+                    }
+                    return b.breakpoint - a.breakpoint;
+                }));
+                return;
             }
         }
     }
-    function createCards(data, parentNode) {
-        if (data.length < limit) loadMore = false;
-        let productTamplate;
-        const parentElement = document.querySelector(parentNode);
-        parentElement.addEventListener("click", toggleFavorite);
-        data.products.forEach((product => {
-            const isSalesCategory = product.promotion.isActive;
-            let salesValue;
-            const isFavorite = product.details.isFavorite;
-            if (isSalesCategory) salesValue = Math.round(product.price / product.promotion.oldPrice * 100);
-            const isHitCategory = product.isHit;
-            productTamplate = `<a data-id='${product.id}' href='/products/details/${product.id}' class="item-goods ${isFavorite ? "favorite" : ""}">\n\t\t\t\t\t\t\t\t\t<div class="item-goods__image-ibg">\n\t\t\t\t\t\t\t\t\t\t<img src="${product.details.photos[0].filePath}" alt="${product.details.description}" />\n\t\t\t\t\t\t\t\t\t\t<div class="item-goods__promo">\n\t\t\t\t\t\t\t\t\t\t${isSalesCategory ? `<div class="item-goods__item-promo">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../../img/icons/discont-bg.svg" alt="Красная лента" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__value">-${salesValue}%</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>` : ``}\n\t\t\t\t\t\t\t\t\t\t${isHitCategory ? `<div class="item-goods__item-promo">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img src="../../img/icons/hit-bg.svg" alt="Желтая лента" />\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__value">Хит</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>` : ``}\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t${isFavorite ? `<div class="item-goods__favorite">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<path d="M1.62047 0.225517C0.100077 0.937975 -0.436531 2.75037 0.381157 4.43777C0.802777 5.31272 1.96543 6.76263 3.03864 7.76257C4.16296 8.81251 4.4696 9 5.0062 9C5.54281 9 5.84944 8.81251 6.97377 7.76257C8.04698 6.76263 9.20963 5.31272 9.63125 4.43777C10.4873 2.66287 9.79734 0.662992 8.13642 0.125523C7.36983 -0.124462 6.1433 0.0130291 5.53004 0.413006L5.0062 0.750486L4.4696 0.413006C3.7669 -0.0494671 2.39982 -0.136962 1.62047 0.225517ZM3.99687 1.16296C4.17574 1.27545 4.44404 1.51294 4.59736 1.68793C4.94232 2.07541 5.07009 2.07541 5.41505 1.67543C6.43716 0.537998 8.07253 0.587996 8.82634 1.80042C9.59292 3.00035 8.71135 4.81275 6.24551 7.15011C5.68335 7.68758 5.12119 8.12505 5.0062 8.12505C4.87844 8.12505 4.3035 7.66258 3.70301 7.10011C1.85044 5.32522 0.917765 3.8878 0.917765 2.81286C0.917765 1.23796 2.65535 0.313012 3.99687 1.16296Z" fill="#F1CA0A"/>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>` : `<div class="item-goods__favorite">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<path d="M1.62047 0.225517C0.100077 0.937975 -0.436531 2.75037 0.381157 4.43777C0.802777 5.31272 1.96543 6.76263 3.03864 7.76257C4.16296 8.81251 4.4696 9 5.0062 9C5.54281 9 5.84944 8.81251 6.97377 7.76257C8.04698 6.76263 9.20963 5.31272 9.63125 4.43777C10.4873 2.66287 9.79734 0.662992 8.13642 0.125523C7.36983 -0.124462 6.1433 0.0130291 5.53004 0.413006L5.0062 0.750486L4.4696 0.413006C3.7669 -0.0494671 2.39982 -0.136962 1.62047 0.225517ZM3.99687 1.16296C4.17574 1.27545 4.44404 1.51294 4.59736 1.68793C4.94232 2.07541 5.07009 2.07541 5.41505 1.67543C6.43716 0.537998 8.07253 0.587996 8.82634 1.80042C9.59292 3.00035 8.71135 4.81275 6.24551 7.15011C5.68335 7.68758 5.12119 8.12505 5.0062 8.12505C4.87844 8.12505 4.3035 7.66258 3.70301 7.10011C1.85044 5.32522 0.917765 3.8878 0.917765 2.81286C0.917765 1.23796 2.65535 0.313012 3.99687 1.16296Z" fill="#fff"/>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</svg>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>`}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div class="item-goods__info">\n\t\t\t\t\t\t\t\t\t\t<div class="item-goods__title">${product.name}</div>\n\t\t\t\t\t\t\t\t\t\t${isSalesCategory ? `<div class="item-goods__current-price">${product.price} грн</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="item-goods__old-price">${product.promotion.oldPrice} грн</div>` : `<div class="item-goods__current-price">${product.price} грн</div>`}\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</a>`;
-            if (parentElement) parentElement.insertAdjacentHTML("beforeend", productTamplate);
-        }));
-    }
-    function showNoResult(parentNode) {
-        const parentElement = document.querySelector(parentNode);
-        let noResultTemplate = `\n\t\t\t\t\t\t\t\t\t<div class="no-result">\n\t\t\t\t\t\t\t\t\t\tТоваров не найдено\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t`;
-        if (parentElement) parentElement.insertAdjacentHTML("beforeend", noResultTemplate);
-    }
-    function toggleFavorite(e) {
-        const targetElement = e.target;
-        const product = targetElement.closest(".item-goods");
-        if (e.target.closest(".item-goods__favorite")) {
-            e.preventDefault();
-            const iconParent = e.target.closest(".item-goods__favorite");
-            const svgPath = iconParent.querySelector("svg path");
-            if (svgPath.closest(".favorite")) {
-                svgPath.setAttribute("fill", "#fff");
-                product.classList.remove("favorite");
-                const productId = product.getAttribute("data-id");
-                removeFavorite(productId);
-            } else {
-                svgPath.setAttribute("fill", "#F1CA0A");
-                product.classList.add("favorite");
-                const productId = product.getAttribute("data-id");
-                addFavorite(productId);
-            }
-        }
-    }
-    function toggleFavoriteProduct(e) {
-        const targetElement = e.target;
-        const iconParent = targetElement.closest(".main-image-product__favorite");
-        const id = document.querySelector(".info-description-product__value-id").innerText;
-        if (iconParent) {
-            const parentElement = targetElement.closest(".main-image-product__wrapper.swiper-wrapper");
-            if (parentElement.getAttribute("data-is-favorite") === "true") {
-                parentElement.setAttribute("data-is-favorite", "false");
-                removeFavorite(id);
-            } else {
-                parentElement.setAttribute("data-is-favorite", "true");
-                addFavorite(id);
-            }
-        }
-    }
-    async function addFavorite(id) {
-        const url = `/api/product/favorite/push?productId=${id}`;
-        await fetch(url, {
-            method: "POST"
-        });
-    }
-    async function removeFavorite(id) {
-        const url = `/api/product/favorite/remove?productId=${id}`;
-        await fetch(url, {
-            method: "POST"
-        });
-    }
-    function debounce(fn, delay) {
-        let timeoutId;
-        return function() {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout((() => {
-                fn.apply(this, arguments);
-            }), delay);
+    const da = new DynamicAdapt("max");
+    da.init();
+    const clock = document.getElementById("timer");
+    const promoTime = 15;
+    const curTime = Date.now();
+    let deadline;
+    if (!localStorage.getItem("promoEnd")) {
+        deadline = new Date;
+        deadline.setMinutes(deadline.getMinutes() + promoTime);
+        localStorage.setItem("promoEnd", new Date(deadline.getTime()));
+    } else if (localStorage.getItem("promoEnd") && new Date(curTime) > new Date(localStorage.getItem("promoEnd"))) {
+        deadline = new Date;
+        deadline.setMinutes(deadline.getMinutes() + promoTime);
+        localStorage.setItem("promoEnd", new Date(deadline.getTime()));
+    } else deadline = localStorage.getItem("promoEnd");
+    if (clock) initializeClock(clock, deadline);
+    function getTimeRemaining(endtime) {
+        let t = Date.parse(endtime) - Date.parse(new Date);
+        let minutes = Math.floor(t / 1e3 / 60 % 60);
+        let hours = Math.floor(t / (1e3 * 60 * 60) % 24);
+        return {
+            total: t,
+            hours,
+            minutes
         };
     }
-    if (document.querySelector(".page__goods .goods__items")) window.addEventListener("scroll", debounce(checkScrollPosition, 250));
-    function checkScrollPosition() {
-        if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 200) loadProducts(initialLoading, ++pageLoadingCounter, limit, searchParam);
+    function initializeClock(clock, endtime) {
+        let hours = clock.querySelector(".timer__hours");
+        let minutes = clock.querySelector(".timer__minutes");
+        let dotts = clock.querySelector(".timer__dotts");
+        dotts.textContent = ":";
+        function updateClock() {
+            let t = getTimeRemaining(endtime);
+            hours.innerHTML = ("0" + t.hours).slice(-2);
+            minutes.innerHTML = ("0" + t.minutes).slice(-2);
+            if (t.total <= 0) {
+                clearInterval(timeinterval);
+                hours.innerHTML = "00";
+                minutes.innerHTML = "00";
+                localStorage.removeItem("promoEnd");
+            }
+        }
+        const timeinterval = setInterval(updateClock, 1e3);
+        updateClock();
     }
     window["FLS"] = false;
-    menuInit();
+    isWebp();
     spollers();
-    showMore();
-    formQuantity();
 })();
