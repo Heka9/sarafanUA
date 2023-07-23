@@ -3959,6 +3959,27 @@
             touchEndX = event.changedTouches[0].clientX;
         }));
     }));
+    const premiumTarifs = document.querySelector(".tarifs-premium");
+    const premiumForm = document.querySelector(".premium__form");
+    if (premiumForm && premiumTarifs) premiumTarifs.addEventListener("click", toggleBorder);
+    if (premiumForm && premiumTarifs) premiumForm.addEventListener("submit", premiumFormSubmit);
+    function toggleBorder(e) {
+        const tarifsBlocks = document.querySelectorAll(".tarifs-premium__block");
+        if (tarifsBlocks) if (e.target.closest(".tarifs-premium__block")) {
+            tarifsBlocks.forEach((block => {
+                block.classList.remove("active");
+            }));
+            e.target.closest(".tarifs-premium__block").classList.add("active");
+        }
+    }
+    function premiumFormSubmit(e) {
+        e.preventDefault();
+        const activeTarifBlock = document.querySelector(".tarifs-premium__block.active");
+        if (activeTarifBlock) {
+            const activeTarif = activeTarifBlock.className.includes("year") ? "year" : "month";
+            console.log(activeTarif);
+        }
+    }
     const searchPanel = document.querySelector(".search-panel__form");
     if (searchPanel) searchPanel.addEventListener("submit", onSearchPanelSubmit);
     function onSearchPanelSubmit(e) {
@@ -3986,7 +4007,7 @@
     let initialLoading = true;
     let loadMore = true;
     let searchParam = false;
-    let limit = 6;
+    const limit = 6;
     function windowLoad() {
         const parentElementMainPage = document.querySelector(".page__goods .goods__items");
         const parentElementProductsPage = document.querySelector(".product-page .goods__items.goods__items_row-gap-20");

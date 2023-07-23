@@ -2051,6 +2051,20 @@ body::after {
   font-size: 12px;
   border-radius: 10px;
   position: relative;
+  border: 2px solid #fff;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr auto;
+  grid-template-columns: 1fr auto;
+  gap: 10px 15px;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.tarifs-premium__block.active {
+  border: 2px solid #069fff;
+  -webkit-box-shadow: 0px 2px 12px 2px #069fff;
+          box-shadow: 0px 2px 12px 2px #069fff;
 }
 
 .tarifs-premium__block:not(:last-child) {
@@ -2058,23 +2072,11 @@ body::after {
 }
 
 .tarifs-premium__block_year {
-  border: 2px solid #069fff;
   padding: 0.5rem 1.125rem;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr auto;
-  grid-template-columns: 1fr auto;
-  gap: 10px 52px;
 }
 
 .tarifs-premium__block_month {
-  border: 2px solid #fff;
   padding: 1.28125rem 1.125rem;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px 52px;
 }
 
 .tarifs-premium__block_year .tarifs-premium__price {
@@ -3108,16 +3110,6 @@ body::after {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transition: -webkit-transform 0.3s ease 0s;
-  transition: -webkit-transform 0.3s ease 0s;
-  transition: transform 0.3s ease 0s;
-  transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
-}
-
-._spoller-active .title-item-spoller__arrow {
-  -webkit-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-          transform: rotate(90deg);
 }
 
 .body-item-spoller {
