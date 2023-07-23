@@ -2273,6 +2273,7 @@ body::after {
   -ms-grid-columns: 1fr auto;
   grid-template-columns: 1fr auto;
   gap: 35px;
+  min-height: 81px;
 }
 
 .slide-container__info {
@@ -2368,7 +2369,7 @@ body::after {
 
 .options {
   background: #fff;
-  padding: 1.25rem 0rem 0.625rem 0rem;
+  padding: 1.25rem 0rem 0rem 0rem;
   -webkit-box-shadow: 0px -80px 65px 0px rgba(212, 212, 212, 0.2) inset, 0px 1px 40px 0px rgba(226, 226, 226, 0.2) inset, 10px 4px 16px 0px rgba(233, 233, 233, 0.2) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0px -80px 65px 0px rgba(212, 212, 212, 0.2) inset, 0px 1px 40px 0px rgba(226, 226, 226, 0.2) inset, 10px 4px 16px 0px rgba(233, 233, 233, 0.2) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
@@ -2418,8 +2419,12 @@ body::after {
   display: -ms-flexbox;
   display: flex;
   gap: 10px 25px;
-  padding-bottom: 1.25rem;
+  padding-bottom: 1.875rem;
   overflow-x: scroll;
+  margin-left: -0.3125rem;
+  margin-right: -0.3125rem;
+  padding-left: 0.3125rem;
+  padding-right: 0.3125rem;
 }
 
 .options__param {
