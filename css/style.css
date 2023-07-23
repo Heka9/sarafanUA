@@ -2078,7 +2078,7 @@ body::after {
 
 .advantage-block__body {
   position: relative;
-  padding-left: 1.5625rem;
+  padding-left: 2.1875rem;
 }
 
 .advantage-block__mockup img {
@@ -2089,8 +2089,8 @@ body::after {
   position: absolute;
   max-width: 150px;
   text-align: center;
-  bottom: 39px;
-  left: 32px;
+  bottom: 48px;
+  left: 62px;
   font-size: 0.4375rem;
   padding: 0.5rem 1.125rem;
   font-weight: 700;
