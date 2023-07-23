@@ -973,7 +973,7 @@ body::after {
 }
 
 .slide-categories__label {
-  font-size: 12px;
+  font-size: 10px;
   text-align: center;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -1700,7 +1700,7 @@ body::after {
   width: 100%;
   padding: 0.28125rem 1.5rem;
   font-size: 16px;
-  border-radius: 2px;
+  border-radius: 5px;
   border: 1px solid #e2e2e2;
   background-color: #fff;
   color: rgb(139, 139, 139);
@@ -3294,6 +3294,11 @@ body::after {
   .main-image__telegram-icon {
     bottom: 10.5%;
     left: 58%;
+  }
+
+  .slide-categories__icon {
+    width: 3.125rem;
+    height: 3.125rem;
   }
 
   .info-sales__icon-persent {
