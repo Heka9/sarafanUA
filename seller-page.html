@@ -6,7 +6,7 @@
 	<meta charset="UTF-8" />
 	<meta name="format-detection" content="telephone=no" />
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20230723115416" />
+	<link rel="stylesheet" href="css/style.min.css?_v=20230723122927" />
 	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 " />
@@ -88,26 +88,30 @@
 												Режим работы: <span>7.00 - 15.00</span>
 											</div>
 										</div>
-										<div class="slide-container__contacts">
-											<a href="#" class="slide-container__show">Посмотреть контакты</a>
-											<div class="slide-container__name">
-												<div class="slide-container__icon">
-													<img src="img/icons/user-small.svg" alt="Иконка пользователя" />
+										<div data-spollers class="slide-container__contacts">
+											<button data-spoller type="button" class="slide-container__show">
+												Посмотреть контакты
+											</button>
+											<div class="slide-container__spoller-body">
+												<div class="slide-container__name">
+													<div class="slide-container__icon">
+														<img src="img/icons/user-small.svg" alt="Иконка пользователя" />
+													</div>
+													<span>Олег</span>
 												</div>
-												<span>Олег</span>
+												<div class="slide-container__telegram">
+													<div class="slide-container__icon">
+														<img src="img/icons/telegram-small.svg" alt="Иконка телеграма" />
+													</div>
+													<span>@OlegChernov</span>
+												</div>
+												<a href="tel:+380731525215" class="slide-container__phone">
+													<div class="slide-container__icon">
+														<img src="img/icons/phone-small.svg" alt="Иконка телефона" />
+													</div>
+													<span>38 (073) 152 52 15 </span>
+												</a>
 											</div>
-											<div class="slide-container__telegram">
-												<div class="slide-container__icon">
-													<img src="img/icons/telegram-small.svg" alt="Иконка телеграма" />
-												</div>
-												<span>@OlegChernov</span>
-											</div>
-											<a href="tel:+380731525215" class="slide-container__phone">
-												<div class="slide-container__icon">
-													<img src="img/icons/phone-small.svg" alt="Иконка телефона" />
-												</div>
-												<span>38 (073) 152 52 15 </span>
-											</a>
 										</div>
 									</div>
 								</div>
@@ -417,23 +421,25 @@
 								<div class="item-socials-sidebar__image">
 									<img src="img/main/sidebar/tiktok.svg" alt="tiktok" />
 								</div>
-								<div class="item-socials-sidebar__label">Sarafan</div>
+								<div class="item-socials-sidebar__label">TikTok</div>
 							</a>
 							<a href="#" class="socials-sidebar__item item-socials-sidebar">
 								<div class="item-socials-sidebar__image">
 									<img src="img/main/sidebar/instagram.svg" alt="instagram" />
 								</div>
-								<div class="item-socials-sidebar__label">Sarafan</div>
+								<div class="item-socials-sidebar__label">Instagram</div>
 							</a>
 							<a href="#" class="socials-sidebar__item item-socials-sidebar">
 								<div class="item-socials-sidebar__image">
 									<img src="img/main/sidebar/youtube.svg" alt="youtube" />
 								</div>
-								<div class="item-socials-sidebar__label">Sarafan</div>
+								<div class="item-socials-sidebar__label">YouTube</div>
 							</a>
 						</div>
 						<div class="socials-sidebar__info info-socials-sidebar">
-							<a href="#" class="info-socials-sidebar__lang info-socials-sidebar_block">???</a>
+							<a href="#" class="info-socials-sidebar__lang info-socials-sidebar_block">
+								<img src="img/main/sidebar/lang.svg" alt="Переключатель языка" />
+							</a>
 							<a href="#" class="info-socials-sidebar__currency info-socials-sidebar_block">Курс USA</a>
 							<a href="#" class="info-socials-sidebar__date info-socials-sidebar_block">Дата</a>
 						</div>
@@ -473,7 +479,7 @@
 		</footer>
 
 	</div>
-	<script src="js/app.min.js?_v=20230723115416"></script>
+	<script src="js/app.min.js?_v=20230723122927"></script>
 </body>
 
 </html>

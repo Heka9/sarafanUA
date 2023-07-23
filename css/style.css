@@ -2256,23 +2256,20 @@ body::after {
 }
 
 .slide-container__contacts span {
-  font-size: 7px;
+  font-size: 10px;
 }
 
 .slide-container__show {
   display: inline-block;
   border-radius: 2px;
   border: 2px solid #e2e2e2;
-  font-size: 7px;
+  font-size: 12px;
   font-weight: 400;
   padding: 0.40625rem 0.6875rem;
 }
 
-.slide-container__show:not(:last-child) {
-  margin-bottom: 5px;
-}
-
 .slide-container__name {
+  padding-top: 0.3125rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2379,9 +2376,9 @@ body::after {
 }
 
 .options__param {
-  min-width: 70px;
+  min-width: 80px;
   text-align: center;
-  font-size: 7px;
+  font-size: 9px;
   border-radius: 5px;
   padding: 0.5rem 1.1875rem;
   display: -webkit-box;
@@ -2427,6 +2424,9 @@ body::after {
 }
 
 .variant-options__image {
+  width: 3.75rem;
+  height: 3.75rem;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -2435,7 +2435,7 @@ body::after {
 }
 
 .variant-options__label {
-  font-size: 7px;
+  font-size: 10px;
   font-weight: 600;
 }
 
