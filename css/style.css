@@ -29,7 +29,7 @@ body {
   color: #000;
   line-height: 1;
   font-family: "Montserrat";
-  font-size: 0.5625rem;
+  font-size: 0.75rem;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -870,7 +870,7 @@ body::after {
 }
 
 .stats__label {
-  font-size: 5px;
+  font-size: 8px;
   font-weight: 600;
 }
 
@@ -910,7 +910,7 @@ body::after {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: 15px;
   overflow-x: scroll;
   padding-bottom: 1.1875rem;
 }
@@ -959,11 +959,12 @@ body::after {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  min-width: 80px;
   gap: 5px;
 }
 
 .slide-categories__label {
-  font-size: 7px;
+  font-size: 12px;
   text-align: center;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -972,8 +973,8 @@ body::after {
 
 .slide-categories__icon {
   border-radius: 50%;
-  width: 3.125rem;
-  height: 3.125rem;
+  width: 3.75rem;
+  height: 3.75rem;
   background: #cdb4db;
   -webkit-box-shadow: 0px -15px 10px 0px rgba(212, 212, 212, 0.2) inset, 0px 1px 10px 0px rgba(226, 226, 226, 0.2) inset, 10px 4px 10px 0px rgba(233, 233, 233, 0.2) inset, 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
           box-shadow: 0px -15px 10px 0px rgba(212, 212, 212, 0.2) inset, 0px 1px 10px 0px rgba(226, 226, 226, 0.2) inset, 10px 4px 10px 0px rgba(233, 233, 233, 0.2) inset, 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
