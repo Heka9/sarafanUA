@@ -4008,7 +4008,9 @@
         if (inputValue.trim() === "") e.preventDefault();
     }
     const buttonBack = document.querySelector(".icon-back");
+    const footerBackButton = document.querySelector(".menu-footer__link");
     if (buttonBack) buttonBack.addEventListener("click", goBack);
+    if (footerBackButton) footerBackButton.addEventListener("click", goBack);
     function goBack() {
         window.history.back();
     }
