@@ -3896,6 +3896,7 @@
             observeParents: true,
             slidesPerView: 1,
             spaceBetween: 20,
+            autoHeight: true,
             speed: 800,
             touchRatio: 1.5,
             controller: {
