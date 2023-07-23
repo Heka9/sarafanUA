@@ -1571,7 +1571,6 @@ body::after {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 11px;
 }
 
 .search-block__back {
@@ -1662,6 +1661,7 @@ body::after {
 }
 
 .form-search-block {
+  padding-left: 0.6875rem;
   position: relative;
   display: -ms-grid;
   display: grid;
@@ -1670,7 +1670,6 @@ body::after {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 11px;
   font-size: 1rem;
 }
 
@@ -1680,7 +1679,7 @@ body::after {
   width: 10px;
   height: 10px;
   top: 50%;
-  left: 6px;
+  left: 17px;
   -webkit-transform: translate(0px, -50%);
       -ms-transform: translate(0px, -50%);
           transform: translate(0px, -50%);
@@ -1688,6 +1687,12 @@ body::after {
 
 .form-search-block__input {
   position: relative;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.focus .form-search-block__input {
+  padding-right: 0.6875rem;
 }
 
 .form-search-block__input input {
@@ -1735,11 +1740,32 @@ body::after {
   -webkit-transform: translate(0px, -50%);
       -ms-transform: translate(0px, -50%);
           transform: translate(0px, -50%);
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.focus .form-search-block__icon-cancel {
+  right: 21px;
 }
 
 .form-search-block__cancel {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 0px;
+          flex: 0 0 0px;
+  overflow: hidden;
+  width: 0px;
   font-size: 10px;
   font-weight: 600;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.focus .form-search-block__cancel {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 400px;
+          flex: 0 0 400px;
+  overflow: visible;
+  width: 40px;
 }
 
 .info-sales {

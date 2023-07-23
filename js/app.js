@@ -3948,6 +3948,17 @@
     function resetForm(e) {
         e.target.reset();
     }
+    const searchInputProduct = document.querySelector(".form-search-block__input input");
+    if (searchInputProduct) searchInputProduct.addEventListener("focus", showCancel);
+    function showCancel(e) {
+        const parentForm = e.target.closest("form");
+        parentForm.classList.add("focus");
+        parentForm.addEventListener("submit", hideCancel);
+    }
+    function hideCancel(e) {
+        e.target.classList.remove("focus");
+        resetForm(e);
+    }
     const swipeAreas = document.querySelectorAll(".swipe-area");
     let touchStartX = 0;
     let touchEndX = 0;
