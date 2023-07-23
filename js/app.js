@@ -3944,10 +3944,6 @@
     }
     function hideSelect(e) {
         e.target.classList.remove("focus");
-        resetForm(e);
-    }
-    function resetForm(e) {
-        e.target.reset();
     }
     const searchInputProduct = document.querySelector(".form-search-block__input input");
     if (searchInputProduct) searchInputProduct.addEventListener("focus", showCancel);
@@ -3958,7 +3954,6 @@
     }
     function hideCancel(e) {
         e.target.classList.remove("focus");
-        resetForm(e);
     }
     const swipeAreas = document.querySelectorAll(".swipe-area");
     let touchStartX = 0;
@@ -4011,7 +4006,7 @@
     const footerBackButton = document.querySelector(".menu-footer__link");
     if (buttonBack) buttonBack.addEventListener("click", goBack);
     if (footerBackButton) footerBackButton.addEventListener("click", goBack);
-    function goBack() {
+    function goBack(e) {
         window.history.back();
     }
     const productWrapper = document.querySelector(".main-image-product__wrapper");
@@ -4038,6 +4033,7 @@
             initialLoading = false;
             if (searchParam) {
                 const searchValue = localStorage.getItem("searchValue");
+                console.log(searchValue);
                 const apiUrl = `/api/products/search?searchValue=${searchValue}&page=1&amount=${limit}`;
                 const response = await fetch(apiUrl);
                 if (response.ok) {
