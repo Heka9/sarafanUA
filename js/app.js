@@ -4007,9 +4007,10 @@
         const input = document.querySelector(".form-search-block input");
         const inputValue = input.value;
         if (inputValue.trim() === "") e.preventDefault(); else {
+            searchParam = false;
             initialLoading = true;
-            localStorage.removeItem("searchValue");
             searchingValue = inputValue;
+            document.querySelector(".product-page .goods__items.goods__items_row-gap-20").innerHTML = "";
             loadProducts(initialLoading, pageLoadingCounter, limit, searchParam, searchingValue);
         }
     }
@@ -4040,7 +4041,7 @@
         if (initialLoad) {
             initialLoading = false;
             if (searchParam) {
-                if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) if (!searchingValue) {
+                if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) {
                     const searchValue = localStorage.getItem("searchValue");
                     const apiUrl = `/api/products/search?searchValue=${searchValue}&page=1&amount=${limit}`;
                     const response = await fetch(apiUrl);
@@ -4048,14 +4049,13 @@
                         const data = await response.json();
                         if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
                     }
-                } else {
-                    document.querySelector(".product-page .goods__items.goods__items_row-gap-20").innerHTML = "";
-                    const apiUrl = `/api/products/search?searchValue=${searchingValue}&page=1&amount=${limit}`;
-                    const response = await fetch(apiUrl);
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
-                    }
+                }
+            } else if (searchingValue) {
+                const apiUrl = `/api/products/search?searchValue=${searchingValue}&page=1&amount=${limit}`;
+                const response = await fetch(apiUrl);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
                 }
             } else {
                 if (document.querySelector(".page__sales .sales__items")) {
@@ -4082,6 +4082,13 @@
                         createCards(data, ".page__goods .goods__items");
                     }
                 }
+            }
+        } else if (loadMore && searchingValue) {
+            const apiUrl = `/api/products/search?searchValue=${searchingValue}&page=${offset}&amount=${limit}`;
+            const response = await fetch(apiUrl);
+            if (response.ok) {
+                const data = await response.json();
+                if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
             }
         } else if (loadMore) if (searchParam) {
             if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) {
