@@ -4029,7 +4029,6 @@
         }
     }
     async function loadProducts(initialLoad, offset, limit, searchParam) {
-        const apiUrl = `/api/products?page=${offset}&amount=${limit}`;
         if (!loadMore) return;
         if (initialLoad) {
             initialLoading = false;
@@ -4042,11 +4041,13 @@
                     if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
                 }
             } else {
-                const apiUrl = `/api/products?page=1&amount=${limit}`;
-                const response = await fetch(apiUrl);
-                if (response.ok) {
-                    const data = await response.json();
-                    createCards(data, ".page__goods .goods__items");
+                if (document.querySelector(".page__goods .goods__items")) {
+                    const apiUrl = `/api/products?page=1&amount=${limit}`;
+                    const response = await fetch(apiUrl);
+                    if (response.ok) {
+                        const data = await response.json();
+                        createCards(data, ".page__goods .goods__items");
+                    }
                 }
                 if (document.querySelector(".page__sales .sales__items")) {
                     const apiUrl = `/api/sale/products?page=1&amount=${limit}`;
@@ -4066,6 +4067,7 @@
                 createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
             }
         } else {
+            const apiUrl = `/api/products?page=${offset}&amount=${limit}`;
             const response = await fetch(apiUrl);
             if (response.ok) {
                 const data = await response.json();
