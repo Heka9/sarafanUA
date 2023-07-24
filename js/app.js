@@ -4041,20 +4041,20 @@
                     if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
                 }
             } else {
+                if (document.querySelector(".page__sales .sales__items")) {
+                    const apiUrl = `/api/products/sale?page=1&amount=${limit}`;
+                    const response = await fetch(apiUrl);
+                    if (response.ok) {
+                        const data = await response.json();
+                        createCards(data, ".page__sales .sales__items");
+                    }
+                }
                 if (document.querySelector(".page__goods .goods__items")) {
                     const apiUrl = `/api/products?page=1&amount=${limit}`;
                     const response = await fetch(apiUrl);
                     if (response.ok) {
                         const data = await response.json();
                         createCards(data, ".page__goods .goods__items");
-                    }
-                }
-                if (document.querySelector(".page__sales .sales__items")) {
-                    const apiUrl = `/api/sale/products?page=1&amount=${limit}`;
-                    const response = await fetch(apiUrl);
-                    if (response.ok) {
-                        const data = await response.json();
-                        createCards(data, ".page__sales .sales__items");
                     }
                 }
             }
