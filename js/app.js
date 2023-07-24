@@ -3935,6 +3935,12 @@
             }));
         }
     }), 0);
+    let pageLoadingCounter = 1;
+    let initialLoading = true;
+    let loadMore = true;
+    let searchParam = false;
+    const limit = 6;
+    let searchingValue = "";
     const searchInput = document.querySelector(".search-panel__input input");
     if (searchInput) searchInput.addEventListener("focus", showSelect);
     function showSelect(e) {
@@ -4000,7 +4006,12 @@
     function onSearchFormSubmit(e) {
         const input = document.querySelector(".form-search-block input");
         const inputValue = input.value;
-        if (inputValue.trim() === "") e.preventDefault();
+        if (inputValue.trim() === "") e.preventDefault(); else {
+            initialLoading = true;
+            localStorage.removeItem("searchValue");
+            searchingValue = inputValue;
+            loadProducts(initialLoading, pageLoadingCounter, limit, searchParam, searchingValue);
+        }
     }
     const buttonBack = document.querySelector(".icon-back");
     const footerBackButton = document.querySelector(".menu-footer__link");
@@ -4012,11 +4023,6 @@
     const productWrapper = document.querySelector(".main-image-product__wrapper");
     if (productWrapper) productWrapper.addEventListener("click", toggleFavoriteProduct);
     window.addEventListener("DOMContentLoaded", windowLoad);
-    let pageLoadingCounter = 1;
-    let initialLoading = true;
-    let loadMore = true;
-    let searchParam = false;
-    const limit = 6;
     function windowLoad() {
         const parentElementMainPage = document.querySelector(".page__goods .goods__items");
         const parentElementMainPageSales = document.querySelector(".page__sales .sales__items");
@@ -4029,14 +4035,22 @@
         }
         if (parentElementSalesPage) loadProducts(initialLoading, pageLoadingCounter, limit, searchParam);
     }
-    async function loadProducts(initialLoad, offset, limit, searchParam) {
+    async function loadProducts(initialLoad, offset, limit, searchParam, searchingValue) {
         if (!loadMore) return;
         if (initialLoad) {
             initialLoading = false;
             if (searchParam) {
-                if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) {
+                if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) if (!searchingValue) {
                     const searchValue = localStorage.getItem("searchValue");
                     const apiUrl = `/api/products/search?searchValue=${searchValue}&page=1&amount=${limit}`;
+                    const response = await fetch(apiUrl);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
+                    }
+                } else {
+                    document.querySelector(".product-page .goods__items.goods__items_row-gap-20").innerHTML = "";
+                    const apiUrl = `/api/products/search?searchValue=${searchingValue}&page=1&amount=${limit}`;
                     const response = await fetch(apiUrl);
                     if (response.ok) {
                         const data = await response.json();
@@ -4176,7 +4190,7 @@
     }
     if (document.querySelector(".page__goods .goods__items") || document.querySelector(".product-page .goods__items.goods__items_row-gap-20") || document.querySelector(".sales-page .goods__items.goods__items_row-gap-20")) window.addEventListener("scroll", debounce(checkScrollPosition, 250));
     function checkScrollPosition() {
-        if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 200) loadProducts(initialLoading, ++pageLoadingCounter, limit, searchParam);
+        if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 200) loadProducts(initialLoading, ++pageLoadingCounter, limit, searchParam, searchingValue);
     }
     window["FLS"] = false;
     menuInit();
