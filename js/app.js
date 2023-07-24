@@ -4019,8 +4019,10 @@
     const limit = 6;
     function windowLoad() {
         const parentElementMainPage = document.querySelector(".page__goods .goods__items");
+        const parentElementMainPageSales = document.querySelector(".page__sales .sales__items");
         const parentElementProductsPage = document.querySelector(".product-page .goods__items.goods__items_row-gap-20");
         if (parentElementMainPage) loadProducts(initialLoading, pageLoadingCounter, limit, searchParam);
+        if (parentElementMainPageSales) loadProducts(initialLoading, pageLoadingCounter, limit, searchParam);
         if (parentElementProductsPage) {
             searchParam = true;
             loadProducts(initialLoading, pageLoadingCounter, limit, searchParam);
@@ -4033,7 +4035,6 @@
             initialLoading = false;
             if (searchParam) {
                 const searchValue = localStorage.getItem("searchValue");
-                console.log(searchValue);
                 const apiUrl = `/api/products/search?searchValue=${searchValue}&page=1&amount=${limit}`;
                 const response = await fetch(apiUrl);
                 if (response.ok) {
@@ -4046,6 +4047,14 @@
                 if (response.ok) {
                     const data = await response.json();
                     createCards(data, ".page__goods .goods__items");
+                }
+                if (document.querySelector(".page__sales .sales__items")) {
+                    const apiUrl = `/api/sale/products?page=1&amount=${limit}`;
+                    const response = await fetch(apiUrl);
+                    if (response.ok) {
+                        const data = await response.json();
+                        createCards(data, ".page__sales .sales__items");
+                    }
                 }
             }
         } else if (loadMore) if (searchParam) {
