@@ -2528,6 +2528,7 @@ body::after {
 }
 
 .product {
+  background-color: #fff;
   padding-bottom: 1.9375rem;
 }
 
