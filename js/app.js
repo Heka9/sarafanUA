@@ -4013,10 +4013,12 @@
     const productWrapper = document.querySelector(".main-image-product__wrapper");
     if (productWrapper) productWrapper.addEventListener("click", toggleFavoriteProduct);
     async function fetchData(url, method) {
+        let data;
         const response = await fetch(url, {
             method
         });
-        if (response.ok) return data = await response.json();
+        if (response.ok) data = await response.json();
+        return data;
     }
     window.addEventListener("DOMContentLoaded", onWindowLoadDOMContentLoaded);
     function onWindowLoadDOMContentLoaded() {
@@ -4041,7 +4043,7 @@
                     let searchValue;
                     const startIndexValue = currentUrl.indexOf("search-value=") + 13;
                     const lastIndexValue = currentUrl.indexOf("&", startIndexValue);
-                    if (lastIndexValue >= 0) searchValue = currentUrl.slice(startIndexValue, lastIndexValue + 1); else searchValue = currentUrl.slice(startIndexValue);
+                    if (lastIndexValue >= 0) searchValue = currentUrl.slice(startIndexValue, lastIndexValue); else searchValue = currentUrl.slice(startIndexValue);
                     const apiUrl = `/api/products/search?searchValue=${searchValue}&page=1&amount=${limit}`;
                     const data = fetchData(apiUrl, "GET");
                     if (data) if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
@@ -4051,7 +4053,7 @@
                 let searchingValue;
                 const startIndexValue = currentUrl.indexOf("search-value=") + 13;
                 const lastIndexValue = currentUrl.indexOf("&", startIndexValue);
-                if (lastIndexValue >= 0) searchingValue = currentUrl.slice(startIndexValue, lastIndexValue + 1); else searchingValue = currentUrl.slice(startIndexValue);
+                if (lastIndexValue >= 0) searchingValue = currentUrl.slice(startIndexValue, lastIndexValue); else searchingValue = currentUrl.slice(startIndexValue);
                 let apiUrl;
                 if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) {
                     apiUrl = `/api/products/search?&searchValue=${searchingValue}&page=1&amount=${limit}`;
@@ -4084,7 +4086,7 @@
             let searchingValue;
             const startIndexValue = currentUrl.indexOf("search-value=") + 13;
             const lastIndexValue = currentUrl.indexOf("&", startIndexValue);
-            if (lastIndexValue >= 0) searchingValue = currentUrl.slice(startIndexValue, lastIndexValue + 1); else searchingValue = currentUrl.slice(startIndexValue);
+            if (lastIndexValue >= 0) searchingValue = currentUrl.slice(startIndexValue, lastIndexValue); else searchingValue = currentUrl.slice(startIndexValue);
             const apiUrl = `/api/products/search?&searchValue=${searchingValue}&page=${offset}&amount=${limit}`;
             const data = fetchData(apiUrl, "GET");
             if (data) if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
@@ -4093,7 +4095,7 @@
                 let searchValue;
                 const startIndexValue = currentUrl.indexOf("search-value=") + 13;
                 const lastIndexValue = currentUrl.indexOf("&", startIndexValue);
-                if (lastIndexValue >= 0) searchValue = currentUrl.slice(startIndexValue, lastIndexValue + 1); else searchValue = currentUrl.slice(startIndexValue);
+                if (lastIndexValue >= 0) searchValue = currentUrl.slice(startIndexValue, lastIndexValue); else searchValue = currentUrl.slice(startIndexValue);
                 const apiUrl = `/api/products/search?searchValue=${searchValue}&page=${offset}&amount=${limit}`;
                 const data = fetchData(apiUrl, "GET");
                 if (data) createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
