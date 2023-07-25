@@ -4113,6 +4113,11 @@
                 const data = await fetchData(apiUrl, "GET");
                 if (data) createCards(data, ".page__goods .goods__items");
             }
+            if (document.querySelector(".page__goods .goods__items")) {
+                const apiUrl = `/api/products?page=${offset}&amount=${limit}`;
+                const data = await fetchData(apiUrl, "GET");
+                if (data) createCards(data, ".page__goods .goods__items");
+            }
         }
     }
     function createCards(data, parentNode) {
