@@ -4141,7 +4141,7 @@
                     const searchValue = getSearchValueFromUrl();
                     const apiUrl = `/api/products/sale/search?searchValue=${searchValue}&page=${offset}&amount=${limit}`;
                     const data = await fetchData(apiUrl, "GET");
-                    if (data) createCards(data, ".sales-page .goods__items.goods__items_row-gap-20");
+                    if (data) if (offset === 1 && data.products.length === 0) showNoResult(".sales-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".sales-page .goods__items.goods__items_row-gap-20");
                 } else {
                     const apiUrl = `/api/products/sale?page=${offset}&amount=${limit}`;
                     const data = await fetchData(apiUrl, "GET");
