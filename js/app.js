@@ -4017,8 +4017,10 @@
         const response = await fetch(url, {
             method
         });
-        if (response.ok) data = await response.json();
-        return data;
+        if (response.ok) {
+            data = await response.json();
+            return data;
+        }
     }
     window.addEventListener("DOMContentLoaded", onWindowLoadDOMContentLoaded);
     function onWindowLoadDOMContentLoaded() {
@@ -4033,7 +4035,7 @@
         }
         if (parentElementSalesPage) loadProducts(initialLoading, pageLoadingCounter, limit, searchParam);
     }
-    function loadProducts(initialLoad, offset, limit, searchParam, searchingValue) {
+    async function loadProducts(initialLoad, offset, limit, searchParam, searchingValue) {
         if (!loadMore) return;
         if (initialLoad) {
             initialLoading = false;
@@ -4045,7 +4047,7 @@
                     const lastIndexValue = currentUrl.indexOf("&", startIndexValue);
                     if (lastIndexValue >= 0) searchValue = currentUrl.slice(startIndexValue, lastIndexValue); else searchValue = currentUrl.slice(startIndexValue);
                     const apiUrl = `/api/products/search?searchValue=${searchValue}&page=1&amount=${limit}`;
-                    const data = fetchData(apiUrl, "GET");
+                    const data = await fetchData(apiUrl, "GET");
                     if (data) if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
                 }
             } else if (searchingValue) {
@@ -4057,27 +4059,27 @@
                 let apiUrl;
                 if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) {
                     apiUrl = `/api/products/search?&searchValue=${searchingValue}&page=1&amount=${limit}`;
-                    const data = fetchData(apiUrl, "GET");
+                    const data = await fetchData(apiUrl, "GET");
                     if (data) if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
                 } else if (document.querySelector(".page__sales .sales__items")) {
                     apiUrl = `/api/products/sale/search?&searchValue=${searchingValue}&page=1&amount=${limit}`;
-                    const data = fetchData(apiUrl, "GET");
+                    const data = await fetchData(apiUrl, "GET");
                     if (data) if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
                 }
             } else {
                 if (document.querySelector(".page__sales .sales__items")) {
                     const apiUrl = `/api/products/sale?page=1&amount=${limit}`;
-                    const data = fetchData(apiUrl, "GET");
+                    const data = await fetchData(apiUrl, "GET");
                     if (data) createCards(data, ".page__sales .sales__items");
                 }
                 if (document.querySelector(".page__goods .goods__items")) {
                     const apiUrl = `/api/products?page=1&amount=${limit}`;
-                    const data = fetchData(apiUrl, "GET");
+                    const data = await fetchData(apiUrl, "GET");
                     if (data) createCards(data, ".page__goods .goods__items");
                 }
                 if (document.querySelector(".sales-page .goods__items.goods__items_row-gap-20")) {
                     const apiUrl = `/api/products/sale?page=1&amount=${limit}`;
-                    const data = fetchData(apiUrl, "GET");
+                    const data = await fetchData(apiUrl, "GET");
                     if (data) createCards(data, ".page__goods .goods__items");
                 }
             }
@@ -4088,7 +4090,7 @@
             const lastIndexValue = currentUrl.indexOf("&", startIndexValue);
             if (lastIndexValue >= 0) searchingValue = currentUrl.slice(startIndexValue, lastIndexValue); else searchingValue = currentUrl.slice(startIndexValue);
             const apiUrl = `/api/products/search?&searchValue=${searchingValue}&page=${offset}&amount=${limit}`;
-            const data = fetchData(apiUrl, "GET");
+            const data = await fetchData(apiUrl, "GET");
             if (data) if (offset === 1 && data.products.length === 0) showNoResult(".product-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
         } else if (loadMore) if (searchParam) {
             if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) {
@@ -4097,18 +4099,18 @@
                 const lastIndexValue = currentUrl.indexOf("&", startIndexValue);
                 if (lastIndexValue >= 0) searchValue = currentUrl.slice(startIndexValue, lastIndexValue); else searchValue = currentUrl.slice(startIndexValue);
                 const apiUrl = `/api/products/search?searchValue=${searchValue}&page=${offset}&amount=${limit}`;
-                const data = fetchData(apiUrl, "GET");
+                const data = await fetchData(apiUrl, "GET");
                 if (data) createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
             }
         } else {
             if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) {
                 const apiUrl = `/api/products?page=${offset}&amount=${limit}`;
-                const data = fetchData(apiUrl, "GET");
+                const data = await fetchData(apiUrl, "GET");
                 if (data) createCards(data, ".page__goods .goods__items");
             }
             if (document.querySelector(".sales-page .goods__items.goods__items_row-gap-20")) {
                 const apiUrl = `/api/products/sale?page=${offset}&amount=${limit}`;
-                const data = fetchData(apiUrl, "GET");
+                const data = await fetchData(apiUrl, "GET");
                 if (data) createCards(data, ".page__goods .goods__items");
             }
         }
