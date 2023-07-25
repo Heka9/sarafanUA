@@ -4092,7 +4092,8 @@
                     const currUrl = window.location.href.toLowerCase();
                     const prevUrl = document.referrer.toLowerCase();
                     if (currUrl !== prevUrl && currUrl.includes("sale/search")) {
-                        const apiUrl = `/api/products/sale/search?page=1&amount=${limit}`;
+                        const searchValue = getSearchValueFromUrl();
+                        const apiUrl = `/api/products/sale/search?searchValue=${searchValue}&page=1&amount=${limit}`;
                         const data = await fetchData(apiUrl, "GET");
                         if (data) createCards(data, ".sales-page .goods__items.goods__items_row-gap-20");
                     } else {
@@ -4128,24 +4129,15 @@
                 const data = await fetchData(apiUrl, "GET");
                 if (data) createCards(data, ".product-page .goods__items.goods__items_row-gap-20");
             }
+            if (document.querySelector(".sales-page .goods__items.goods__items_row-gap-20")) {
+                const apiUrl = `/api/products/sale?page=${offset}&amount=${limit}`;
+                const data = await fetchData(apiUrl, "GET");
+                if (data) createCards(data, ".sales-page .goods__items.goods__items_row-gap-20");
+            }
             if (document.querySelector(".page__goods .goods__items")) {
                 const apiUrl = `/api/products?page=${offset}&amount=${limit}`;
                 const data = await fetchData(apiUrl, "GET");
                 if (data) createCards(data, ".page__goods .goods__items");
-            }
-            if (document.querySelector(".sales-page .goods__items.goods__items_row-gap-20")) {
-                const currUrl = window.location.href.toLowerCase();
-                const prevUrl = document.referrer.toLowerCase();
-                if (currUrl !== prevUrl && currUrl.includes("sale/search")) {
-                    const searchingValue = getSearchValueFromUrl();
-                    const apiUrl = `/api/products/search?&searchValue=${searchingValue}&page=${offset}&amount=${limit}`;
-                    const data = await fetchData(apiUrl, "GET");
-                    if (data) if (offset === 1 && data.products.length === 0) showNoResult(".sales-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".sales-page .goods__items.goods__items_row-gap-20");
-                } else {
-                    const apiUrl = `/api/products/sale?page=${offset}&amount=${limit}`;
-                    const data = await fetchData(apiUrl, "GET");
-                    if (data) if (offset === 1 && data.products.length === 0) showNoResult(".sales-page .goods__items.goods__items_row-gap-20"); else createCards(data, ".sales-page .goods__items.goods__items_row-gap-20");
-                }
             }
         }
     }
