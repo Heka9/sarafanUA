@@ -3993,7 +3993,7 @@
     const searchForm = document.querySelector(".form-search-block");
     if (searchForm) searchForm.addEventListener("submit", onSearchFormSubmit);
     function onSearchFormSubmit(e) {
-        const input = document.querySelector(".form-search-block input");
+        const input = document.querySelector(".form-search-block__input");
         const inputValue = input.value;
         if (inputValue.trim() === "") e.preventDefault(); else {
             searchParam = false;
@@ -4089,9 +4089,17 @@
                     if (data) createCards(data, ".page__goods .goods__items");
                 }
                 if (document.querySelector(".sales-page .goods__items.goods__items_row-gap-20")) {
-                    const apiUrl = `/api/products/sale?page=1&amount=${limit}`;
-                    const data = await fetchData(apiUrl, "GET");
-                    if (data) createCards(data, ".sales-page .goods__items.goods__items_row-gap-20");
+                    const currUrl = window.location.href.toLowerCase();
+                    const prevUrl = document.referrer.toLowerCase();
+                    if (currUrl !== prevUrl && currUrl.includes("sale/search")) {
+                        const apiUrl = `/api/products/sale/search?page=1&amount=${limit}`;
+                        const data = await fetchData(apiUrl, "GET");
+                        if (data) createCards(data, ".sales-page .goods__items.goods__items_row-gap-20");
+                    } else {
+                        const apiUrl = `/api/products/sale?page=1&amount=${limit}`;
+                        const data = await fetchData(apiUrl, "GET");
+                        if (data) createCards(data, ".sales-page .goods__items.goods__items_row-gap-20");
+                    }
                 }
             }
         } else if (loadMore && searchingValue) {
