@@ -4039,7 +4039,7 @@
                 if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) {
                     const currentUrl = window.location.href;
                     let searchValue;
-                    const startIndexValue = currentUrl.indexOf("searchValue=") + 12;
+                    const startIndexValue = currentUrl.indexOf("search-value=") + 12;
                     const lastIndexValue = currentUrl.indexOf("&", startIndexValue);
                     if (lastIndexValue >= 0) searchValue = currentUrl.slice(startIndexValue, lastIndexValue + 1); else searchValue = currentUrl.slice(startIndexValue);
                     const apiUrl = `/api/products/search?searchValue=${searchValue}&page=1&amount=${limit}`;
@@ -4049,7 +4049,7 @@
             } else if (searchingValue) {
                 const currentUrl = window.location.href;
                 let searchingValue;
-                const startIndexValue = currentUrl.indexOf("searchValue=") + 12;
+                const startIndexValue = currentUrl.indexOf("search-value=") + 12;
                 const lastIndexValue = currentUrl.indexOf("&", startIndexValue);
                 if (lastIndexValue >= 0) searchingValue = currentUrl.slice(startIndexValue, lastIndexValue + 1); else searchingValue = currentUrl.slice(startIndexValue);
                 let apiUrl;
@@ -4082,7 +4082,7 @@
         } else if (loadMore && searchingValue) {
             const currentUrl = window.location.href;
             let searchingValue;
-            const startIndexValue = currentUrl.indexOf("searchValue=") + 12;
+            const startIndexValue = currentUrl.indexOf("search-value=") + 12;
             const lastIndexValue = currentUrl.indexOf("&", startIndexValue);
             if (lastIndexValue >= 0) searchingValue = currentUrl.slice(startIndexValue, lastIndexValue + 1); else searchingValue = currentUrl.slice(startIndexValue);
             const apiUrl = `/api/products/search?&searchValue=${searchingValue}&page=${offset}&amount=${limit}`;
@@ -4091,7 +4091,7 @@
         } else if (loadMore) if (searchParam) {
             if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) {
                 let searchValue;
-                const startIndexValue = currentUrl.indexOf("searchValue=") + 12;
+                const startIndexValue = currentUrl.indexOf("search-value=") + 12;
                 const lastIndexValue = currentUrl.indexOf("&", startIndexValue);
                 if (lastIndexValue >= 0) searchValue = currentUrl.slice(startIndexValue, lastIndexValue + 1); else searchValue = currentUrl.slice(startIndexValue);
                 const apiUrl = `/api/products/search?searchValue=${searchValue}&page=${offset}&amount=${limit}`;
