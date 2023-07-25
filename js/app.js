@@ -3999,8 +3999,13 @@
             searchParam = false;
             initialLoading = true;
             searchingValue = true;
-            document.querySelector(".product-page .goods__items.goods__items_row-gap-20").innerHTML = "";
-            loadProducts(initialLoading, pageLoadingCounter, limit, searchParam, searchingValue);
+            if (document.querySelector(".product-page .goods__items.goods__items_row-gap-20")) {
+                document.querySelector(".product-page .goods__items.goods__items_row-gap-20").innerHTML = "";
+                loadProducts(initialLoading, pageLoadingCounter, limit, searchParam, searchingValue);
+            } else if (document.querySelector(".sales-page .goods__items.goods__items_row-gap-20")) {
+                document.querySelector(".sales-page .goods__items.goods__items_row-gap-20").innerHTML = "";
+                loadProducts(initialLoading, pageLoadingCounter, limit, searchParam, searchingValue);
+            }
         }
     }
     const buttonBack = document.querySelector(".icon-back");
